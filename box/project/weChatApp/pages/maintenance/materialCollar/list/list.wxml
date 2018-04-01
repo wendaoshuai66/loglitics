@@ -1,0 +1,78 @@
+<!-- <view class="head">
+  <view class='title' style="height:{{titleHeight}}rpx">物料库存列表</view>
+  <view class='titleAftle'></view>
+</view> -->
+<!-- 加载动画 -->
+<!-- <import src="../../../wxParse/courseList.wxml"/>
+
+ <block >
+    <template data="{{loadingHidden}}" is="loading_style1"></template>
+</block> -->
+<!-- 加载动画 end -->
+<!-- 搜索框 start -->
+<view class="TopBlock">
+  <view hidden='{{!maskFlag}}' class='cancel' size='mini' bindtap='initClick' hover-stop-propagation>取消</view>
+  <view class='searchBox'>
+    <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+    <input class='searchInput' bindfocus='searchFoucs' bindinput='searchInput' bindblur='searchBlur' type='text' value='{{searchValue}}' placeholder='搜索（物料名称）' bindconfirm="searchConfirm" confirm-type="search" maxlength='20'>
+    </input>
+  </view>
+  <view class='logBox' style="{{maskFlag && (logItem.length != 0)?'display:inline-block':'display:none'}}">
+    <view class='logText'>-----搜索历史-----</view>
+    <view class='logItemBox' bindtap='logItemClick' data-name="{{item}}" wx:for="{{logItem}}" wx:key="{{index}}">{{item}}</view>
+    <view class='logBottom' bindtap='clearLog'>清空历史记录</view>
+  </view>
+  <!-- 遮罩层 start -->
+  <view class='mask' bindtap='maskTap' style="height:{{windowHeightInit}}px;{{maskFlag?'display:inline-block':'display:none'}}"></view>
+  <!-- 遮罩层 end -->
+</view>
+<!-- 搜索框 end  -->
+
+<loading hidden="{{loadingHidden}}">加载中...</loading>
+<view hidden='{{loadingHidden}}' class='loadingMask'></view>
+<view class="content">
+  <view class='ul'>
+    <!-- 于此标签循环list -->
+    <!-- <view class='li' wx:for="{{list}}" wx:key="{{index}}">
+      <view class='li_positive'>
+        <view class='liHead'>
+          <view class='type'>{{item.material.materialCategory.name}}</view>
+          <view class='Name'>{{item.material.name}}</view>
+          <view class='model'>规格\t\t:\t\t{{item.material.specificationsModel}}</view>
+        </view>
+        <view class='liBorder'></view>
+        <view class='liContent'>
+          <view class='date'>领取日期\t:\t{{item.addDateTime}}</view>
+          <view class='detail'>库存数量\t:\t{{item.stockRemovalCount}}{{item.material.materialUnit.name}}</view>
+          <view class='btn' bindtap='toView' data-id="{{item.material.id}}">详情</view>
+        </view>
+      </view> -->
+    <!-- <view class='li_reverse'>
+        <view class='custodian'>
+          <text class='bold'>保管人\t\t:\t\t</text>{{item.material.custodian}}</view>
+        <view class='custodialAddress'>
+          <text class='bold'>保管地址\t\t:\t\t</text>{{item.material.storageLocation}}</view>
+        <view class='remarks'>
+          <text class='bold'>备注\t\t:\t\t</text>{{item.material.remarks}}</view>
+        <view class='btn_back' bindtap='toAnimate' data-flag="{{item.flipFlag}}" data-index="{{index}}">返回</view>
+      </view> -->
+    <!-- </view> -->
+    <view class='li' wx:for="{{list}}" data-index="{{index}}" wx:key="{{index}}" data-id='{{item.material.id}}'>
+      <view class='liHead'>
+        <view class='type'>{{item.name}}</view>
+        <!-- <view class='Name'>{{item.material.name}}</view> -->
+        <!-- <view class='model'>{{item.material.specificationsModel}}</view> -->
+      </view>
+      <view class='liBorder'></view>
+      <view class='liContent'>
+        <view class='date'>添加时间\t:\t{{item.addDateTime}}</view>
+        <view class='liContent_name'>物料类别\t:\t{{item.materialCategory.name}}</view>
+        <view class='liContent_model'>规格型号\t:\t{{item.specificationsModel}}</view>
+        <view class='detail'>库存数量\t:\t{{item.inventoryQuantity}}({{item.materialUnit.name}})</view>
+        <view class='btn' bindtap='toView' data-id="{{item.id}}">物料详情</view>
+      </view>
+    </view>
+    <view class="allDownText" hidden="{{!ifAll}}">{{ifAllText}}</view>
+  </view>
+
+</view>

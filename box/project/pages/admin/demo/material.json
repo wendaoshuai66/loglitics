@@ -1,0 +1,105 @@
+{
+  "total": 5,
+  "data": [
+    {
+      "id": "1",
+      "name": "物料1",
+      "specificationsModel": "型号1",
+      "materialCategory": {
+        "id": "1",
+        "name": "物料类别1"
+      },
+      "materialUnit": {
+        "id": "1",
+        "name": "物料单位1"
+      },
+      "inventoryQuantity": "12",
+      "custodian": "张三",
+      "storageLocation": "地点1",
+      "remarks": "备注",
+      "status": 1,
+      "addDateTime": "2017-04-25 13:20:21",
+      "updateDateTime": "2017-04-25 13:20:21"
+    },
+    {
+      "id": "2",
+      "name": "物料2",
+      "specificationsModel": "型号2",
+      "materialCategory": {
+        "id": "2",
+        "name": "物料类别2"
+      },
+      "materialUnit": {
+        "id": "2",
+        "name": "单位2"
+      },
+      "inventoryQuantity": "12",
+      "custodian": "张三",
+      "storageLocation": "地点2",
+      "remarks": "备注",
+      "status": 1,
+      "addDateTime": "2017-04-25 13:20:21",
+      "updateDateTime": "2017-04-25 13:20:21"
+    },
+    {
+      "id": "3",
+      "name": "物料3",
+      "specificationsModel": "型号3",
+      "materialCategory": {
+        "id": "3",
+        "name": "物料类别3"
+      },
+      "materialUnit": {
+        "id": "3",
+        "name": "单位3"
+      },
+      "inventoryQuantity": "12",
+      "custodian": "张三",
+      "storageLocation": "地点3",
+      "remarks": "备注",
+      "status": 1,
+      "addDateTime": "2017-04-25 13:20:21",
+      "updateDateTime": "2017-04-25 13:20:21"
+    },
+    {
+      "id": "4",
+      "name": "物料4",
+      "specificationsModel": "型号4",
+      "materialCategory": {
+        "id": "4",
+        "name": "物料类别4"
+      },
+      "materialUnit": {
+        "id": "4",
+        "name": "单位4"
+      },
+      "inventoryQuantity": "12",
+      "custodian": "张三",
+      "storageLocation": "地点4",
+      "remarks": "备注",
+      "status": 1,
+      "addDateTime": "2017-04-25 13:20:21",
+      "updateDateTime": "2017-04-25 13:20:21"
+    },
+    {
+      "id": "5",
+      "name": "物料5",
+      "specificationsModel": "型号5",
+      "materialCategory": {
+        "id": "5",
+        "name": "物料类别5"
+      },
+      "materialUnit": {
+        "id": "5",
+        "name": "单位5"
+      },
+      "inventoryQuantity": "12",
+      "custodian": "张三",
+      "storageLocation": "地点5",
+      "remarks": "备注",
+      "status": 1,
+      "addDateTime": "2017-04-25 13:20:21",
+      "updateDateTime": "2017-04-25 13:20:21"
+    }
+  ]
+}

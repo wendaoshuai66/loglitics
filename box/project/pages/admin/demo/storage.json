@@ -1,0 +1,51 @@
+{
+  "total": 2,
+  "data": [
+    {
+      "id": "1",
+      "material": {
+        "id": "1",
+        "name": "物料1",
+        "specificationsModel":"物料1",
+        "materialCategory":{
+          "id":"1",
+          "name":"物料类别1"
+        },
+        "materialUnit":{
+          "id":"1",
+          "name":"物料单位1"
+        }
+      },
+      "storageDocuments": "单号1",
+      "storageCount": 12,
+      "price": 20,
+      "totalPrice": 240,
+      "storageDateTime": "2017-04-25",
+      "storagePerson": "张三",
+	  "addDateTime": "2017-04-25 13:20:21"
+    },
+    {
+      "id": "2",
+      "material": {
+        "id": "1",
+        "name": "物料2",
+        "specificationsModel":"物料2",
+        "materialCategory":{
+          "id":"2",
+          "name":"物料类别2"
+        },
+        "materialUnit":{
+          "id":"2",
+          "name":"物料单位2"
+        }
+      },
+      "storageDocuments": "单号2",
+      "storageCount": 12,
+      "price": 20,
+      "totalPrice": 240,
+      "storageDateTime": "2017-04-25",
+      "storagePerson": "张三",
+	  "addDateTime": "2017-04-25 13:20:21"
+    }
+  ]
+}

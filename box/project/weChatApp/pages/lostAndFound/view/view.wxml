@@ -1,0 +1,38 @@
+
+
+
+
+
+
+
+
+
+<import src="../../../wxParse/wxParse.wxml" />
+<view class="content">
+  <scroll-view scroll-y="true" style="padding-bottom:80rpx">
+    <text class="title">{{data.title}}</text>
+    <view class="tabTitle">
+      <text class="minTitle">发布人\t:\t{{data.person.name}}</text>
+      <text class="minTitle">浏览次数\t:\t{{data.viewTimes}}</text>
+    </view>
+     <view class='addDateTime'>发布时间\t:\t{{data.addDateTime}}</view>
+    <view wx:for="{{imgItems}}" wx:key="{{index}}" class='imageItems'>
+          <image src='{{item}}'></image>
+    </view>
+    <view class="article">
+      <template is="wxParse" data="{{wxParseData:article.nodes}}" />
+    </view>
+  </scroll-view>
+  <!-- <view class="{{data.dealStatus==0?'statusN':'statusY'}}">
+    <text>{{statusItems[data.dealStatus]}}</text>
+  </view> -->
+</view>
+<view class='bottom'>
+<view class='phone' bindtap='toPhone'>联系电话\t:\t{{data.person.tel}}</view>
+</view>
+<view class="body-view">
+  <loading hidden="{{loadingHidden}}">
+    加载中...
+  </loading>
+  <view hidden='{{loadingHidden}}' class='loadingMask'></view>
+</view>

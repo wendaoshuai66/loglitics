@@ -1,0 +1,239 @@
+<div class="page-sidebar navbar-collapse collapse">
+    <!-- BEGIN SIDEBAR MENU -->
+    <!-- DOC: Apply "page-sidebar-menu-light" class right after "page-sidebar-menu" to enable light sidebar menu style(without borders) -->
+    <!-- DOC: Apply "page-sidebar-menu-hover-submenu" class right after "page-sidebar-menu" to enable hoverable(hover vs accordion) sub menu mode -->
+    <!-- DOC: Apply "page-sidebar-menu-closed" class right after "page-sidebar-menu" to collapse("page-sidebar-closed" class must be applied to the body element) the sidebar sub menu mode -->
+    <!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
+    <!-- DOC: Set data-keep-expand="true" to keep the submenues expanded -->
+    <!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
+    <ul class="page-sidebar-menu" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200" ng-class="{'page-sidebar-menu-closed': settings.layout.pageSidebarClosed}">
+        <li class="start nav-item">
+            <a ui-sref="dashboard">
+                <i class="icon-home"></i>
+                <span class="title">系统首页</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="#" class="nav-link nav-toggle">
+                <i class="icon-settings"></i>
+                <span class="title">系统管理</span>
+                <span class="arrow"></span>
+            </a>
+            <ul class="sub-menu">
+                <li>
+                    <a ui-sref="campus">
+                        <i class="fa fa-institution"></i> 校区管理</span>
+                    </a>
+                </li>
+                <li>
+                    <a ui-sref="position">
+                        <i class="fa fa-briefcase"></i> 职务管理</span>
+                    </a>
+                </li>
+                <li>
+                    <a ui-sref="department">
+                        <i class="fa fa-sitemap"></i> 部门管理</span>
+                    </a>
+                </li>
+                <li>
+                    <a ui-sref="maintenanceType">
+                        <i class="fa fa-th-large"></i> 维修工种 </a>
+                </li>
+                <li>
+                    <a ui-sref="maintenanceCategory">
+                        <i class="fa fa-reorder"></i> 维修类别 </a>
+                </li>
+                <li>
+                    <a ui-sref="maintenanceArea">
+                        <i class="fa fa-map-o"></i> 维修区域 </a>
+                </li>
+                <li>
+                    <a ui-sref="maintenanceStatus">
+                        <i class="fa fa-desktop"></i> 维修状态 </a>
+                </li>
+                <li>
+                    <a ui-sref="inforModule">
+                        <i class="fa fa-clone"></i> 信息模块 </a>
+                </li>
+            </ul>
+        </li>
+
+		<li class="nav-item">
+            <a href="#" class="nav-link nav-toggle">
+                <i class="icon-info"></i>
+                <span class="title">信息管理</span>
+                <span class="arrow "></span>
+            </a>
+            <ul class="sub-menu">
+                <li>
+                    <a ui-sref="inforPicture">
+                        <i class="fa fa-file-photo-o"></i> 模块信息 </a>
+                </li>
+                <li>
+                    <a ui-sref="slide">
+                        <i class="fa fa-file-video-o"></i> 幻灯管理 </a>
+                </li>
+                <li class="hide">
+                    <a ui-sref="inforText">
+                        <i class="fa fa-envelope-o"></i> 建言献策 </a>
+                </li>
+                <li class="hide">
+                    <a ui-sref="fleaMarket">
+                        <i class="fa fa-balance-scale"></i> 跳蚤市场 </a>
+                </li>
+                <li class="hide">
+                    <a ui-sref="lostFound">
+                        <i class="fa fa-volume-up"></i> 失物招领 </a>
+                </li>
+            </ul>
+        </li>
+
+		<li class="nav-item">
+            <a ui-sref="inforText">
+                <i class="fa fa-envelope-o"></i>
+                <span class="title">建言献策</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a ui-sref="fleaMarket">
+                <i class="fa fa-balance-scale"></i>
+                <span class="title">跳蚤市场</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a ui-sref="lostFound">
+                <i class="fa fa-volume-up"></i>
+                <span class="title">失物招领</span>
+            </a>
+        </li>
+        
+        
+        <li class="nav-item">
+            <a href="javascript:;" class="nav-link nav-toggle">
+                <i class="icon-users"></i>
+                <span class="title">用户管理</span>
+                <span class="arrow "></span>
+            </a>
+            <ul class="sub-menu">
+                <li>
+                    <a ui-sref="teacher">
+                        <i class="fa fa-mortar-board "></i> 教职人员 </a>
+                </li>
+                <li>
+                    <a ui-sref="maintenanceWorker">
+                        <i class="fa fa-user-md "></i> 维修人员 </a>
+                </li>
+                <li>
+                    <a ui-sref="student">
+                        <i class="fa fa-user"></i> 注册学生 </a>
+                </li>
+                <!--  
+                <li>
+                    <a ui-sref="userLoginLog">
+                        <i class="icon-tag"></i> 登录日志 </a>
+                </li>
+                -->
+            </ul>
+        </li>
+        <li class="nav-item">
+            <a href="javascript:;" class="nav-link nav-toggle">
+                <i class="icon-layers"></i>
+                <span class="title">库存管理</span>
+                <span class="arrow "></span>
+            </a>
+            <ul class="sub-menu">
+                <li>
+                    <a ui-sref="materialCategory">
+                        <i class="fa fa-qrcode"></i> 物料类别 </a>
+                </li>
+                <li>
+                    <a ui-sref="materialUnit">
+                        <i class="fa fa-bank"></i> 物料单位 </a>
+                </li>
+                <li>
+                    <a ui-sref="material">
+                        <i class="fa fa-cubes"></i> 物料管理 </a>
+                </li>
+                <li>
+                    <a ui-sref="storage">
+                        <i class="fa fa-database"></i> 入库管理 </a>
+                </li>
+                <li>
+                    <a ui-sref="stockRemoval">
+                        <i class="fa fa-tv"></i> 出库管理 </a>
+                </li>
+            </ul>
+        </li>
+		<li class="nav-item">
+            <a href="javascript:;" class="nav-link nav-toggle">
+                <i class="icon-wrench"></i>
+                <span class="title">维修管理</span>
+                <span class="arrow "></span>
+            </a>
+            <ul class="sub-menu">
+                <li>
+                    <a ui-sref="maintenanceRecords">
+                        <i class="fa fa-edit"></i> 维修记录 </a>
+                </li>
+                <li>
+                    <a ui-sref="maintenanceEvaluation">
+                        <i class="fa fa-commenting-o"></i> 维修评价 </a>
+                </li>
+                <li>
+                    <a ui-sref="specialMaintenance">
+                        <i class="icon-tag"></i> 专项维修 </a>
+                </li>
+            </ul>
+        </li>
+        <li class="nav-item">
+            <a ui-sref="duty"> <!-- dutyRegister -->
+                <i class="fa fa-calendar-minus-o"></i>
+                <span class="title">值班管理</span>
+            </a>
+            <ul class="sub-menu">
+                <li class="hide">
+                    <a ui-sref="dutyShow">值班查询</a>
+                </li>
+                <li class="hide">
+                    <a ui-sref="dutyRegister">值班设置</a>
+                </li>
+                <!--  
+                <li class="hide">
+                    <a ui-sref="dutyList">值班列表</a>
+                </li>
+                -->
+            </ul>
+        </li>
+        <li class="nav-item">
+            <a ui-sref="workLog">
+                <i class="fa fa-file-text-o"></i>
+                <span class="title">工作日志</span>
+            </a>
+        </li>
+        <!--<li class="nav-item">-->
+            <!--<a href="javascript:;" class="nav-link nav-toggle">-->
+                <!--<i class="icon-wrench"></i>-->
+                <!--<span class="title">车辆管理</span>-->
+            <!--</a>-->
+        <!--</li>-->
+        <!--<li class="nav-item">-->
+            <!--<a href="javascript:;">-->
+                <!--<i class="icon-wrench"></i>-->
+                <!--<span class="title">保洁管理</span>-->
+            <!--</a>-->
+        <!--</li>-->
+        <li class="nav-item">
+            <a ui-sref="friendlyLink">
+                <i class="fa fa-link"></i> 
+               	<span class="title">友情链接 </span>
+           	</a>
+        </li>
+        <li class="nav-item">
+            <a ui-sref="service">
+                <i class="fa fa-comments"></i> 
+               	<span class="title">便民服务</span> 
+           	</a>
+        </li>
+    </ul>
+    <!-- END SIDEBAR MENU -->
+</div>

@@ -1,0 +1,114 @@
+<div ng-controller="dutyRegisterOneStepController">
+    <div class="table-toolbar">
+        <div class="table-toolbar">
+            <div class="tabbable tabbable-custom tabbable-noborder tabbable-reversed">
+                <!-- 日历选择 -->
+                <div class="col-md-6 col-sm-6">
+                    <div id="calendar" class="has-toolbar  table-responsive" style="padding: 15px;"></div>
+                </div>
+                <!-- 提示 -->
+                <div class="col-md-6 col-sm-6">
+                    <div style="border: 1px solid #dbe8f8;margin-bottom: 20px;">
+                        <div class="note note note-info note-bordered">
+                            <div class="caption-subject bold" style="font-size: 16px;">图例说明<span
+                                    class="label label-danger hide"></span></div>
+                        </div>
+                        <div class="calendarHelpTable">
+                            <div class="calendarHelpGroup">
+                                <div class="col-md-6" style="line-height: 33px;">
+                                    <div class="col-md-7 text-left">
+                                        <h4>普通周末</h4>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <td class="fc-event-container">
+                                            <a class="fc-day-grid-event fc-h-event fc-event fc-start fc-end"
+                                               style="background-color:#36D7B7">
+                                                <div class="fc-content">
+                                    <span class="fc-title">
+                                        &nbsp;
+                                    </span>
+                                                </div>
+                                            </a>
+                                        </td>
+                                    </div>
+                                </div>
+                                <div class="col-md-6" style="line-height: 33px;">
+                                    <div class="col-md-7 text-left">
+                                        <h4>参与值班日期</h4>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <td class="fc-event-container">
+                                            <a class="fc-day-grid-event fc-h-event fc-event fc-start fc-end"
+                                               style="background-color:#99CC66">
+                                                <div class="fc-content">
+                                    <span class="fc-title">
+                                        &nbsp;
+                                    </span>
+                                                </div>
+                                            </a>
+                                        </td>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="calendarHelpGroup">
+
+                                <div class="col-md-6" style="line-height: 33px;">
+                                    <div class="col-md-7 text-left">
+                                        <h4>法定节假日</h4>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <td class="fc-event-container">
+                                            <a class="fc-day-grid-event fc-h-event fc-event fc-start fc-end"
+                                               style="background-color:#E7505A">
+                                                <div class="fc-content">
+                                    <span class="fc-title">
+                                        &nbsp;
+                                    </span>
+                                                </div>
+                                            </a>
+                                        </td>
+                                    </div>
+                                </div>
+                                <div class="col-md-6" style="line-height: 33px;">
+                                    <div class="col-md-7 text-left">
+                                        <h4>未参与值班日期</h4>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <td class="fc-event-container">
+                                            <a class="fc-day-grid-event fc-h-event fc-event fc-start fc-end"
+                                               style="background-color:#FF9999">
+                                                <div class="fc-content">
+                                    <span class="fc-title">
+                                        &nbsp;
+                                    </span>
+                                                </div>
+                                            </a>
+                                        </td>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 数据提取 -->
+                <div class="col-md-6 col-sm-6">
+                    <div style="border: 1px solid #dbe8f8;">
+                        <div class="note note note-info note-bordered">
+                            <div class="caption-subject bold" style="font-size: 16px;">排班日期</div>
+                        </div>
+                        <div class="list-group dateBtnGroup" style="padding: 0 20px;">
+                            <div class="btn-group" role="group" style="margin: 20px 0;">
+                                <button type="button" class="btn btn-default btn-lg"
+                                        style="padding: 12px 17px;border-color: #e5e5e5;"
+                                        ng-repeat="item in checkedDayList">{{item}}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

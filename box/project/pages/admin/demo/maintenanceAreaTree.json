@@ -1,0 +1,32 @@
+[
+  {
+    "id": "maintenanceAreaTree_1",
+    "parent": "#",
+    "text": "长安校区",
+    "icon": "fa fa-file icon-state-warning icon-lg",
+    "state": {
+      "opened": true
+    }
+  },
+  {
+    "id": "maintenanceAreaTree_2",
+    "parent": "#",
+    "text": "白鹿原校区",
+    "icon": "fa fa-file icon-state-warning icon-lg",
+    "state": {
+      "opened": true
+    }
+  },
+  {
+    "id": "maintenanceAreaTree_3",
+    "parent": "maintenanceAreaTree_1",
+    "text": "图书馆",
+    "icon": "fa fa-folder icon-lg icon-state-success"
+  },
+  {
+    "id": "maintenanceAreaTree_4",
+    "parent": "maintenanceAreaTree_2",
+    "text": "图书馆",
+    "icon": "fa fa-folder icon-lg icon-state-success"
+  }
+]

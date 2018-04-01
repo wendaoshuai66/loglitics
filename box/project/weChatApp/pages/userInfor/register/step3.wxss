@@ -1,0 +1,413 @@
+.radio {
+  margin-right: 10px;
+}
+.choose_title{
+  font-size: 34rpx;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+.input-content {
+  margin-left: 0rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.child_style {
+  width: 12rpx;
+  height: 12rpx;
+  border-radius: 100%;
+  background: #666;
+  top: 50%;
+  margin-left: -28rpx;
+  transform: translate(4rpx, -16%);
+  position: absolute;
+}
+
+.text_overflow {
+  /* width: 90%; */
+}
+
+.input_text {
+  padding-left: 20rpx;
+}
+
+.tree {
+  font-size: 30rpx;
+  color: #333;
+  height: 74rpx;
+  line-height: 74rpx;
+  border-bottom: 1px solid #e5e5e5;
+  position:relative;
+}
+
+.child {
+  color: #888 !important;
+  font-size: 28rpx;
+}
+
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.userinfo-avatar {
+  width: 200rpx;
+  height: 200rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+
+.userinfo-nickname {
+  color: #000;
+}
+
+.content {
+  flex: 1;
+  position: relative;
+  z-index: 10;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+}
+
+.area_show {
+  width: 100%;
+  height: 50rpx;
+  position: relative;
+  line-height: 50rpx;
+  min-height: 50rpx;
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+  padding: 20rpx 10rpx;
+  margin: 20rpx 3%;
+  background: #fff;
+  border-radius: 8rpx;
+  transition: all 0.25s ease-in-out;
+}
+
+.input-group .active {
+  border: 2px solid #7acfa6;
+}
+
+.input-label {
+  color: #666;
+  font-size: 30rpx;
+  height: 45rpx;
+  line-height: 45rpx;
+  padding: 0 20rpx;
+}
+
+.input-group input, .input-group picker, .input-content {
+  flex: 1;
+  font-size: 30rpx;
+  min-height: 45rpx;
+  height: 45rpx;
+  line-height: 45rpx;
+  padding: 0 20rpx;
+  color: #666;
+  overflow: hidden;
+}
+
+.input-placeholder, .input-group picker.placeholder {
+  color: #ccc;
+}
+
+.picker {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/*地址选择器*/
+
+.area2-select-wrap {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  color: #9d9d9d;
+  font-size: 28rpx;
+  z-index: -999999;
+}
+
+.area2-select-wrap .area2-select-mask {
+  transition: opacity 0.3s;
+  opacity: 0;
+}
+
+.area2-select-wrap .area2-select-inner {
+  transition: transform 0.3s;
+  transform: translate(0, 100%);
+}
+
+.area2-select-wrap.show {
+  z-index: 9;
+}
+
+.area2-select-wrap.show .area2-select-mask {
+  opacity: 1;
+  z-index: 1;
+}
+
+.area2-select-wrap.show .area2-select-inner {
+  transform: translate(0, 0%);
+  z-index: 2;
+}
+
+.area2-select-mask {
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  z-index: -99999;
+  position: absolute;
+}
+
+.area2-select-inner {
+  height: 640rpx;
+  z-index: -99999;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  left: 0;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+}
+
+.area2-select-header {
+  height: 120rpx;
+  line-height: 120rpx;
+  text-align: center;
+  position: relative;
+  font-size: 32rpx;
+  border-bottom: 1px solid #f3f3f3;
+}
+
+.area2-close-wrap {
+  width: 28rpx;
+  height: 28rpx;
+  position: absolute;
+  line-height: normal;
+  padding: 46rpx 44rpx;
+}
+
+.area2-close-icon {
+  width: 100%;
+  height: 100%;
+}
+
+.area2-sub-header {
+  height: 80rpx;
+  line-height: 80rpx;
+  border-bottom: 1px solid #f3f3f3;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
+  padding: 0 24rpx;
+}
+
+.area2-sub-item {
+  padding: 0 20rpx;
+  position: relative;
+}
+
+.area2-sub-item::after {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 6rpx;
+  bottom: 0;
+  left: 0;
+  background-color: #f34416;
+  display: none;
+}
+
+.area2-sub-item.on {
+  color: #f34416;
+}
+
+.area2-sub-item.on::after {
+  display: block;
+}
+
+.area2-item-wrap {
+  flex: 1;
+}
+
+.area2-swiper-box {
+  height: 436rpx;
+}
+
+.area2-swiper-inner {
+  padding: 10rpx 44rpx;
+}
+
+.area2-swiper-item {
+  height: 40px;
+  line-height: 40px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.area2-swiper-item.on {
+  color: #f34416;
+}
+
+.area2-swiper-areaname {
+  position: relative;
+  padding-right: 45px;
+}
+
+.area2-swiper-areaname::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  right: 0px;
+  top: 50%;
+  margin-top: -10px;
+  line-height: normal;
+  display: none;
+  background-position: center center;
+  background-size: 10px auto;
+  background-repeat: no-repeat;
+  background-image: url(http://cdn.jiguo.com/static/WeiXin/images/center/area_gou.png);
+}
+
+.on .area2-swiper-areaname::after {
+  display: block;
+}
+
+.radio {
+  display: inline-block;
+}
+
+.input-gender {
+  padding-left: 40rpx;
+}
+
+.mask {
+  width: 100%;
+  height: 100%;
+  background: black;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 888;
+  opacity: 0.5;
+}
+
+@keyframes maskStart {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 0.5;
+  }
+}
+
+.chooseBox {
+  position: fixed;
+  width: 100%;
+  /* height: 200rpx; */
+  left: 0;
+  bottom: 0;
+  /* transform: translateY(100rpx); */
+  z-index: 999;
+  padding-bottom: 50rpx;
+  background: white;
+}
+
+@keyframes opcityStart {
+  from {
+    transform: translateY(100%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
+.treeTitle {
+  font-size: 32rpx;
+  /* width: 93%; */
+  padding: 20rpx;
+  box-sizing: border-box;
+  color: #666;
+  background: white;
+}
+
+.tree {
+  background: #dedede;
+}
+
+.choose_content {
+  margin: 50% auto;
+  width: 80%;
+  background: white;
+  overflow: auto;
+  border-radius: 5px;
+  padding-bottom: 40rpx;
+}
+
+.chooseHead {
+  height: 50rpx;
+  /* background: greenyellow */
+}
+
+.content_head {
+  width: 100%;
+  height: 80rpx;
+  background: skyblue;
+  text-align: center;
+  line-height: 80rpx;
+}
+
+.cancelBtn {
+  float: left;
+  font-size: 34rpx;
+  color: #888;
+  padding-left: 20rpx;
+}
+
+.enterBtn {
+  float: right;
+  font-size: 34rpx;
+  color: #1AAD19;
+  padding-right: 20rpx;
+}
+
+.choose_head {
+  width: 100%;
+  height: 70rpx;
+  line-height: 70rpx;
+  background: white;
+  border-top: 1px solid #ccc;
+  position: relative;
+}
+
+.departmentClass {
+  max-height: 500rpx;
+}

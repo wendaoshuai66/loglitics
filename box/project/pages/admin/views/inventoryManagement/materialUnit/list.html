@@ -1,0 +1,110 @@
+<!-- BEGIN MAIN CONTENT -->
+<div class="row" ng-controller="materialUnitController">
+    <div class="col-md-12">
+        <!-- BEGIN EXAMPLE TABLE PORTLET-->
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption font-dark">
+                    <i class="icon-settings font-dark"></i>
+                    <span class="caption-subject bold uppercase"> 物料单位列表 </span>
+                </div>
+                <div class="actions">
+                    <div class="btn-group" data-toggle="buttons">
+                        <button class="btn btn-primary" data-toggle="modal" ng-click="addModal()">
+                            <i class="fa fa-plus"></i> 添加
+                        </button>
+                        <!-- 
+                    	<button class="btn purple dropdown-toggle" data-toggle="dropdown">
+                    		工具
+                            <i class="fa fa-angle-down"></i>
+                        </button>
+                        <ul class="dropdown-menu pull-right">
+                            <li>
+                                <a href="javascript:;">
+                                    <i class="fa fa-print"></i> 打印列表 
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">
+                                    <i class="fa fa-file-pdf-o"></i> 导出 PDF 
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">
+                                    <i class="fa fa-file-excel-o"></i> 导出 Excel 
+                                </a>
+                            </li>
+                        </ul>
+                        -->
+                    </div>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <div class="table-toolbar">
+                	<div class="table-toolbar">
+                    	<div class="tabbable tabbable-custom tabbable-noborder tabbable-reversed">
+							<form class="form-horizontal">
+								<div class="tab-pane" id="tab">
+									<!-- 查询条件-->
+							    	<div class="portlet light bordered">
+						        		<div class="portlet-body">
+				                            <div class="form-group text-center">
+				                                <label class="control-label col-md-1">单位名称</label>
+				                                <div class="col-md-5">
+				                                	<input type="text" class="form-control" name="" placeholder="" 
+				                                		ng-model="searchObj.name">
+				                                </div>
+				                                <label class="control-label col-md-1">单位状态</label>
+				                                <div class="col-md-5">
+				                                    <select name="selectSearch" ui-select2="select2Options" class="form-control" ng-model="searchObj.status"
+				                                        ng-options="item.id as item.name for item in statusUseTypeData">
+				                                        <option value="">-- 请选择 --</option>
+				                                    </select>
+				                                </div>
+				                            </div>
+					                    </div>
+						            </div>
+						            <div class="form-actions">
+					                    <div class="button-group text-center">
+					                        <div class="col-md-12">
+					                           	<button class="btn btn-sm btn-success btn_search" ng-click="search()">
+					                               	<i class="fa fa-search"></i> 查询
+					                           	</button>
+					                           	<button class="btn btn-sm grey-cascade" ng-click="reset()">
+					                               	<i class="fa fa-times"></i> 重置
+					                           	</button>
+					                       </div>
+					                    </div>
+					                </div>
+					           </div>
+					        </form>
+					    </div>
+                    </div>
+                </div>
+                <table class="table table-striped table-bordered table-hover table-checkable order-column dt-responsive" id="materialUnitDataTable">
+                    <thead>
+                        <tr>
+                            <th class="index_width"> 序号 </th>
+                            <th class="col-md-2"> 单位名称</th>
+                            <th class="none"> 单位描述</th>
+                            <th class="status_width"> 是否启用</th>
+                            <th class="datetime_width"> 添加时间 </th>
+                            <th class="none"> 更新时间 </th>
+                            <th class="opt_width_2"> 操作 </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+                <!-- 添加&修改模态框 -->
+				<div data-ng-include="'views/inventoryManagement/materialUnit/add.html'"></div>
+            	<!-- 删除模态框 -->
+				<div data-ng-include="'tpl/confirmRemove.html'"></div>
+                <!-- 状态改变的模态框 -->
+                <div data-ng-include="'tpl/confirmChangeStatus.html'"></div>
+            </div>
+        </div>
+        <!-- END EXAMPLE TABLE PORTLET-->
+    </div>
+</div>
+<!-- END MAIN CONTENT -->

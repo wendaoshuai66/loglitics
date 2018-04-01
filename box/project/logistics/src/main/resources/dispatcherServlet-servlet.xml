@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+            			http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+            			http://www.springframework.org/schema/tx 
+						http://www.springframework.org/schema/tx/spring-tx-4.1.xsd
+			            http://www.springframework.org/schema/context
+			            http://www.springframework.org/schema/context/spring-context-4.1.xsd
+			            http://www.springframework.org/schema/mvc
+			            http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd
+			            http://www.springframework.org/schema/util 
+			            http://www.springframework.org/schema/util/spring-util-4.1.xsd
+			            http://www.springframework.org/schema/aop 
+			            http://www.springframework.org/schema/aop/spring-aop-4.1.xsd">
+
+    <!-- 自动扫描controller包下的所有类，不加载service，因为此时事物并未生效,若 此时加载了service,那么事物无法对service进行拦截 -->
+    <context:component-scan base-package="com.lianxing.logistics.*">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+
+    <!--mvc自动注解组件 -->
+    <mvc:annotation-driven>
+        <mvc:message-converters>
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter"/>
+            <bean class="org.springframework.http.converter.ByteArrayHttpMessageConverter"/>
+            <bean class="org.springframework.http.converter.BufferedImageHttpMessageConverter"/>
+            <bean id="fastJsonHttpMessageConverter"
+                  class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>text/html;charset=UTF-8</value>
+                        <value>application/json;charset=UTF-8</value>
+                    </list>
+                </property>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+
+    <aop:aspectj-autoproxy proxy-target-class="true"/>
+    <!-- 处理静态资源 -->
+    <mvc:resources mapping="/assets/**" location="/assets/"/>
+    <mvc:resources mapping="/scripts/**" location="/scripts/"/>
+    <mvc:resources mapping="/images/**" location="/images/"/>
+    <mvc:resources mapping="/data/**" location="/data/"/>
+    <mvc:resources mapping="/css/**" location="/css/"/>
+    <mvc:resources mapping="/upload/**" location="/upload/"/>
+    <mvc:default-servlet-handler/>
+    <!-- 默认的视图解析器 在上边的解析错误时使用 (默认使用html)- -->
+    <!--对模型视图名称的解析，即在模型视图名称添加前后缀 -->
+    <bean id="defaultViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+          p:order="3">
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+        <property name="contentType" value="text/html"/>
+        <property name="prefix" value="/WEB-INF/pages/"/>
+        <property name="suffix" value=".html"/>
+    </bean>
+
+    <!-- 配置国际化资源文件路径 -->
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basenames">
+            <!-- 定义消息资源文件的相对路径 -->
+            <list>
+                <value>messages/message</value>
+            </list>
+        </property>
+        <!-- 如果在国际化资源文件中找不到对应代码的信息，就用这个代码作为名称 -->
+        <property name="useCodeAsDefaultMessage" value="true"/>
+        <property name="cacheSeconds" value="0"/>
+    </bean>
+    <!-- 基于Session的本地化解析器 -->
+    <mvc:interceptors>
+        <!-- 国际化操作拦截器 如果采用基于（请求/Session/Cookie）则必需配置 -->
+        <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor"/>
+    </mvc:interceptors>
+    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver"/>
+
+    <!-- 文件上传控制id="multipartResolver"必须是multipartResolver -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"
+          p:defaultEncoding="UTF-8">
+        <!-- maxUploadSize:文件上传的最大值以byte为单位 -->
+        <property name="maxUploadSize">
+            <value>5368709120</value><!-- 5G -->
+        </property>
+        <property name="maxInMemorySize">
+            <value>40960</value>
+        </property>
+    </bean>
+    <!--配置拦截器, 多个拦截器,顺序执行,拦截所有请求查看权限 -->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <!-- 匹配的是url路径， 如果不配置或/**,将拦截所有的Controller -->
+            <mvc:mapping path="/" />
+            <mvc:mapping path="/save*" />
+            <mvc:mapping path="/change*" />
+            <mvc:mapping path="/check*" />
+            <mvc:mapping path="/delete*" />
+            <mvc:mapping path="/update*" />
+            <mvc:mapping path="/confirm*" />
+            <mvc:mapping path="/reset*" />
+            <mvc:mapping path="/register*" />
+            <bean id="authorityUtil" class="com.lianxing.logistics.util.AuthorityUtil"></bean>
+        </mvc:interceptor>
+        <!-- 当设置多个拦截器时，先按顺序调用preHandle方法，然后逆序调用每个拦截器的postHandle和afterCompletion方法 -->
+    </mvc:interceptors>
+</beans>

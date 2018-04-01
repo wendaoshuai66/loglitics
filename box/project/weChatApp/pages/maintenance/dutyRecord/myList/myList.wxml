@@ -1,0 +1,49 @@
+<view class="header">
+  <view class="input-group">
+    <view class="input-label">
+      <text class="">选择年份:</text>
+    </view>
+    <view class="input-content">
+      <picker class="input_text" fields="year" value='{{dateY}}' start="2015-09-01" end="2019-05-01" bindchange="bindDateChange" mode="date">{{dateYear}}</picker>
+    </view>
+  </view>
+  <view class="input-group">
+    <view class="input-label">
+      <text class="">选择月份:</text>
+    </view>
+    <view class="input-content">
+      <picker class="input_text" value='{{}}' bindchange="bindDateMouth" range='{{dateItem}}'>{{dateMouthName}}</picker>
+    </view>
+  </view>
+</view>
+<view class='bottom' wx:if="{{item.length != 0}}">
+  <view class='bottom_head'>
+    <text class='listTitle'>值班信息</text>
+    <text class='summary' bindtap='toSummary'>当月信息汇总</text>
+
+  </view>
+
+  <view class='list' wx:for="{{item}}" wx:key="{{index}}" data-index="{{index}}">
+    <view class='holidayName'>{{item.holidayName}}</view>
+    <view class='dateText'>{{item.time}}<text style='color:#000'>（{{item.week}}）</text></view>
+    <view class='white boxType' bindtap='showTel' data-tel="{{item.dayTel}}">
+      <view class='personName'>{{item.dayName}}</view>
+      <view class='personTel'>{{item.dayTel}}</view>
+    </view>
+    <view class='black boxType' bindtap='showTel' data-tel="{{item.nightTel}}">
+      <view class='personName'>{{item.nightName}}</view>
+      <view class='personTel'>{{item.nightTel}}</view>
+    </view>
+  </view>
+</view>
+<view wx:else>
+  <view class='listTitle' bindtap='toSearch'>值班信息</view>
+  <view class='error'>---------暂无数据--------</view>
+</view>
+
+  <view class="body-view">
+    <loading hidden="{{loadingHidden}}" bindchange="loadingChange">
+      加载中...
+    </loading>
+    <view hidden='{{loadingHidden}}' class='loadingMask'></view>
+  </view> 

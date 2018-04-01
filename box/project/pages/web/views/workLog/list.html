@@ -1,0 +1,123 @@
+<!-- BEGIN MAIN CONTENT -->
+<div class="portlet box blue" ng-controller="workLogController">
+    <div class="portlet-title">
+        <div class="caption">
+			<i class="fa fa-file-text-o"></i>
+            <span class="caption-subject  uppercase">工作日志信息</span>
+        </div>
+		<div class="actions" ng-if="loginStatus && isWorker">
+			<a class="hide btn btn-circle public-button btn-sm" ui-sref="workLogAdd">
+				<i class="fa fa-plus"></i> 添加日志
+			</a>
+			<a class="btn btn-circle public-button btn-sm" ui-sref="myWorkLogList">
+				<i class="fa fa-file-text-o"></i> 我的工作日志
+			</a>
+		</div>
+    </div>
+	<div class="portlet-body">
+		<!--查询条件-->
+		<div class="table-toolbar">
+			<div class="table-toolbar">
+				<div class="tabbable tabbable-custom tabbable-noborder tabbable-reversed">
+					<form class="form-horizontal">
+						<div class="tab-pane" id="tab">
+							<!-- 查询条件-->
+							<div class="portlet light bordered">
+								<div class="portlet-body">
+									<div class="form-group text-center">
+										<label class="control-label col-xs-1">标题</label>
+										<div class="col-xs-5">
+											<input type="text" class="form-control" name="" placeholder=""
+												   ng-model="searchObj.title">
+										</div>
+										<label class="control-label col-xs-1">发布人</label>
+										<div class="col-xs-5">
+											<input type="text" class="form-control" name="" placeholder=""
+												   ng-model="searchObj.user.name">
+										</div>
+									</div>
+									<div class="form-group text-center">
+										<label class="control-label col-xs-1">工种</label>
+										<div class="col-xs-5">
+											<select name="selectSearch3" ui-select2="select2NoSearch" class="form-control" ng-model="searchObj.user.maintenanceWorker.maintenanceType.id"
+													ng-options="item.id as item.name for item in maintenanceTypeSelectData">
+												<option value="">-- 请选择 --</option>
+											</select>
+										</div>
+										<label class="control-label col-xs-1">发布时间</label>
+										<div class="col-xs-5">
+											<div class="col-xs-5 searchTime  page-content">
+												<div id="addDateTimeStart" class="input-group date form_datetime">
+													<input  type="text" size="16" readonly name="date" class="form-control" ng-model="searchObj.addDateTimeStart">
+													<span class="input-group-btn include">
+														<button class="btn default date-reset" type="button">
+															<i class="fa fa-times"></i>
+														</button>
+														<button class="btn default my-date-set" type="button">
+															<i class="fa fa-calendar date-set"></i>
+														</button>
+													</span>
+												</div>
+											</div>
+											<label class="col-xs-2 searchTimeLabel">至</label>
+											<div class="col-xs-5 searchTime  page-content">
+												<div id="addDateTimeEnd" class="input-group date form_datetime">
+													<input  type="text" size="16" readonly name="date" class="form-control" ng-model="searchObj.addDateTimeEnd">
+													<span class="input-group-btn include">
+														<button class="btn default date-reset" type="button">
+															<i class="fa fa-times"></i>
+														</button>
+														<button class="btn default my-date-set" type="button">
+															<i class="fa fa-calendar date-set"></i>
+														</button>
+													</span>
+												</div>
+											</div>
+										</div>
+										<label class="hide control-label col-xs-1">发布状态</label>
+										<div class="hide col-xs-5">
+											<select name="selectSearch2" ui-select2="select2NoSearch" class="form-control" ng-model="searchObj.status"
+													ng-options="item.id as item.name for item in finishedlSelectData">
+												<option value="">-- 请选择 --</option>
+											</select>
+										</div>
+
+									</div>
+								</div>
+							</div>
+							<div class="form-actions" style="margin-top: 0px;">
+								<div class="button-group text-center">
+									<div class="col-xs-12">
+										<button class="btn btn-sm btn-success btn_search" ng-click="search()"
+												style="margin-right: 25px;">
+											<i class="fa fa-search"></i> 查询
+										</button>
+										<button class="btn btn-sm grey-cascade" ng-click="reset()">
+											<i class="fa fa-times"></i> 重置
+										</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	    <table class="table table-striped table-bordered table-hover table-checkable order-column dt-responsive" id="workLogDataTable">
+	        <thead>
+	        <tr>
+	            <th class="none"> 序号 </th>
+	            <th class="title_width"> 标题</th>
+	            <th class="col-xs-1"> 发布人</th>
+	            <th class="col-xs-1"> 工种</th>
+				<th class="date_width"> 工作日期 </th>
+                <th class="date_width"> 开始时间</th>
+                <th class="date_width"> 结束时间</th>
+                <th class="datetime_width"> 发布时间 </th>
+	        </tr>
+	        </thead>
+	        <tbody>
+	        </tbody>
+	    </table>
+	</div>
+</div>

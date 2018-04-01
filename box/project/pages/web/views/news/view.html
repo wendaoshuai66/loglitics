@@ -1,0 +1,31 @@
+        <div class="portlet light bordered" ng-controller="newsViewController">
+            <div class="portlet-title">
+                <div class="caption font-green-sharp">
+                    <i class="icon-settings font-green-sharp"></i>
+                    <span class="caption-subject bold uppercase">{{data.inforModule.name}}文章详情</span>
+                    <span class="caption-helper hide"></span>
+                </div>
+                <div class="actions">
+                    <a class="btn btn-circle green-haze btn-sm hide" ui-sref="newsList">
+                        <i class="fa fa-mail-reply"></i> 新闻资讯
+                    </a>
+                    <a class="btn btn-circle green-haze btn-sm" ng-click="toBack()">
+		                <i class="fa fa-reply"></i> 返回
+		            </a>
+                </div>
+            </div>
+            <div class="portlet-body dataTables_wrapper">
+            	<div class="news_content">
+					<div class="news_title text-center">{{data.title}}</div>
+					<div class="news_time text-center">
+						<span>作者: {{data.author}}</span>
+						<span>供图人员：{{data.pictureProvider}}</span>
+						<span>发布时间：{{data.addDateTime}}</span>
+                        <span>关键字：{{data.keyword}}</span>
+						<span>浏览：{{data.viewTimes}} 次</span>
+					</div>
+					<div class="news_described" ng-bind-html="deliberatelyTrustDangerousSnippet(data.article)">
+					</div>
+				</div>
+			 </div>
+        </div>

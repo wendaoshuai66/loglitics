@@ -1,0 +1,30 @@
+<div class="portlet box blue">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-cogs"></i>维修量分时统计 - 月度
+        </div>
+        <!-- ngIf: loginStatus -->
+    </div>
+    <div class="portlet-body" ng-controller="monthStatisticsController">
+        <div class="table-responsive" style="overflow-x: hidden">
+        <date-range-and-labelauty></date-range-and-labelauty>
+        </div>
+        <table class="table table-bordered table-striped table-hover">
+            <thead>
+            <tr>
+                <th>时间段/月份</th>
+                <th ng-repeat="_category in data[0].categories">{{_category}}</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>维修量/单</td>
+                <td ng-repeat="_data in data[0].data track by $index">{{_data}}</td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="table-responsive" style="overflow-x: hidden">
+        <div id="monthLine" class="myChart"></div>
+        </div>
+    </div>
+</div>

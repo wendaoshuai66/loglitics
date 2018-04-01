@@ -1,0 +1,70 @@
+<view class="MainContent">
+  <!-- 搜索框 start -->
+  <view class="TopBlock">
+  <view hidden='{{!maskFlag}}' class='cancel' size='mini' bindtap='initClick'>取消</view>    <view class='searchBox'>
+
+      <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+      <input class='searchInput' bindfocus='searchFoucs' bindinput='searchInput' bindblur='searchBlur' type='text' value='{{searchValue}}' placeholder='搜索（标题）' bindconfirm="searchConfirm" confirm-type="search" maxlength='20'></input>
+    </view>
+    <view class='logBox' style="{{maskFlag && (logItem.length != 0)?'display:inline-block':'display:none'}}">
+      <view class='logText'>-----搜索历史-----</view>
+      <view class='logItemBox' bindtap='logItemClick' data-name="{{item}}" wx:for="{{logItem}}" wx:key="{{index}}">{{item}}</view>
+      <view class='logBottom' bindtap='clearLog'>清空历史记录</view>
+    </view>
+    <!-- 遮罩层 start -->
+    <view class='mask' bindtap='maskTap' style="height:{{windowHeightInit}}px;{{maskFlag?'display:inline-block':'display:none'}}"></view>
+    <!-- 遮罩层 end -->
+  </view>
+  <!-- 搜索框 end  -->
+  <!-- 选择类型开始 -->
+  <view class="searchBar">
+    <view class='ul'>
+      <view class='li typeTitle' data-type='type' bindtap='titleClick'>
+        <text class="iconfont icon-all"></text>\t\t\t{{typeItems[typeIndex]}}</view>
+      <view class='li timeTitle' data-type='time' bindtap='titleClick'>
+        <text class="iconfont icon-all"></text>\t\t\t{{timeItems[timeIndex]}}</view>
+      <view class='titleList' hidden='{{typeHidden}}' animation='{{animationType}}'>
+        <view wx:for="{{typeItems}}" data-index='{{index}}' wx:key='{{index}}' bindtap='typeChange'>{{item}}</view>
+      </view>
+      <view class='titleList' hidden='{{timeHidden}}' animation='{{animationTime}}'>
+        <view wx:for='{{timeItems}}' data-index='{{index}}' wx:key='{{index}}' bindtap='timeChange'>{{item}}</view>
+      </view>
+    </view>
+  </view>
+  <!-- 选择类型结束 -->
+
+  <!-- 列表开始 -->
+  <view class="BottomBlock">
+    <scroll-view class="scrollView" bindscroll="scroll" scroll-y="true">
+      <view class="item" wx:for="{{list}}" wx:key="{{index}}" data-index="{{index}}" bindtap="toView" data-id="{{item.id}}">
+        <!-- <image class="picture" src="/images/saleAndPurchase/list/buy.png"></image> -->
+        <view class="text">
+          <view class="buy-title">
+            <text class="sale-title" style="{{item.type == 0?'background:#66CDAA':'background:#F36A5A'}}">{{item.type == 0?'求购':'出售'}}</text>{{item.title}}</view>
+          <view class="buy-price">
+            <text class="price">价格:￥{{item.price}}</text>
+          </view>
+          <view class="buy-time">
+            <!-- <view>类别:
+              <text class='category' wx:if="{{item.type == 0}}">出售</text>
+              <text class='category' wx:else>求购</text>
+            </view>  -->
+            <text>发布人:{{item.person.name}}</text>
+            <tetx class="time">{{item.addDateTime}}</tetx>
+          </view>
+        </view>
+        <view class="{{item.dealStatus == 0?'statusN':'statusY'}}">
+          <text>{{statusItems[item.dealStatus]}}</text>
+        </view>
+      </view>
+      <view class="allDownText" hidden="{{!ifAll}}"> {{ifAllText}} </view>
+    </scroll-view>
+    <view class="body-view">
+      <loading hidden="{{loadingHidden}}" bindchange="loadingChange">
+        加载中...
+      </loading>
+      <view hidden='{{loadingHidden}}' class='loadingMask'></view>
+    </view>
+  </view>
+  <!-- 列表结束 -->
+</view>

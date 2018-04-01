@@ -1,0 +1,264 @@
+/* pages/maintenance/dutyRecord/list/list.wxss */
+
+.header {
+  background: white;
+  width: 100%;
+  /* height: 480rpx;  */
+}
+.input_text{
+  padding-left: 20rpx;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.holidayName{
+  position: absolute;
+  top: 0;
+  right: 30rpx;
+  transform: translate(0,-100%);
+  color: #000;
+}
+.li{
+  width: 25%;
+  box-sizing: border-box;
+  background: 116rpx;
+  line-height: 116rpx;
+  text-align: center;
+  display: inline-block;
+  border-right: 1px solid #ccc;
+  border-top: 1px solid #ccc;
+}
+
+.boxType{
+  display: inline-block;
+}
+.showBox{
+  /* height: 150rpx; */
+  line-height: 120rpx; 
+  text-align: center;
+   color: white; 
+}
+.chooseDate{
+  height: 200rpx;
+  color: white;
+  position: relative;
+  /* background: red; */
+}
+.chooseYear,.chooseMouth{
+  width: 50%;
+  height: 100%; 
+  display: inline-block; 
+  background: #404996;
+  position: relative;
+  font-size: 35rpx;
+}
+.chooseMouth{
+  background: #404996;
+}
+.imageYear{
+  width: 40rpx;
+  height: 40rpx;
+  vertical-align: middle;
+  position: absolute;
+  top: 50%;
+  left: 20rpx;
+  transform: translateY(-20rpx); 
+  
+}
+.imageMouth{
+  width: 40rpx;
+  height: 40rpx;
+  vertical-align: middle;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 20rpx;
+}
+.headList{
+  width: 100%;
+  position: absolute;
+  bottom: 200rpx;
+  left: 0;
+  background: black;
+  overflow: hidden;
+  transition: 0.5s;
+  height:350rpx;
+  border-bottom: 1px solid #ccc;
+  border-left: 1px solid #ccc;
+  
+}
+.upYear{
+  width: 90rpx;
+  height: 50rpx;
+  position: absolute;
+  top: 10rpx;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.downYear{
+  width: 90rpx;
+  height: 50rpx;
+  position: absolute;
+  bottom: 10rpx;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.upMouth{
+  width: 90rpx;
+  height: 50rpx;
+  position: absolute;
+  top: 10rpx;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.downMouth{
+  width: 90rpx;
+  height: 50rpx;
+  position: absolute;
+  bottom: 10rpx;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.yearMenu{
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+.mouthMenu{
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%)
+}
+.campus{
+  width: 100%;
+  height: 120rpx;
+  display: inline-block;
+  /* background: #4ebefe; */
+  background:#404996;
+  border-bottom: 1px solid black;
+
+}
+.department{
+  width: 100%;
+  height: 120rpx;
+  display: inline-block;
+  /* background: #ff7fe4; */
+  background:#404996;
+  border-bottom: 1px solid black;
+
+}
+.maintenanceType{
+  width: 100%;
+  height: 120rpx;
+  display: inline-block;
+  /* background: #4ebefe; */
+  background:#404996;
+  border-bottom: 1px solid black;
+
+}
+.listTitle{
+  margin-top: 20rpx;
+  padding-left: 50rpx;
+  float: left;
+  font-size: 30rpx;
+  color:#888;
+}
+.list{
+  width: 100%;
+  height: 150rpx;
+  margin-top: 100rpx;
+  border:1px solid #ccc;
+  text-align: center;
+  position: relative;
+  font-size: 30rpx;
+}
+.white{
+  padding-top: 20rpx;
+  width: 50%;
+  height:100%;
+  background: #ccc;
+  box-sizing: border-box;
+}
+.black{
+  padding-top: 20rpx;
+  width: 50%;
+  height: 100%;
+  background: black;
+  color: white;
+  box-sizing: border-box;
+}
+.dateText{
+  /* height: 100rpx; */
+  position: absolute;
+  top: 0;
+  left: 30rpx;
+  transform: translate(0%,-100%);
+}
+.error{
+  padding-top: 100rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+  color: #dedede;
+}
+.choose_content{
+  width: 650rpx;
+  height: 650rpx;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  background: white;
+  transform: translate(-50%,-50%);
+  padding: 40rpx;
+  box-sizing: border-box;
+  overflow: auto;
+  /* opacity: 0; */
+}
+.mask{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0,0,0,0.5);
+}
+@keyframes opacityStart{
+  from{
+    opacity: 0;
+  }
+  to{
+    opacity: 1;
+  }
+} 
+.content_head{
+  text-align: center;
+}
+.cancel{
+  position: absolute;
+  top: 0;
+  right: 20rpx;
+}
+.save{
+  margin-top: 20rpx;
+}
+
+
+.summary{
+  /* text-align: center; */
+  float: right;
+  padding-right: 30rpx;
+  font-size: 30rpx;
+  margin-top: 20rpx;
+  color: #1C87F4;
+  text-decoration: underline;
+}
+.bottom_head{
+  border-top: 1rpx solid #ccc;
+  overflow: hidden;
+}

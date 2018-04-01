@@ -1,0 +1,196 @@
+{
+  "total": 3,
+  "data": [
+    {
+      "addDateTime": "2017-08-29 14:27:41",
+      "approvalDateTime": "2017-08-29 14:36:07",
+      "approvalStatus": 0,
+      "dealStatus": 1,
+      "description": "内容1",
+      "id": 2,
+      "ifDelete": 0,
+      "person": {
+        "account": "123",
+        "addDateTime": "2017-08-28 16:37:34",
+        "headPicture": "",
+        "id": 3,
+        "idCardNum": "610526199900000000",
+        "ifDelete": 0,
+        "lastLoginDateTime": "2017-08-28 16:40:27",
+        "maintenanceWorker": null,
+        "name": "李四",
+        "password": "666666",
+        "role": 3,
+        "sex": 1,
+        "status": 1,
+        "student": {
+          "approvalDateTime": "2017-08-28 17:28:17",
+          "id": 1,
+          "onSchool": 1
+        },
+        "teacher": null,
+        "tel": "13999999999",
+        "updateDateTime": "2017-08-29 09:14:21",
+        "weChatNickName": ""
+      },
+      "price": 11,
+      "title": "标题1",
+      "type": 1,
+      "viewTimes": 32
+    },
+    {
+      "addDateTime": "2017-08-29 14:27:06",
+      "approvalDateTime": "2017-08-29 14:36:12",
+      "approvalStatus": 0,
+      "dealStatus": 0,
+      "description": "内容2",
+      "id": 1,
+      "ifDelete": 0,
+      "person": {
+        "account": "188",
+        "addDateTime": "2017-08-28 15:45:31",
+        "headPicture": "1",
+        "id": 1,
+        "idCardNum": "610526199901010000",
+        "ifDelete": 0,
+        "lastLoginDateTime": "2017-08-28 15:45:37",
+        "maintenanceWorker": {
+          "department": {
+            "addDateTime": "2017-08-28 15:46:06",
+            "campus": {
+              "addDateTime": "2017-08-28 15:46:28",
+              "description": "1",
+              "id": 1,
+              "ifDelete": 0,
+              "name": "1",
+              "status": 1,
+              "updateDateTime": "2017-08-29 16:13:35"
+            },
+            "children": [],
+            "description": "1",
+            "id": 1,
+            "ifDelete": 0,
+            "ifLogistics": 1,
+            "name": "1",
+            "parent": null,
+            "status": 1,
+            "updateDateTime": "2017-08-28 15:46:20"
+          },
+          "id": 1,
+          "maintenanceType": {
+            "addDateTime": "2017-08-28 17:50:06",
+            "description": "1",
+            "id": 1,
+            "ifDelete": 0,
+            "maintenanceCategories": [
+              {
+                "addDateTime": "2017-08-29 09:13:56",
+                "description": "1",
+                "id": 1,
+                "ifDelete": 0,
+                "maintenanceType": null,
+                "name": "1",
+                "status": 1,
+                "updateDateTime": "2017-08-29 09:13:56"
+              }
+            ],
+            "name": "1",
+            "status": 1,
+            "updateDateTime": "2017-08-28 17:50:12"
+          }
+        },
+        "name": "张三",
+        "password": "666666",
+        "role": 1,
+        "sex": 1,
+        "status": 0,
+        "student": null,
+        "teacher": null,
+        "tel": "15888888888",
+        "updateDateTime": "2017-08-28 18:03:30",
+        "weChatNickName": "123456"
+      },
+      "price": 12,
+      "title": "标题2",
+      "type": 1,
+      "viewTimes": 13
+    },
+    {
+      "addDateTime": "2017-08-28 14:28:09",
+      "approvalDateTime": "2017-08-29 14:28:12",
+      "approvalStatus": 1,
+      "dealStatus": 1,
+      "description": "内容3",
+      "id": 3,
+      "ifDelete": 0,
+      "person": {
+        "account": "1232",
+        "addDateTime": "2017-08-28 18:01:07",
+        "headPicture": "",
+        "id": 5,
+        "idCardNum": "610526199900000000",
+        "ifDelete": 0,
+        "lastLoginDateTime": "2017-08-28 18:01:07",
+        "maintenanceWorker": {
+          "department": {
+            "addDateTime": "2017-08-28 15:46:06",
+            "campus": {
+              "addDateTime": "2017-08-28 15:46:28",
+              "description": "1",
+              "id": 1,
+              "ifDelete": 0,
+              "name": "1",
+              "status": 1,
+              "updateDateTime": "2017-08-29 16:13:35"
+            },
+            "children": [],
+            "description": "1",
+            "id": 1,
+            "ifDelete": 0,
+            "ifLogistics": 1,
+            "name": "1",
+            "parent": null,
+            "status": 1,
+            "updateDateTime": "2017-08-28 15:46:20"
+          },
+          "id": 2,
+          "maintenanceType": {
+            "addDateTime": "2017-08-28 17:50:06",
+            "description": "1",
+            "id": 1,
+            "ifDelete": 0,
+            "maintenanceCategories": [
+              {
+                "addDateTime": "2017-08-29 09:13:56",
+                "description": "1",
+                "id": 1,
+                "ifDelete": 0,
+                "maintenanceType": null,
+                "name": "1",
+                "status": 1,
+                "updateDateTime": "2017-08-29 09:13:56"
+              }
+            ],
+            "name": "1",
+            "status": 1,
+            "updateDateTime": "2017-08-28 17:50:12"
+          }
+        },
+        "name": "王五",
+        "password": "123456",
+        "role": 1,
+        "sex": 1,
+        "status": 0,
+        "student": null,
+        "teacher": null,
+        "tel": "13999999999",
+        "updateDateTime": "2017-08-28 18:03:23",
+        "weChatNickName": ""
+      },
+      "price": 121,
+      "title": "标题3",
+      "type": 1,
+      "viewTimes": 33
+    }
+  ]
+}

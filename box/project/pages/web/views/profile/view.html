@@ -1,0 +1,355 @@
+<div class="row" ng-controller="personalController">
+	<div class="col-xs-12">
+		<div class="portlet light" style="min-height: 567px !important;">
+			<div class="portlet-title tabbable-line" style="margin-bottom: 10px">
+				<div class="caption caption-md">
+					<i class="icon-globe theme-font hide"></i>
+					<span class="caption-subject font-blue-madison bold uppercase">我的个人资料</span>
+				</div>
+				<ul class="nav nav-tabs">
+					<li class="active">
+						<a href="#" data-target="#tab_1_1" data-toggle="tab">个人资料</a>
+					</li>
+					<li>
+						<a href="#" data-target="#tab_1_2" data-toggle="tab">修改资料</a>
+					</li>
+					<li>
+						<a href="#" data-target="#tab_1_3" data-toggle="tab">修改密码</a>
+					</li>
+				</ul>
+			</div>
+			<div class="portlet-body dataTables_wrapper" style="min-height: auto !important;">
+				<div class="tab-content">
+					<!-- PERSONAL INFO TAB -->
+					<div class="tab-pane active" id="tab_1_1">
+						<div action="#" class="inform clearflaot">
+							<div class="informtitleRow informtitleRowL">
+								<div class="nformtitleUsername">工号/学号：</div>
+								<div>{{info.account}}</div>
+							</div>
+							<div class="informtitleRow">
+								<div class="nformtitleUsername">手机号：</div>
+								<div>{{info.tel}}</div>
+							</div>
+							<div class="informtitleRow informtitleRowL">
+								<div class="nformtitleUsername">姓名：</div>
+								<div>{{info.name}}</div>
+							</div>
+							<div class="informtitleRow">
+								<div class="nformtitleUsername">身份证号：</div>
+								<div>{{info.idCardNum}}</div>
+							</div>
+							<div class="hide informtitleRow">
+								<div class="nformtitleUsername">微信网名：</div>
+								<div>{{info.weChatNickName}}</div>
+							</div>
+							<!--这是教师模块-->
+							<div ng-if="info.role===2">
+								<div class="informtitleRow informtitleRowL" style="width:100%;margin-bottom:-14px;">
+									<div class="nformtitleUsername">校区：</div>
+									<div>{{info.teacher.department.campus.name}}</div>
+								</div>
+								<div class="informtitleRow" style="width:100%;margin-top:30px;margin-bottom: 18px;">
+									<div class="nformtitleUsername">部门：</div>
+									<span style="display: inline-block;">{{info.teacher.department.name}}</span>
+								</div>
+								<div class="informtitleRow informtitleRowL" style="margin-bottom:-20px;">
+									<div class="nformtitleUsername">职务：</div>
+									<div>{{info.teacher.position.name}}</div>
+								</div>
+							</div>
+							<!--这是工人模块-->
+							<div ng-if="info.role===1 || info.role===0">
+								<div class="informtitleRow informtitleRowL" style="width:100%;margin-bottom:-14px;">
+									<div class="nformtitleUsername">校区：</div>
+									<div>{{info.maintenanceWorker.department.campus.name}}</div>
+								</div>
+								<div class="informtitleRow" style="width:100%;margin-top:30px;margin-bottom: 18px;">
+									<div class="nformtitleUsername">部门：</div>
+									<span style="display: inline-block;">{{info.maintenanceWorker.department.name}}</span>
+								</div>
+								<div class="informtitleRow informtitleRowL" style="margin-bottom:-20px;">
+									<div class="nformtitleUsername">工种：</div>
+									<div>{{info.maintenanceWorker.maintenanceType.name}}</div>
+								</div>
+							</div>
+							<div class="informtitleRow">
+								<div class="nformtitleUsername">性别：</div>
+								<div>{{info.sex==1?'男':'女'}}</div>
+							</div>
+						</div>
+					</div>
+					<!-- END PERSONAL INFO TAB -->
+					<!-- CHANGE AVATAR TAB -->
+					<div class="tab-pane" id="tab_1_2">
+						<!-- BEGIN FORM-->
+						<form w5c-form-validate="validateOptions" class="w5c-form" novalidate name="setMaterial">
+							<div class="form-body">
+								<div class="form-group col-xs-6">
+									<label class="col-xs-4 control-label">
+										<span class="fa fa-bell-o"></span> 工号/学号
+			                        </label>
+									<span class="col-xs-8">
+			                            <span class="validateErrorInfo"> </span>
+									</span>
+									<div class="col-xs-12">
+										<input type="text" class="form-control" name="registerName" ng-model="info.account"
+										ng-disabled="true">
+									</div>
+								</div>
+								<div class="form-group col-xs-6">
+									<label class="col-xs-4 control-label">
+										<span class="fa fa-bell-o"></span> 手机号
+			                        </label>
+									<span class="col-xs-8">
+			                            <span class="validateErrorInfo"> </span>
+									</span>
+									<div class="col-xs-12">
+										<input type="text" class="form-control" name="phoneNum" ng-pattern="regex.telNum"
+											   placeholder="" ng-model="info.tel" required>
+									</div>
+								</div>
+								<div class="form-group col-xs-6">
+									<label class="col-xs-4 control-label">
+										<span class="fa fa-bell-o"></span> 姓名
+									</label>
+									<span class="col-xs-8">
+										<span class="validateErrorInfo"> </span>
+									</span>
+									<div class="col-xs-12">
+										<input type="text" class="form-control" name="personName" ng-pattern="regex.personName"
+											   ng-blur="checkValidateWithSensitive($event, 'data.name')"
+											   ng-minlength="length.personMin" ng-maxlength="length.personMax"
+											   placeholder="" ng-model="info.name" required>
+									</div>
+								</div>
+								
+								  <div class="form-group col-xs-6">
+										<label class="col-xs-4 control-label">
+				                           	身份证号
+				                        </label>
+										<span class="col-xs-8">
+				                            <span class="validateErrorInfo"> </span>
+										</span>
+										<div class="col-xs-12">
+											<input type="text" class="form-control" name="idCardNum"
+												   ng-pattern="regex.idCardNum" placeholder="" ng-model="info.idCardNum">
+										</div>
+									</div>
+								<!--这是教师模块 -->
+								<div ng-if="info.role===2">
+									<div class="form-group col-xs-12">
+										<label class="col-xs-4 control-label">
+											<span class="fa fa-bell-o"></span> 校区
+				                        </label>
+										<span class="col-xs-8">
+				                            <span class="validateErrorInfo"></span>
+										</span>
+										<div class="col-xs-12">
+											<select ui-select2="select2Options" style="width: 100%;" name="select" required
+													ng-change="selectCampus()" class="form-control"
+													ng-model="info.teacher.department.campus.id"
+													ng-options="item.id as item.name for item in campusSelectData">
+												<option value="">-- 请选择 --</option>
+											</select>
+										</div>
+									</div>
+									<div class="form-group col-xs-6">
+										<label class="col-xs-4 control-label">
+											<span class="fa fa-bell-o"></span> 部门
+				                       	</label>
+										<span class="col-xs-8">
+				                            <span class="validateErrorInfo"></span>
+										</span>
+										<div class="col-xs-12">
+											<select ui-select2="select2FormatOptions" style="width: 100%;" name="select2"
+													required ng-change="selectDepartment()" class="form-control"
+													ng-model="info.teacher.department.id"
+													ng-options="item.id as item.name for item in departmentSelectData">
+												<option value="">-- 请选择 --</option>
+											</select>
+										</div>
+									</div>
+									<div class="form-group col-xs-6">
+										<label class="col-xs-4 control-label">
+											<span class="fa fa-bell-o"></span> 职务
+				                       	</label>
+										<span class="col-xs-8">
+				                            <span class="validateErrorInfo"></span>
+										</span>
+										<div class="col-xs-12">
+											<select ui-select2="select2Options" style="width: 100%;" name="select3" required
+													ng-change="selectPosition()" class="form-control" ng-model="info.teacher.position.id"
+													ng-options="item.id as item.name for item in positionSelectData">
+												<option value="" selected>-- 请选择 --</option>
+											</select>
+										</div>
+									</div>
+								</div>
+								<!--这是工人模块的-->
+								<div ng-if="info.role===1 || info.role===0">
+									<div class="form-group col-xs-12">
+										<label class="col-xs-4 control-label">
+											<span class="fa fa-bell-o"></span> 校区
+				                        </label>
+										<span class="col-xs-8">
+				                        	<span class="validateErrorInfo"></span>
+										</span>
+										<div class="col-xs-12">
+											<select ui-select2="select2Options" style="width: 100%;" name="select" required
+													ng-change="selectCampus()" class="form-control"
+													ng-model="info.maintenanceWorker.department.campus.id"
+													ng-options="item.id as item.name for item in campusSelectData">
+												<option value="">-- 请选择 --</option>
+											</select>
+										</div>
+									</div>
+									<div class="form-group col-xs-6">
+										<label class="col-xs-4 control-label">
+											<span class="fa fa-bell-o"></span> 部门
+				                       	</label>
+										<span class="col-xs-8">
+				                            <span class="validateErrorInfo"></span>
+										</span>
+										<div class="col-xs-12">
+											<select ui-select2="select2FormatOptions" style="width: 100%;" name="select3" required
+													ng-change="selectDepartment2()" class="form-control"
+													ng-model="info.maintenanceWorker.department.id"
+													ng-options="item.id as item.name for item in departmentSelectData">
+												<option value="">-- 请选择 --</option>
+											</select>
+										</div>
+									</div>
+									<div class="form-group col-xs-6">
+										<label class="col-xs-4 control-label">
+											<span class="fa fa-bell-o"></span> 工种
+				                       	</label>
+										<span class="col-xs-8">
+				                            <span class="validateErrorInfo"></span>
+										</span>
+										<div class="col-xs-12">
+											<select ui-select2="select2Options" style="width: 100%;" name="select3" required
+													ng-change="selectMaintenanceType()" class="form-control"
+													ng-model="info.maintenanceWorker.maintenanceType.id"
+													ng-options="item.id as item.name for item in maintenanceTypeSelectData">
+												<option value="">-- 请选择 --</option>
+											</select>
+										</div>
+									</div>
+								</div>
+								
+								<div class="form-group col-xs-12">
+									<label class="col-xs-1 control-label" style="padding-left: 18px !important;padding-top: 8px !important;">
+										性别
+									</label>
+									<div class="col-xs-11 form-md-radios">
+										<div class="md-radio-inline">
+											<div class="md-radio" ng-repeat="item in sexTypeData">
+												<input type="radio" id="editCheckbox{{item.value}}2"
+													   ng-model="info.sex" ng-value="{{item.value}}"
+													   class="md-radiobtn">
+												<label for="editCheckbox{{item.value}}2">
+													<span></span>
+													<span class="check"></span>
+													<span class="box"></span> {{item.name}} </label>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="form-group col-xs-12" style="position: relative;">
+									<input type="submit" ng-click="modifiedData()" ng-disabled="setMaterial.$invalid"
+										   class="setMaterialButton btn green-haze" name="setMaterialButton"
+										   id="setMaterialButton" value="提交" />
+								</div>
+							</div>
+						</form>
+						<!-- END FORM-->
+					</div>
+					<!-- END CHANGE AVATAR TAB -->
+
+					<!-- CHANGE PASSWORD TAB -->
+					<div class="tab-pane" id="tab_1_3">
+						<form id="setPassword" name="setPsdForm" novalidate>
+							<div class="clearflaot form-group-row  form-group-rowTop" >
+								<label>
+                                <div class="nformtitleUsername" ng-class="
+												{ 'errorLabel' : (setPsdForm.setPsw.$error.required
+												   || setPsdForm.setPsw.$error.minlength
+												   || setPsdForm.setPsw.$error.maxlength
+												   || !oldPasswordValid
+												   )&& setPsdForm.setPsw.$dirty}" style="font-size: 14px;">
+									原密码：
+                                </div>
+                                <div class="nformtitleInput">
+                                	<input name="setPsw" ng-blur="currentPassword()" ng-model="setPsw"
+										   ng-class="{ 'errorInput' : (setPsdForm.setPsw.$error.required
+												   || setPsdForm.setPsw.$error.minlength
+												   || setPsdForm.setPsw.$error.maxlength
+												   || !oldPasswordValid
+												   )&& setPsdForm.setPsw.$dirty}"
+										   type="password"  class="setPsw rowPsw"  placeholder="请输入原密码"
+										   autocomplete="off" ng-pattern="/^[a-zA-Z0-9]{6,20}/"
+										   ng-maxlength="length.passwordMax"
+										   ng-minlength="length.passwordMin" ng-required="true"
+									/>
+                                </div>
+                                <span ng-show="setPsdForm.setPsw.$error.minlength" class="setPswTip">原密码长度不能少于6位</span>
+                                <span ng-show="setPsdForm.setPsw.$error.maxlength" class="setPswTip">原密码长度不能超过20位</span>
+									<span ng-show="setPsdForm.setPsw.$error.required && !setPsdForm.setPsw.$pristine" class="setPswTip">原密码不能为空</span>
+                                </label>
+							</div>
+							<div> <!--ng-if="oldPasswordValid"-->
+								<div class="clearflaot form-group-row">
+									<label>
+										<div class="nformtitleUsername" ng-class="
+												{ 'errorLabel' : (setPsdForm.newPsw.$error.required
+												   || setPsdForm.newPsw.$error.minlength
+												   ||setPsdForm.newPsw.$error.maxlength) && setPsdForm.newPsw.$dirty}" style="font-size: 14px;">
+											新密码：
+										</div>
+										<div class="nformtitleInput">
+											<input ng-disabled="expression" type="password"  name="newPsw" class="newPsw rowPsw"
+												   placeholder="请输入新密码" id="newPassword"  ng-class="{ 'errorInput' : (setPsdForm.newPsw.$error.required
+												   || setPsdForm.newPsw.$error.minlength
+												   ||setPsdForm.newPsw.$error.maxlength) && setPsdForm.newPsw.$dirty}"  autocomplete="off"
+												   ng-pattern="/^[a-zA-Z0-9]{6,20}/" ng-maxlength="20" ng-minlength="6"
+												   ng-model="newPsd" ng-required="true"
+												   ng-blur="checkNewPasswordValidOld()"/>
+										</div>
+										<span  ng-show="setPsdForm.newPsw.$error.minlength" class="setPswTip">新密码长度不能少于6位</span>
+										<span  ng-show="setPsdForm.newPsw.$error.maxlength" class="setPswTip">新密码长度不能超过20位</span>
+										<span  ng-show="setPsdForm.newPsw.$error.required && !setPsdForm.newPsw.$pristine"
+											   class="setPswTip">新密码不能为空</span>
+									</label>
+								</div>
+								<div class="clearflaot form-group-row">
+									<label>
+										<div class="nformtitleUsername" ng-class="
+										{ 'errorLabel' : (setPsdForm.rePassword.$error.required ||
+												   newPsd != rePassword) && setPsdForm.rePassword.$dirty }" style="font-size: 14px;">
+											确认新密码：
+										</div>
+										<div class="nformtitleInput">
+											<input ng-disabled="!newPasswordValidOld" type="password" name="rePassword" ng-model="rePassword"
+												   ng-class="{ 'errorInput' : (setPsdForm.rePassword.$error.required ||
+												   newPsd != rePassword) && setPsdForm.rePassword.$dirty }" class="rePassword rowPsw" required="required"
+												   placeholder="请重新确认输入一次新密码"/>
+										</div>
+										<span  class="setPswTip"  ng-show="!setPsdForm.rePassword.$pristine &&  newPsd != rePassword">两次密码不一致</span>
+									</label>
+								</div>
+								<div class="setButton">
+									<input type="submit" ng-click="passwordSmt()" ng-disabled="setPsdForm.setPsw.$invalid
+									|| setPsdForm.newPsw.$invalid || setPsdForm.rePassword.$invalid || newPsd != rePassword || setPsw==newPsd || !oldPasswordValid"
+										   class="btn green-haze" name="setPsdSubmit" id="setPsdSubmit" value="提交" />
+								</div>
+							</div>
+						</form>
+						<!--=================-->
+					</div>
+					<!-- END CHANGE PASSWORD TAB -->
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

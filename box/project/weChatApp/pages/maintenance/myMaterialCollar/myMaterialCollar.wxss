@@ -1,0 +1,170 @@
+page {
+  background: #f5f5f5;
+}
+
+.head {
+  position: relative;
+  height: 1px;
+}
+
+.content {
+  padding-bottom: 28rpx;
+  margin-top: 100rpx;
+}
+
+.btn {
+  position: absolute;
+  top: 184rpx;
+  right: 42rpx;
+  width: 110rpx;
+  height: 54rpx;
+  text-align: center;
+  line-height: 54rpx;
+  background: #44b6ae;
+  color: white;
+  box-shadow: 2px 2px 0px #ccc;
+  font-size: 24rpx;
+}
+
+.title {
+  position: absolute;
+  top: 0;
+  left: 5px;
+  width: 40rpx;
+  height: 0rpx;
+  background: #4b77be;
+  text-align: center;
+  font-size: 26rpx;
+  line-height: 38rpx;
+  color: white;
+  transition: 2s;
+  overflow: hidden;
+}
+
+.titleAftle {
+  width: 40rpx;
+  height: 40rpx;
+  background: #f5f5f5;
+  position: absolute;
+  top: 305rpx;
+  left: 5px;
+  transform: rotate(45deg);
+}
+
+.li {
+  width: 100%;
+  margin: 20rpx 0 0 0;
+  border-radius: 15rpx;
+  height: 380rpx;
+  overflow: hidden;
+  box-shadow: 0px 0px 20px #ccc;
+  font-size: 30rpx;
+  position: relative;
+}
+
+.liHead {
+  height: 24%;
+  background: #4b77be;
+  position: relative;
+}
+
+.date, .detail, .liContent_name, .liContent_model {
+  padding-top: 10rpx;
+}
+
+.liBorder {
+  width: 100%;
+  height: 5px;
+  border-top: 10rpx dotted white;
+  position: absolute;
+  top: 24%;
+  left: 0;
+  transform: translateY(-25%);
+  z-index: 2;
+}
+
+.liContent {
+  height: 78%;
+  background: white;
+  position: relative;
+  z-index: 3;
+  padding-left: 20rpx;
+}
+
+.toView {
+  color: #888;
+}
+
+.number {
+  color: #4b77be;
+  text-decoration: underline;
+}
+
+.Name {
+  font-size: 32rpx;
+  position: absolute;
+  bottom: 50%;
+  right: 5%;
+  color: white;
+  width: 200rpx;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.model {
+  font-size: 28rpx;
+  position: absolute;
+  bottom: 20%;
+  right: 5%;
+  color: #ccc;
+  width: 200rpx;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.type {
+  /* width: 150rpx; *//* display: inline; *//* padding: 10rpx 20rpx; *//* border: 1px solid white; */
+  position: absolute;
+  width: 90%;
+  top: 50%;
+  left: 50%;
+  /* transform: translateY(-50%);  */
+  color: white;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: center;
+  transform: translate(-50%, -50%);
+}
+
+.date {
+  /* position: absolute; *//* top: 10%; *//* left: 5%; */
+  color: #e87e04;
+}
+
+.detail {
+  width: 90%;
+  /* position: absolute; *//* top: 50%; *//* left: 5%; */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #888;
+}
+
+.liContent_model, .liContent_name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #888;
+}
+
+.allDownText {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-right: 15rpx;
+  color: #888;
+  font-size: 30rpx;
+}

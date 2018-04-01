@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8 no-js" data-ng-app="MetronicApp"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js" data-ng-app="MetronicApp"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en" data-ng-app="MetronicApp">
+<!--<![endif]-->
+<!-- BEGIN HEAD -->
+<head>
+	<title data-ng-bind="'数字后勤后台管理系统 | ' + $state.current.data.pageTitle"></title>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta content="width=device-width, initial-scale=1" name="viewport" />
+	<meta content="" name="description" />
+	<meta content="" name="author" />
+
+	<!-- 引入压缩css文件开始 -->
+	<!-- 字体与图标文件 -->
+	<link href="../dist/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+	<link href="../dist/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
+	<!-- 第三方控件配套CSS -->
+	<link href="../dist/css/admin/thirdPart.min.css" rel="stylesheet" type="text/css" />
+	<link id="ng_load_plugins_before" />
+	<!-- 全局布局以及核心CSS -->
+	<link href="../dist/css/admin/layout.min.css" id="style_components" rel="stylesheet" type="text/css" />
+	<!-- 引入压缩css文件结束 -->
+	<link href="css/style.css" rel="stylesheet" type="text/css" />
+	<!-- 字体与图标文件 -->
+	<link rel="shortcut icon" href="favicon.ico" />
+</head>
+<!-- END HEAD -->
+<body ng-controller="AppController" class="bodyOverflow page-header-fixed page-sidebar-closed-hide-logo page-on-load" ng-class="{'page-content-white': settings.layout.pageContentWhite,'page-container-bg-solid': settings.layout.pageBodySolid, 'page-sidebar-closed': settings.layout.pageSidebarClosed}">
+<!-- BEGIN PAGE SPINNER -->
+<div ng-spinner-bar class="page-spinner-bar">
+	<div class="bounce1"></div>
+	<div class="bounce2"></div>
+	<div class="bounce3"></div>
+</div>
+<audio hidden id="tipMusic" src="../dist/voice/tip.mp3"></audio>
+<!-- END PAGE SPINNER -->
+<!-- BEGIN HEADER -->
+<div data-ng-include="'tpl/header.html'" data-ng-controller="HeaderController" class="page-header navbar navbar-fixed-top"> </div>
+<!-- END HEADER -->
+<div class="clearfix"> </div>
+<!-- BEGIN CONTAINER -->
+<div class="page-container">
+	<!-- BEGIN SIDEBAR -->
+	<div data-ng-include="'tpl/sidebar.html'" data-ng-controller="SidebarController" class="page-sidebar-wrapper"> </div>
+	<!-- END SIDEBAR -->
+	<!-- BEGIN CONTENT -->
+	<div class="page-content-wrapper">
+		<div class="page-content">
+			<!-- BEGIN STYLE CUSTOMIZER(optional) -->
+			<div style="display: none;" data-ng-include="'tpl/theme-panel.html'" data-ng-controller="ThemePanelController" class="theme-panel hidden-xs hidden-sm"> </div>
+			<!-- END STYLE CUSTOMIZER -->
+			<!-- BEGIN ACTUAL CONTENT -->
+			<div ui-view class="fade-in-up"> </div>
+			<!-- END ACTUAL CONTENT -->
+		</div>
+	</div>
+	<!-- END CONTENT -->
+</div>
+<!-- END CONTAINER -->
+<!-- BEGIN FOOTER -->
+<div data-ng-include="'tpl/footer.html'" data-ng-controller="FooterController" class="page-footer"> </div>
+
+<!-- 引入压缩js文件开始 -->
+<!--[if lt IE 9]>
+<script src="../dist/js/admin/IE9Respond.min.js"></script>
+<![endif]-->
+<!-- 第三方控件JS -->
+<script src="../dist/js/admin/thirdPart.min.js" type="text/javascript"></script>
+<!-- 核心JS -->
+<script src="js/config.js" type="text/javascript"></script>
+<script src="../dist/js/admin/core.min.js" type="text/javascript"></script>
+<!-- 引入压缩js文件结束 -->
+<!-- 在线监控bugJS -->
+<!--<script src="https://og6593g2z.qnssl.com/fundebug.0.2.0.min.js" apikey="7098013c05e4f8a9b9ab8d138b27e082e47bc7ab415b500a881b9d1dd9b54093"></script>-->
+</body>
+<!-- END BODY -->
+</html>

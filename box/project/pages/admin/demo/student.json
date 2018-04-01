@@ -1,0 +1,28 @@
+{
+  "total": 1,
+  "data": [
+    {
+      "account": "123",
+      "addDateTime": "2017-08-28 16:37:34",
+      "headPicture": "",
+      "id": 3,
+      "idCardNum": "610526199900000000",
+      "ifDelete": 0,
+      "lastLoginDateTime": "2017-08-28 16:40:27",
+      "name": "王武",
+      "password": "666666",
+      "role": 3,
+      "sex": 1,
+      "status": 1,
+      "student": {
+        "approvalDateTime": "2017-08-28 17:28:17",
+        "id": 1,
+        "approvalType": 0
+      },
+      "tel": "13999999999",
+      "updateDateTime": "2017-08-28 18:03:32",
+      "weChatOpenId": "",
+      "weChatNickName": ""
+    }
+  ]
+}

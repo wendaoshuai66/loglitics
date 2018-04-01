@@ -1,0 +1,78 @@
+/* pages/userInfor/register/step2.wxss */
+
+.phoneImg {
+  width: 110rpx;
+  height: 180rpx;
+}
+
+.phone {
+  text-align: center;
+}
+
+.numberText {
+  margin-top: 50rpx;
+}
+
+.text {
+  margin-top: 20rpx;
+  font-size: 30rpx;
+  color: #999;
+}
+
+.time {
+  margin: 0rpx 20rpx;
+}
+
+.last {
+  margin-right: 0rpx;
+}
+
+.click {
+  color: blue;
+}
+
+.inline_block {
+  display: inline-block;
+}
+.input_number{
+   /* border:1px solid #999;  */
+  width: 60%;
+  height: 100rpx;
+  margin:0 auto;
+  margin-top: 500rpx;
+  text-align: left;
+  /* letter-spacing: 100px; */
+  position: relative;
+  overflow: visible;
+  color: transparent;  
+  /* border: 1px solid #ccc; */
+   /* opacity: 0;  */
+}
+.input1,.input2,.input3,.input4{
+  position: absolute;
+  top: -450rpx;
+  width: 100rpx;
+  height: 100rpx;
+  border:1rpx solid #999;
+  border-radius: 15rpx;
+  text-align: center;
+  line-height: 100rpx;
+  z-index: 1000rpx;
+  color: black;
+ } 
+.input1{
+  left: 0;
+  transform: translateX(-50%);
+}
+.input2{
+  left: 50%;
+  transform: translateX(-125%);
+}
+.input3{
+  left: 50%;
+  transform: translateX(25%);
+}
+.input4{
+  right: 0;
+  transform: translateX(50%);
+}

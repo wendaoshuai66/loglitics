@@ -1,0 +1,120 @@
+<view class="header">
+  <!-- <view class='showBox'>
+    <view class='campus' bindtap='showChoose'>{{campusName}}</view>
+    <view class='department' bindtap='showChoose'>{{departmentName}}</view>
+    <view class='maintenanceType'>
+    <picker bindchange='positionChange' range='{{positionNameItems}}' value='{{index}}'>
+        <view>{{maintenanceName}}</view>
+    </picker>
+    </view>
+  </view> -->
+  <view class="input-group">
+    <view class="input-label">
+      <text class="">选择校区:</text>
+    </view>
+    <view class="input-content">
+      <picker bindchange="campusPickerChange" value="{{campus}}" range="{{campusItems}}">
+        <view class="picker input_text">{{campusName}}</view>
+      </picker>
+    </view>
+  </view>
+
+  <view class="input-group">
+    <view class="input-label">
+      <text class="">选择部门:</text>
+    </view>
+    <view class="input-content">
+      <view class="input_text picker" bindtap='toChooseBox'>{{departmentName}}</view>
+    </view>
+  </view>
+  <view class="input-group">
+    <view class="input-label">
+      <text class="">选择工种:</text>
+    </view>
+    <view class="input-content">
+      <picker class="input_text" bindchange='positionChange' value='{{index}}' range='{{positionNameItems}}'>{{maintenanceName}}</picker>
+    </view>
+  </view>
+  <view class="input-group">
+    <view class="input-label">
+      <text class="">选择年份:</text>
+    </view>
+    <view class="input-content">
+      <picker class="input_text" fields="year" value='{{dateY}}' start="2017-01-01" end="2027-12-31" bindchange="bindDateChange" mode="date">{{dateYear}}</picker>
+    </view>
+  </view>
+  <view class="input-group">
+    <view class="input-label">
+      <text class="">选择月份:</text>
+    </view>
+    <view class="input-content">
+      <picker class="input_text" value='{{}}' bindchange="bindDateMouth" range='{{dateItem}}'>{{dateMouthName}}</picker>
+    </view>
+  </view>
+</view>
+<!-- 日期选择 -->
+<!-- <view class='chooseDate'>
+   <view class='chooseYear'>
+    <image bindtap='toArrow' data-type="upYear" class='upYear' src='../../../../images/maintenance/up.png'></image>
+    <image bindtap='toArrow' data-type="downYear" class='downYear' src='../../../../images/maintenance/down.png'></image>
+    <image class='imageYear' src='../../../../images/maintenance/date.png'></image>
+    <view class='yearMenu'>
+      <picker class='yearList' fields="year" value='{{dateY}}' start="2015-09-01" end="2019-05-01" bindchange="bindDateChange" mode="date">
+        <view>{{dateYear}}</view>
+      </picker>
+    </view>
+  </view>
+  <view class='chooseMouth'>
+    <image bindtap='toArrow' data-type="upMouth" class='upMouth' src='../../../../images/maintenance/up.png'></image>
+    <image bindtap='toArrow' data-type="downMouth" class='downMouth' src='../../../../images/maintenance/down.png'></image>
+    <view class='mouthMenu'>
+      <view class='mouthList' bindtap='toChooseDate'>{{dateMouthName}}</view>
+    </view>
+  </view>
+  <view style="{{menuFlag?'transform: scale(1);opacity:1':'transform: scale(0);opacity:0'}}" class='headList'>
+    <view data-name="{{item}}" bindtap='toChooseMouth' class='li' wx:for="{{dateItem}}" data-index="{{index}}" wx:key="{{index}}">{{item}}</view>
+  </view> 
+</view> -->
+<view class='bottom' wx:if="{{item.length != 0}}">
+  <view class='bottom_head'>
+    <text class='listTitle'>值班信息</text>
+    <text class='summary' bindtap='toSummary'>当月信息汇总</text>
+  </view>
+  <view class='list' wx:for="{{item}}" wx:key="{{index}}" data-index="{{index}}">
+    <view class='holidayName'>{{item.holidayName}}</view>
+    <view class='dateText'>{{item.time}}<text style='color:#000'>（{{item.week}}）</text></view>
+    <view class='white boxType' bindtap='showTel' data-tel="{{item.dayTel}}">
+      <view class='personName'>{{item.dayName}}</view>
+      <view class='personTel'>{{item.dayTel}}</view>
+    </view>
+    <view class='black boxType' bindtap='showTel' data-tel="{{item.nightTel}}">
+      <view class='personName'>{{item.nightName}}</view>
+      <view class='personTel'>{{item.nightTel}}</view>
+    </view>
+  </view>
+</view>
+<view wx:else>
+  <view class='listTitle' bindtap='toSearch'>值班信息</view>
+  <view class='error'>---------暂无数据--------</view>
+</view>
+
+
+
+<view class='mask' style="{{showFlag?'display:block;animation:opacityStart 1s':'display:none'}}"></view>
+<view class="chooseBox" style="{{showFlag?'animation:opcityStart 0.5s;display:block':'display:none'}}">
+  <view class='choose_head'>
+    <view bindtap='toCancel' class='cancelBtn'>取消</view>
+    <view class='choose_title'>选择部门</view>
+    <view bindtap='toCancel' class='enterBtn'>确定</view>
+  </view>
+  <!-- 校区选择 -->
+  <scroll-view scroll-y="true" class='departmentClass'>
+    <view class="">
+      <!-- 部门选择 -->
+      <view class="treeTitle">
+        <view class="tree {{item.treeLevel == 0?'':'child'}}" bindtap='clickTree' data-name="{{item.name}}" data-id='{{item.id}}' hidden="{{item.flag}}" style="{{item.treeLevel == 0?'':'margin-left:'+item.treeLevel*12+'rpx'}};{{departmentId == item.id?'background:#e5e5e5':'background:#ffffff'}}"
+          wx:for="{{departmentItems}}" data-index="{{index}}" wx:key="{{index}}"><view class='child_style' hidden="{{item.treeLevel == 0}}"></view>{{item.name}}</view>
+      </view>
+    </view>
+  </scroll-view>
+</view>

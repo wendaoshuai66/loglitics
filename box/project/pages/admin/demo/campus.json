@@ -1,0 +1,20 @@
+{
+	"total": 2,
+	"data": [
+		{
+			"id": "23",
+			"name": "白鹿原校区",
+			"description": "白鹿原校区描述",
+			"status": 1,
+			"addDateTime": "2017-04-25 13:20:21",
+			"updateDateTime": "2017-04-25 13:20:21"
+		}, {
+			"id": "234",
+			"name": "长安校区",
+			"description": "长安校区描述",
+			"status": 1,
+			"addDateTime": "2017-04-25 13:20:21",
+			"updateDateTime": "2017-04-25 13:20:21"
+		}
+	]
+}

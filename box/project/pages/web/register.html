@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="RegisterApp">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>数字后勤服务大厅 | 注册</title>
+    <link href="../assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="../assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css"/>
+    <link href="../assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="../assets/global/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css">
+    <link href="../assets/global/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="../assets/global/plugins/bootstrap-sweetalert/sweetalert.min.css" rel="stylesheet" type="text/css"/>
+    <link type="text/css" rel="stylesheet" href="css/common.css">
+    <link type="text/css" rel="stylesheet" href="css/tooltip-classic.css">
+    <link href="../assets/global/css/components-rounded.min.css" id="style_components" rel="stylesheet"
+          type="text/css"/>
+    <link type="text/css" rel="stylesheet" href="css/register.css">
+
+</head>
+<body class="bgf4" style="overflow:Scroll;overflow-x:hidden" ng-controller="registerController">
+<!--头部-->
+<div class="col-xs-12 col-sm-12" style="background: #fff;">
+    <div data-ng-include="'tpl/login-head.html'"></div>
+
+</div>
+<!--注册-->
+<div class="login-box f-mt10 f-pb10">
+    <div class="main bgf">
+        <div class="reg-box-pan display-inline" style="min-height: 710px;">
+            <div class="step">
+                <ul>
+                    <li class="col-xs-4" ng-class="registerStep == 1 ? 'on' : ''">
+                        <span class="num"><em class="f-r5"></em><i>1</i></span>
+                        <span class="line_bg lbg-r"></span>
+                        <p class="lbg-txt">注册账号</p>
+                    </li>
+                    <li class="col-xs-4" ng-class="registerStep == 2 ? 'on' : ''">
+                        <span class="num"><em class="f-r5"></em><i>2</i></span>
+                        <span class="line_bg lbg-l"></span>
+                        <span class="line_bg lbg-r"></span>
+                        <p class="lbg-txt">手机验证</p>
+                    </li>
+                    <li class="col-xs-4" ng-class="registerStep == 3 ? 'on' : ''">
+                        <span class="num"><em class="f-r5"></em><i>3</i></span>
+                        <span class="line_bg lbg-l"></span>
+                        <p class="lbg-txt">注册详细内容</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="reg-box" id="verifyCheck" style="margin-top:20px;">
+                <!--第一步-->
+                <div class="part1" ng-if="registerStep == 1">
+                    <div class="item col-xs-12">
+                        <span class="intelligent-label f-fl"><b class="ftx04">*</b>用户类型：</span>
+                        <div class="f-fl item-ifo" style="border:1px solid #cccccc;border-radius:3px;">
+                            &nbsp;<div ng-repeat="data in registerTypesData" class="md-radio" style="float: left;">
+                            <input type="radio" id="editCheckbox{{data.value}}" ng-model="$parent.data.role"
+                                   class="md-radiobtn" ng-value="{{data.value}}" name="Radio">
+                            <label for="editCheckbox{{data.value}}">
+                                <span></span>
+                                <span class="check"></span>
+                                <span class="box"></span>{{data.name}}
+                            </label>
+                        </div>
+                            <label class="focus">请选择一种类型</label>
+                        </div>
+                    </div>
+                    <div class="item col-xs-12">
+                        <span class="intelligent-label f-fl"><b class="ftx04">*</b>手机号：</span>
+                        <div class="f-fl item-ifo">
+                            <input type="text" class="txt03 f-r3 required" keycodes="tel" tabindex="2"
+                                   data-valid="isNonEmpty||isPhone" data-error="手机号码不能为空||手机号码格式不正确"
+                                   maxlength="11" id="phone" ng-blur="getThisPhoneValid()" ng-model="phoneNum"/>
+                            <span class="ie8 icon-close close hide"></span>
+                            <label class="blank hide"><i style="position: absolute;left: 10px;"
+                                                         class="fa fa-check-square-o"></i></label>
+                            <label class="focus">请填写11位有效的手机号码</label>
+                            <label class="focus valid"></label>
+                        </div>
+                    </div>
+                    <div class="item col-xs-12" style="height:auto">
+                        <span class="intelligent-label f-fl">&nbsp;</span>
+                        <p class="f-size14">
+                        <div class="md-checkbox has-success">
+                            <input type="checkbox" id="checkbox-md" class="md-check" ng-model="isChecked">
+                            <label for="checkbox-md">
+                                <span></span>
+                                <span class="check" style="top: 3px;"></span>
+                                <span class="box" style="top: 5px;"></span>
+                                您已阅读并同意
+                            </label>
+                            <a href="register_service.html" target="_blank" class="c-blue">《数字后勤系统服务条款》</a>
+                        </div>
+                        </p>
+                        <label class="focus valid" style="margin-left: 20px; margin-top: 44px;"></label>
+                    </div>
+                    <div class="item col-xs-12">
+                        <span class="intelligent-label f-fl">&nbsp;</span>
+                        <div class="f-fl item-ifo">
+                            <button class="btn btn-blue f-r3" id="btn_part1" ng-click="registerStepToTwo()"
+                                    ng-disabled="!(phone && isChecked)" style="line-height: 44px;">下一步
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!--第二步 增加hide 是页面会进行闪动(显示2,3步的内容)-->
+                <div class="part2" ng-if="registerStep == 2">
+                    <div class="alert alert-info" style="width:560px; float: left;">短信将会发送至您手机，请输入短信中的验证码，确保您的手机号真实有效。
+                    </div>
+                    <div class="alert alert-success" style="width:110px; float: left; margin-left: 30px;"><a
+                            ng-click="registerStepToOne()" style="color: #327ad5;">返回上一步</a></div>
+                    <div class="item col-xs-12 f-mb10" style="height:auto">
+                        <span class="intelligent-label f-fl">
+                            <img src="images/register/tel.jpg"
+                                 style="width:200px; margin-left:220px; margin-top: 20px;">
+                        </span>
+                    </div>
+                    <div class="item col-xs-12" style="margin-left:20px;">
+                        <span class="intelligent-label f-fl"><b class="ftx04">*</b>验证码：</span>
+                        <div class="f-fl item-ifo" style="width: 300px;">
+                            <input type="text" maxlength="6" id="verifyNo" class="txt03 f-r3 f-fl required"
+                                   style="float: left; width: 160px;" tabindex="4"
+                                   data-valid="isNonEmpty||between:4-4||isInt" ng-model="msgInputCode"
+                                   data-error="验证码不能为空||请输入4位数字验证码"/>
+                            <span class="btn btn-gray f-r3 f-ml5 f-size13" id="verifyYz" ng-style="sendMsgStyle"
+                                  ng-click="sendMsgCode()" ng-disabled="sendMsgLoading">{{sengMsgStr}}</span>
+                            <span class="ie8 icon-close close hide" style="right:155px"></span>
+                            <label class="icon-sucessfill blank hide"></label>
+                            <label class="focus"><span>请查收手机短信，并填写短信中的验证码<br>（此验证码3分钟内有效）</span></label>
+                            <label class="focus valid"></label>
+                        </div>
+                    </div>
+                    <div class="item col-xs-12" style="margin-left:20px;">
+                        <span class="intelligent-label f-fl">&nbsp;</span>
+                        <div class="f-fl item-ifo">
+                            <a class="btn btn-blue f-r3" id="btn_part2" ng-click="checkMsgCodeValid()"
+                               style="line-height: 44px;" ng-disabled="msgInputCode.length!=4">下一步</a>
+                        </div>
+                    </div>
+                </div>
+                <!--第三步-->
+                <div class="part3" ng-if="registerStep == 3">
+                    <form novalidate name="myForm">
+                        <div class="item col-xs-12">
+                            <span class="intelligent-label f-fl"><b
+                                    class="ftx04">*</b>{{data.role==3?'学号':'工号'}}：</span>
+                            <div class="f-fl item-ifo">
+                                <input type="text" name="account" ng-minlength="8" ng-pattern="accountRegex"
+                                       maxlength="8" ng-model="data.account" class="txt03 f-r3 required" tabindex="1"
+                                       required ng-blur = "checkRepeatAccount()"
+                                       data-valid="isNonEmpty||isUname||between:8-8"
+                                       data-error="{{data.role==3?'学号':'工号'}}不能为空||只能输入字母、数字,但不能为纯数字或字母||{{data.role==3?'学号':'工号'}}长度只能8位"
+                                />
+                                <span class="ie8 icon-close close hide"></span>
+                                <label class="icon-sucessfill blank hide"></label>
+                                <label class="focus"><span style="line-height: 30px">8位,字母、数字,不能为纯数字或字母</span></label>
+                                <label class="focus valid"></label>
+                            </div>
+                        </div>
+                        <div class="item col-xs-12">
+                            <span class="intelligent-label f-fl"><b
+                                    class="ftx04">*</b>登录密码：</span>
+                            <div class="f-fl item-ifo">
+                                <input type="password" name="password" id="password" ng-model="data.password"
+                                       class="txt03 f-r3 required"
+                                       tabindex="3" style="ime-mode:disabled;" onpaste="return false" autocomplete="off"
+                                       data-valid="isNonEmpty||between:6-20||level:1"
+                                       data-error="密码不能为空||密码长度6-20位||该密码太简单，有被盗风险，建议字母+数字的组合" required ng-minlength="6"
+                                       ng-maxlength="20"/>
+                                <span class="showpwd" data-eye="password" style="top: 12px;"><i
+                                        style="position: inherit;opacity: 0.4;" class="fa fa-eye"></i></span>
+                                <label class="icon-sucessfill blank hide"></label>
+                                <label class="focus">6-20位英文（区分大小写）、数字、字符的组合</label>
+                                <label class="focus valid"></label>
+                                <span class="clearfix"></span>
+                                <label class="strength">
+                                    <span class="f-fl f-size12"> 安全程度 </span>
+                                    <b><i>弱</i><i>中</i><i>强</i></b>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="item col-xs-12">
+                            <span class="intelligent-label f-fl"><b class="ftx04">*</b>确认密码：</span>
+                            <div class="f-fl item-ifo">
+                                <input type="password" class="txt03 f-r3 required"
+                                       tabindex="4" style="ime-mode:disabled;" onpaste="return false" autocomplete="off"
+                                       data-valid="isNonEmpty||isRepeat:password" ng-model="data.repeatPassword"
+                                       data-error="确认密码不能为空||两次密码输入不一致" id="rePassword" required/>
+                                <span class="showpwd" data-eye="rePassword" style="top: 12px;"><i
+                                        style="position: inherit;opacity: 0.4;" class="fa fa-eye"></i></span>
+                                <label class="icon-sucessfill blank hide"></label>
+                                <label class="focus">请再输入一遍上面的密码</label>
+                                <label class="focus valid"></label>
+                            </div>
+                        </div>
+                        <div class="item col-xs-12">
+                            <span class="intelligent-label f-fl"><b class="ftx04">*</b>真实姓名：</span>
+                            <div class="f-fl item-ifo">
+                                <input type="text" name="name" ng-minlength="2" ng-maxlength="10" ng-model="data.name" class="txt03 f-r3 required"
+                                       tabindex="1" data-valid="isNonEmpty||between:2-10||isPersonName" ng-pattern="userNameRegex"
+                                       data-error="真实姓名不能为空||真实姓名只能输入2-10位中文或字母||只能输入中文或字母" required/>
+                                <span class="ie8 icon-close close hide"></span>
+                                <label class="icon-sucessfill blank hide"></label>
+                                <label class="focus">2-10位中文或字母</label>
+                                <label class="focus valid"></label>
+                            </div>
+                        </div>
+                        <div class="item col-xs-12">
+                            <span class="intelligent-label f-fl"><b class="ftx04">*</b>用户性别：</span>
+                            <div class="f-fl item-ifo" style="border:1px solid #cccccc;border-radius:3px;">
+                                &nbsp;<div ng-repeat="data in sexTypeData" class="md-radio" style="float: left;">
+                                <input type="radio" id="editCheckboxSex{{data.value}}" ng-model="$parent.data.sex"
+                                       class="md-radiobtn" ng-value="{{data.value}}" name="Radio">
+                                <label for="editCheckboxSex{{data.value}}">
+                                    <span></span>
+                                    <span class="check"></span>
+                                    <span class="box"></span>{{data.name}}
+                                </label>
+                            </div>
+                                <label class="focus">请选择性别</label>
+                            </div>
+                        </div>
+                        <div class="item col-xs-12">
+                            <span class="intelligent-label f-fl">身份证号：</span>
+                            <div class="f-fl item-ifo">
+                                <input type="text" ng-model="data.idCardNum" class="txt03 f-r3" tabindex="2"
+                                       maxlength="18" ng-blur="checkIdCardNum()"/>
+                                <label class="focus">请填写18位有效的身份证号码</label>
+                            </div>
+                        </div>
+                        <div class="item col-xs-12" ng-if="data.role!=3">
+                            <span class="intelligent-label f-fl"><b class="ftx04">*</b>选择校区：</span>
+                            <div class="f-fl item-ifo">
+                                <select style="border: none;width: 270px;margin-left: 10px;"
+                                        ui-select2="select2Options" ng-model="data.campusId"
+                                        ng-change="getDepartmentInfoFromCampusId()" required
+                                        ng-options="item.id as item.name for item in campusSelectData">
+                                    <option value="">-- 请选择 --</option>
+                                </select>
+                                <label class="focus">请选择所属校区</label>
+                            </div>
+                        </div>
+                        <div class="item col-xs-12" ng-if="data.role!=3">
+                            <span class="intelligent-label f-fl"><b class="ftx04">*</b>选择部门：</span>
+                            <div class="f-fl item-ifo">
+                                <select style="border: none;width: 270px;margin-left: 10px;" required
+                                        ui-select2="select2FormatOptions" ng-model="data.departmentId"
+                                        ng-options="item.id as item.name for item in departmentSelectData">
+                                    <option value="">-- 请选择 --</option>
+                                </select>
+                                <label class="focus">请选择所属部门</label>
+                            </div>
+                        </div>
+                        <div class="item col-xs-12" ng-if="data.role==2">
+                            <span class="intelligent-label f-fl"><b class="ftx04">*</b>教师职务：</span>
+                            <div class="f-fl item-ifo">
+                                <select style="border: none;width: 270px;margin-left: 10px;" required
+                                        ui-select2="select2Options" ng-model="data.positionId"
+                                        ng-options="item.id as item.name for item in positionSelectData">
+                                    <option value="">-- 请选择 --</option>
+                                </select>
+                                <label class="focus">请选择教师职务</label>
+                            </div>
+                        </div>
+                        <div class="item col-xs-12" ng-if="data.role==1">
+                            <span class="intelligent-label f-fl"><b class="ftx04">*</b>维修工种：</span>
+                            <div class="f-fl item-ifo">
+                                <select style="border: none; width: 270px; margin-left: 10px;" required
+                                        ui-select2="select2Options" ng-model="data.maintenanceTypeId"
+                                        ng-options="item.id as item.name for item in maintenanceTypeSelectData">
+                                    <option value="">-- 请选择 --</option>
+                                </select>
+                                <label class="focus">请选择维修工种</label>
+                            </div>
+                        </div>
+                        <div class="item col-xs-12">
+                            <span class="intelligent-label f-fl">&nbsp;</span>
+                            <div class="f-fl item-ifo">
+                                <a ng-disabled="myForm.$invalid || data.password!=data.repeatPassword" ng-click="saveUserInfo()" class="btn btn-blue f-r3"
+                                   id="btn_part3" style="line-height: 44px;">注册</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="part4 text-center" ng-if="registerStep == 4">
+                    <h3>恭喜，您的注册信息已经成功提交，待审核通过后可正常登录使用。</h3>
+                    <p class="c-666 f-mt30 f-mb50">页面将在 <strong id="times" class="f-size18">{{countdownJumpSecond}}</strong> 秒钟后，跳转到 <a
+                            href="login.html" class="c-blue">登录中心</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--未知-->
+<div class="m-sPopBg" style="z-index:998;"></div>
+<!--协议条款-->
+<div class="m-sPopCon regcon">
+    <div class="m-sPopTitle"><strong>服务协议条款</strong><b id="sPopClose" class="m-sPopClose" onClick="closeClause()">×</b>
+    </div>
+    <div class="apply_up_content">
+    	<pre class="f-r0">
+		<strong>同意以下服务条款，提交注册信息</strong>
+            <p>遵守学校规章制度，严格按照条款执行。</p>
+        </pre>
+    </div>
+    <center><a class="btn btn-blue btn-lg f-size12 b-b0 b-l0 b-t0 b-r0 f-pl50 f-pr50 f-r3"
+               href="javascript:closeClause();">已阅读并同意此条款</a></center>
+</div>
+<!--底部-->
+<div class="page-wrapper-row">
+    <div class="page-wrapper-bottom">
+        <!-- BEGIN POST-FOOTER -->
+        <div class="page-footer">
+            <div class="container">
+                <div class="col-xs-4 col-sm-6 col-xs-12 footer-block"
+                     style="margin-top: 18px;line-height: 28px;font-size: 14px;">
+                    &copy;版权所有：{{schoolName}}
+                    <br>
+                    ICP备案号：陕ICP备1000XXXX号
+                </div>
+                <div class="col-xs-4 col-sm-6 col-xs-12 footer-block"
+                     style="margin-top: 18px;line-height: 28px;font-size: 14px;">
+                    技术支持：陕西联兴网络科技有限公司
+                    <br>
+                    服务电话：400-672-2712&nbsp;&nbsp;&nbsp;029-85201402
+                </div>
+
+            </div>
+        </div>
+        <!--<div class="scroll-to-top">-->
+            <!--<i class="icon-arrow-up"></i>-->
+        <!--</div>-->
+        <!-- END POST-FOOTER -->
+    </div>
+</div>
+<script src="../assets/global/plugins/jquery.min.js" type="text/javascript"></script>
+<script src="../assets/global/plugins/angularjs/angular.min.js" type="text/javascript"></script>
+<script src="../assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="../assets/global/plugins/select2/js/select2.min.js" type="text/javascript"></script>
+<script src="../assets/global/plugins/select2/js/i18n/zh-CN.js" type="text/javascript"></script>
+<script src="../assets/global/plugins/angularjs/plugins/ui-select/select2.min.js" type="text/javascript"></script>
+<script src="../assets/global/plugins/bootstrap-sweetalert/sweetalert.min.js" type="text/javascript"></script>
+<script src="../assets/pages/scripts/ui-sweetalert.min.js" type="text/javascript"></script>
+<script src="../dist/js/web/register.min.js" type="text/javascript"></script>
+<script src="js/config.js" type="text/javascript"></script>
+<script src="js/controllers/common.js" type="text/javascript"></script>
+<script src="../dist/js/web/controller/registerController.min.js" type="text/javascript"></script>
+</body>
+</html>

@@ -1,0 +1,166 @@
+<div id="addModal" class="modal fade" tabindex="-1" data-backdrop="static" aria-hidden="true" data-width="800" ng-controller="studentAddController">
+    <div class="modal-header">
+        <button type="button" class="modal_close" data-dismiss="modal" aria-hidden="true">x</button>
+        <h4 class="modal-title"><p ng-bind="modalTitle"></p></h4>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <!-- BEGIN FORM-->
+            <form w5c-form-validate="validateOptions" class="w5c-form" novalidate name="myForm">
+                <div class="form-body">
+                    <div class="form-group col-md-6">
+                        <label class="col-md-3 control-label">
+                           	学号
+                            <span class="fa fa-bell-o"></span>
+                        </label>
+                        <span class="col-md-9">
+                            <span class="validateErrorInfo"> </span>
+                        </span>
+                        <div class="col-md-12">
+                            <input type="text" class="form-control" name="registerName" ng-pattern="regex.registerAccount"
+                                   ng-minlength="length.accountMin" ng-maxlength="length.accountMax" placeholder="" ng-model="data.account" required>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="col-md-4 control-label">
+                           	姓名
+                            <span class="fa fa-bell-o"></span>
+                        </label>
+                        <span class="col-md-8">
+                            <span class="validateErrorInfo"> </span>
+                        </span>
+                        <div class="col-md-12">
+                            <input type="text" class="form-control" name="personName" ng-pattern="regex.personName"
+                                   ng-minlength="length.personMin" ng-maxlength="length.personMax" placeholder="" ng-model="data.name" required>
+                        </div>
+                    </div>
+                    <!--  
+                    <div class="form-group col-md-6">
+                        <label class="col-md-4 control-label">
+                           	 密码
+                            <span class="fa fa-bell-o"></span>
+                        </label>
+                        <span class="col-md-8">
+                            <span class="validateErrorInfo"> </span>
+                        </span>
+                        <div class="col-md-12">
+                            <input type="password" class="form-control" name="password"
+                                   ng-minlength="length.passwordMin" ng-maxlength="length.passwordMax" placeholder="" ng-model="data.password" required>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="col-md-4 control-label">
+                           	确认密码
+                            <span class="fa fa-bell-o"></span>
+                        </label>
+                        <span class="col-md-8">
+                            <span class="validateErrorInfo"> </span>
+                        </span>
+                        <div class="col-md-12">
+                            <input type="password" class="form-control" w5c-repeat="password" name="repeatPassword"
+                                   placeholder="" ng-model="data.confirmPassword" required>
+                        </div>
+                    </div>
+                    -->
+                    <div class="form-group col-md-6">
+                        <label class="col-md-4 control-label">
+                           	身份证号
+                        </label>
+                        <span class="col-md-8">
+                            <span class="validateErrorInfo"> </span>
+                        </span>
+                        <div class="col-md-12">
+                            <input type="text" class="form-control" name="idCardNum"
+                                   ng-pattern="regex.idCardNum"
+                                   placeholder="" ng-model="data.idCardNum">
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="col-md-4 control-label">
+                           	手机号
+                            <span class="fa fa-bell-o"></span>
+                        </label>
+                        <span class="col-md-8">
+                            <span class="validateErrorInfo"> </span>
+                        </span>
+                        <div class="col-md-12">
+                            <input type="text" class="form-control" name="phoneNum" ng-pattern="regex.telNum"
+                                   placeholder="" ng-model="data.tel" required>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="col-md-4 control-label" style="padding-top: 8px !important;">
+                           	用户状态
+                        </label>
+                        <div class="col-md-8 form-md-radios">
+                            <div class="md-radio-inline">
+                                <div class="md-radio" ng-repeat="item in studentStatusData">
+                                    <input type="radio" id="editCheckbox{{item.value}}"
+                                           ng-model="data.status" ng-value="{{item.value}}"
+                                           class="md-radiobtn">
+                                    <label for="editCheckbox{{item.value}}">
+                                        <span></span>
+                                        <span class="check"></span>
+                                        <span class="box"></span> {{item.name}} </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="col-md-4 control-label" style="padding-top: 8px !important;">
+                           	性别
+                        </label>
+                        <div class="col-md-8 form-md-radios">
+                            <div class="md-radio-inline">
+                                <div class="md-radio" ng-repeat="item in sexTypeData">
+                                    <input type="radio" id="editCheckbox{{item.value}}2"
+                                           ng-model="data.sex" ng-value="{{item.value}}"
+                                           class="md-radiobtn">
+                                    <label for="editCheckbox{{item.value}}2">
+                                        <span></span>
+                                        <span class="check"></span>
+                                        <span class="box"></span> {{item.name}} </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--  
+                    <div class="form-group last">
+                        <label class="control-label col-md-6">用户头像</label>
+                        <div class="col-md-6">
+                        </div>
+                        <div class="col-md-12">
+                            <div class="fileinput fileinput-new" data-provides="fileinput">
+                                <div class="fileinput-new thumbnail" style="width: 200px; height: 200px;">
+                                    <img id="teacherImg" ng-src="images/002.jpg" alt=""/>
+                                </div>
+                                <div class="fileinput-preview fileinput-exists thumbnail"
+                                     style="max-width: 200px; max-height: 200px;">
+                                </div>
+                                <div>
+                                    <span class="btn default btn-file">
+                                    <span class="fileinput-new"> 上传头像 </span>
+                                    <span class="fileinput-exists"> 重新选择 </span>
+                                    <input type="file" name="...">
+                                    </span>
+                                    <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput">
+                                        取消
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                	-->
+                </div>
+            </form>
+            <!-- END FORM-->
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" data-dismiss="modal" class="btn btn-outline dark"><i class="fa fa-reply"></i> 关闭</button>
+        <!-- 验证成功后取消禁用 -->
+        <button type="button" ng-disabled="myForm.$invalid" ng-click="save()" class="btn green-haze"><i class="fa fa-check"></i>
+           	保存
+        </button>
+    </div>
+</div>

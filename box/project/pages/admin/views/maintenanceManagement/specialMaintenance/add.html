@@ -1,0 +1,207 @@
+<div id="addModal" class="modal fade" tabindex="-1" data-backdrop="static" aria-hidden="true" data-width="800"
+     ng-controller="specialMaintenanceAddController">
+    <div class="modal-header">
+        <button type="button" class="modal_close" data-dismiss="modal" aria-hidden="true">x</button>
+        <h4 class="modal-title"><p ng-bind="modalTitle"></p></h4>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <!-- BEGIN FORM-->
+            <form w5c-form-validate="validateOptions" class="w5c-form" novalidate name="myForm">
+                <div class="form-body">
+                    <div class="form-group col-md-6">
+                        <label class="col-md-4 control-label">
+                            项目名称
+                            <span class="fa fa-bell-o"></span>
+                        </label>
+                        <span class="col-md-8">
+                            <span class="validateErrorInfo"> </span>
+                        </span>
+                        <div class="col-md-12">
+                            <input type="text" name="name" class="form-control" ng-change="checkRepeat();"
+                                   ng-pattern="regex.name"
+                                   ng-blur="checkValidateWithSensitive($event, 'data.maintenanceItemName')"
+                                   ng-minlength="length.addressMin" ng-maxlength="length.modelMax" placeholder=""
+                                   ng-model="data.maintenanceItemName" required>
+                            <input type="text" hidden ng-model="data.name">
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6" style="float: right;">
+                        <label class="col-md-4 control-label">
+                            维修单号
+                            <span class="fa fa-bell-o"></span>
+                        </label>
+                        <span class="col-md-8">
+                            <span class="validateErrorInfo"> </span>
+                        </span>
+                        <div class="col-md-12">
+                            <input type="text" disabled class="form-control" ng-model="data.maintenanceNumber">
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="col-md-4 control-label">
+                            开始日期
+                            <span class="fa fa-bell-o"></span>
+                        </label>
+                        <span class="col-md-8">
+							<span class="validateErrorInfo"> </span>
+						</span>
+                        <div style="padding: 0px 15px; " id="maintenanceStartDateTime" class="col-md-12 input-group date form_datetime">
+                            <input type="text" size="16" readonly name="date" class="form-control"
+                                   ng-change="maintenanceDateChange()" ng-model="data.maintenanceStartDateTime"
+                                   required>
+                            <span class="input-group-btn include">
+                                <button class="btn default date-reset" type="button">
+                                    <i class="fa fa-times"></i>
+                                </button>
+                                <button class="btn default my-date-set" type="button">
+                                    <i class="fa fa-calendar date-set"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6" style="float: right;">
+                        <label class="col-md-4 control-label">
+                            结束日期
+                        </label>
+                        <span class="col-md-8">
+							<span class="validateErrorInfo"> </span>
+						</span>
+                        <div class="col-md-12">
+                            <div id="maintenanceEndDateTime" class="input-group date form_datetime">
+                                <input type="text" size="16" readonly class="form-control"
+                                       ng-change="maintenanceDateChange()" ng-model="data.maintenanceEndDateTime">
+                                <span class="input-group-btn include">
+                                <button class="btn default date-reset" type="button">
+                                    <i class="fa fa-times"></i>
+                                </button>
+                                <button class="btn default my-date-set" type="button">
+                                    <i class="fa fa-calendar date-set"></i>
+                                </button>
+                            </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label class="col-md-4 control-label">
+                            维修天数
+                        </label>
+                        <span class="col-md-8">
+                            <span class="validateErrorInfo"> </span>
+                        </span>
+                        <div class="col-md-12">
+                            <input type="text" disabled class="form-control"
+                                   placeholder="" ng-model="data.maintenanceTime">
+                        </div>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label class="col-md-4 control-label" style="padding-top: 8px !important;">
+                            所属校区
+                            <span class="fa fa-bell-o"></span>
+                        </label>
+                        <span class="col-md-8">
+							<span class="validateErrorInfo"></span>
+						</span>
+                        <div class="col-md-12">
+                            <select name="select" ui-select2="select2Options" ng-change="changeCampus()"
+                                    class="form-control" ng-model="data.maintenanceSpecial.department.campus.id"
+                                    required
+                                    ng-options="item.id as item.name for item in campusSelectData">
+                                <option value="">-- 请选择 --</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label class="col-md-4 control-label" style="padding-top: 8px !important;">
+                            维修区域
+                            <span class="fa fa-bell-o"></span>
+                        </label>
+                        <span class="col-md-8">
+							<span class="validateErrorInfo"></span>
+						</span>
+                        <div class="col-md-12">
+                            <select ui-select2="multipleSelect2" name="select2" ng-change="changeMaintenanceArea()"
+                                    class="form-control" multiple="multiple" ng-model="data.maintenanceArea.id" required
+                                    ng-options="item.id as item.name for item in maintenanceAreaDataFromCampus">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="col-md-4 control-label">
+                            负责部门
+                            <span class="fa fa-bell-o"></span>
+                        </label>
+                        <span class="col-md-8">
+							<span class="validateErrorInfo">
+                            </span>
+						</span>
+                        <div class="col-md-12">
+                            <select ui-select2="select2Options" style="width: 100%;"
+                                    name="select3" required ng-change="changeDepartment()"
+                                    class="form-control" ng-model="data.maintenanceSpecial.department.id"
+                                    ng-options="item.id as item.name for item in departmentDataFromArea">
+                                <option value="">-- 请选择 --</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="col-md-4 control-label">
+                            负责人员
+                            <span class="fa fa-bell-o"></span>
+                        </label>
+                        <span class="col-md-8">
+							<span class="validateErrorInfo">
+                            </span>
+						</span>
+                        <div class="col-md-12">
+                            <select ui-select2="select2Options" style="width: 100%;" name="select4" required
+                                    class="form-control" ng-model="data.maintenanceStaff.id"
+                                    ng-options="item.id as item.name for item in workerDataFromDepartment">
+                                <option value="">-- 请选择 --</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label class="col-md-4 control-label">
+                            详细地址
+                            <span class="fa fa-bell-o"></span>
+                        </label>
+                        <span class="col-md-8">
+                            <span class="validateErrorInfo"> </span>
+                        </span>
+                        <div class="col-md-12">
+                            <input type="text" name="text2" class="form-control"
+                                   ng-blur="checkValidateWithSensitive($event, 'data.address')"
+                                   ng-minlength="length.langNameMin" ng-maxlength="length.langNameMax" placeholder=""
+                                   ng-model="data.address" required>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label class="col-md-4 control-label">
+                            维修内容
+                            <span class="fa fa-bell-o"></span>
+                        </label>
+                        <span class="col-md-8">
+                            <span class="validateErrorInfo"> </span>
+                        </span>
+                        <div class="col-md-12">
+                            <textarea class="form-control" name="description" rows="3"
+                                      ng-model="data.maintenanceContent"
+                                      id="maxlength_textarea" maxlength="200" placeholder="最大输入200个字符"
+                                      required></textarea>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <!-- END FORM-->
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" data-dismiss="modal" class="btn btn-outline dark"><i class="fa fa-reply"></i> 关闭</button>
+        <!-- 验证成功后取消禁用 -->
+        <button type="button" ng-disabled="myForm.$invalid || ifRepeat" ng-click="save()" class="btn green-haze"><i
+                class="fa fa-check"></i>
+            保存
+        </button>
+    </div>
+</div>

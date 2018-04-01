@@ -1,0 +1,11 @@
+{
+  "enablePullDownRefresh": false,
+  "backgroundColor": "#999999",
+  "navigationBarTitleText": "维修服务",
+  "navigationBarTextStyle": "white",
+  "navigationBarBackgroundColor": "#1C87F4",
+  "window": {
+    "backgroundColor": "#999999",
+    "enablePullDownRefresh": true
+  }
+}

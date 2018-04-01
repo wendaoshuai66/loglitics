@@ -1,0 +1,47 @@
+{
+  "total": 3,
+  "data": [
+    {
+      "id": "1",
+      "title": "标题1",
+      "author": {"name":"张三"},
+      "article": "李四",
+      "addDateTime": "2017-04-25 13:20:21",
+      "approvalStatus": 0,
+      "articleStatus":1,
+      "approvalPerson": "王五",
+      "approvalDateTime": "2017-04-27 13:20:21",
+      "status": 1,
+      "viewTimes": "3",
+      "reply": "回复1"
+    },
+    {
+      "id": "2",
+      "title": "标题2",
+      "author": {"name":"张三"},
+      "article": "李四",
+      "addDateTime": "2017-04-25 13:20:21",
+      "approvalStatus": 1,
+      "articleStatus":1,
+      "approvalPerson": "王五",
+      "approvalDateTime": "2017-04-27 13:20:21",
+      "status": 1,
+      "viewTimes": "3",
+      "reply": ""
+    },
+    {
+      "id": "3",
+      "title": "标题3",
+      "author": {"name":"张三"},
+      "article": "李四",
+      "addDateTime": "2017-04-25 13:20:21",
+      "approvalStatus": 2,
+      "articleStatus":1,
+      "approvalPerson": "王五",
+      "approvalDateTime": "2017-06-27 13:20:21",
+      "status": 0,
+      "viewTimes": "3",
+      "reply": "回复3"
+    }
+  ]
+}

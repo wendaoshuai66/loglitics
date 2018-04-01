@@ -1,0 +1,33 @@
+<div id="replyModal" class="modal fade" tabindex="-1" data-backdrop="static" aria-hidden="true" data-width="800px" ng-controller="inforTextReplyController">
+    <div class="modal-header">
+        <button type="button" class="modal_close" data-dismiss="modal" aria-hidden="true">x</button>
+        <h4 class="modal-title"><p ng-bind="replyTitle"></p></h4>
+    </div>
+    <div class="modal-body">
+    	<div class="row">
+    		<!-- BEGIN FORM-->
+            <form w5c-form-validate="validateOptions" class="w5c-form" novalidate name="myForm">
+                <div class="form-body">
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">回复内容</label>
+                        <span class="col-md-8">
+							<span class="validateErrorInfo"> </span>
+						</span>
+                        <div class="col-md-12">
+                            <textarea class="form-control" name="reply" rows="3" ng-model="reply" id="maxlength_textarea" 
+                            maxlength="200" required placeholder="最大输入200个字符"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <!-- END FORM-->
+    	</div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" data-dismiss="modal" class="btn btn-outline dark"><i class="fa fa-reply"></i> 关闭</button>
+        <!-- 验证成功后取消禁用 -->
+        <button type="button" ng-click="confirmReply()" ng-disabled="myForm.$invalid" class="btn green-haze"><i class="fa fa-check"></i>
+           	提交
+        </button>
+    </div>
+</div>

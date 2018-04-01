@@ -1,0 +1,131 @@
+<!--个人信息注册/修改-->
+
+<view wx:if="{{!role}}"></view>
+
+<view wx:else>
+  <form bindsubmit="formSubmit" bindreset="formReset">
+    <view class="container-title"></view>
+    <view class="container-body">
+
+      <!--用户工号/学号-->
+      <view class="input-group">
+        <text class="input-label" style="padding-left:80rpx">{{roleItem[roleIndex]}}:</text>
+        <view class="input-content">
+
+          <input class="" bindblur='accountBlur' value="{{account}}" name="account" type="text" maxlength="8" placeholder="请输入您的{{roleItem[roleIndex]}}" />
+        </view>
+      </view>
+      <!--登陆密码-->
+      <view class="input-group">
+        <text class="input-label">登录密码:</text>
+        <view class="input-content">
+          <input class="" value="{{password}}" name="password" type="password" maxlength="20" placeholder="只能包含字符、数字和下划线" />
+        </view>
+      </view>
+      <!-- 确认密码 -->
+      <view class="input-group">
+        <text class="input-label">确认密码:</text>
+        <view class="input-content">
+          <input class="" value="{{passwordAgain}}" name="passwordAgain" type="password" maxlength="20" placeholder="请输入确认密码" />
+        </view>
+      </view>
+      <!--用户姓名-->
+      <view class="input-group">
+        <text class="input-label">真实姓名:</text>
+        <view class="input-content">
+          <input class="" value="{{name}}" name="name" type="text" maxlength="10" placeholder="请输入您的真实姓名" />
+        </view>
+      </view>
+      <!--用户性别-->
+      <view class="input-group">
+        <text class="input-label">用户性别:</text>
+        <radio-group class="input-content input-gender" bindchange="genderChange">
+          <view class="radio" wx:for="{{genderItem}}" wx:key="{{genderItem}}">
+            <view>
+              <radio value="{{item.value}}" checked="{{item.checked}}" />{{item.name}}
+            </view>
+          </view>
+        </radio-group>
+      </view>
+
+      <!--身份证信息-->
+      <view class="input-group">
+        <text class="input-label">身份证号:</text>
+        <view class="input-content">
+          <input class="" value="{{card}}" name="card" type="idcard" minlength="18" maxlength="18" placeholder="请输入您的身份证号" />
+        </view>
+      </view>
+      <!-- 校区选择 -->
+      <!-- <view class="input-group" wx:if="{{role != 3}}">
+        <text class="input-label">选择校区:</text>
+        <view class="input-content">
+          <picker wx:if="{{role == 3}}" bindchange="campusPickerChange" value="{{campus}}" range="{{campusItems}}">
+            <view class="picker">{{campusName}}</view>
+          </picker>
+          <view class='text_overflow' bindtap='toChooseBox' wx:else>{{campusName}} > {{departmentName}}</view>
+        </view>
+      </view> -->
+      <!-- 选择校区 -->
+      <view class="input-group" wx:if="{{role != 3}}">
+        <view class="input-label">
+          <text class="">选择校区:</text>
+        </view>
+        <view class="input-content">
+          <picker bindchange="campusPickerChange" value="{{campus}}" range="{{campusItems}}">
+            <view class="picker">{{campusName}}</view>
+          </picker>
+        </view>
+      </view>
+
+      <view class="input-group" hidden='{{hiddenWorker && hiddenTeacher}}'>
+        <view class="input-label">
+          <text class="">选择部门:</text>
+        </view>
+        <view class="input-content">
+          <view class="input_text picker" bindtap='toChooseBox'>{{departmentName}}</view>
+        </view>
+      </view>
+
+      <!--教师职务-->
+      <view class="input-group" hidden='{{hiddenTeacher}}'>
+        <text class="input-label">教师职务:</text>
+        <view class="input-content">
+          <picker bindchange="positionPickerChange" value="{{position}}" range="{{positionNameItems}}">
+            <view class="picker" data-index='{{positionIdItems[position]}}'>{{positionName}}</view>
+          </picker>
+        </view>
+      </view>
+      <!--维修工种-->
+      <view class="input-group" hidden="{{hiddenWorker}}">
+        <text class="input-label">维修工种:</text>
+        <view class="input-content">
+          <picker bindchange="positionPickerChange" value="{{position}}" range="{{positionNameItems}}">
+            <view class="picker" data-index='{{positionIdItems[position]}}'>
+              {{positionName}}
+            </view>
+          </picker>
+        </view>
+      </view>
+      <!--提交按钮-->
+      <button formType="submit" hover-class="other-button-hover" class="confirm-btn">确认提交</button>
+    </view>
+  </form>
+</view>
+<view class='mask' style="{{showFlag?'animation:maskStart 1s;display:block':'display:none'}}"></view>
+<view class="chooseBox" style="{{showFlag?'animation:opcityStart 0.5s;display:block':'display:none'}}">
+  <view class='choose_head'>
+    <view bindtap='toCancel' class='cancelBtn'>取消</view>
+    <view class='choose_title'>选择部门</view>
+    <view bindtap='toCancel' class='enterBtn'>确定</view>
+  </view>
+  <!-- 校区选择 -->
+  <scroll-view scroll-y="true" class='departmentClass'>
+    <view class="">
+      <!-- 部门选择 -->
+      <view class="treeTitle">
+        <view class="tree {{item.treeLevel == 0?'':'child'}}" bindtap='clickTree' data-name="{{item.name}}" data-id='{{item.id}}' hidden="{{item.flag}}" style="{{item.treeLevel == 0?'':'margin-left:'+item.treeLevel*12+'rpx'}};{{departmentId == item.id?'background:#e5e5e5':'background:#fff'}}"
+          wx:for="{{departmentItems}}" data-index="{{index}}" wx:key="{{index}}"><view class='child_style' hidden="{{item.treeLevel == 0}}"></view>{{item.name}}</view>
+      </view>
+    </view>
+  </scroll-view>
+</view>

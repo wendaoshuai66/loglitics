@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="LoginApp" style="overflow: scroll!important;">
+<head>
+    <meta charset="utf-8" />
+    <title>数字后勤服务大厅 | 登录</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta content="#1 selling multi-purpose bootstrap admin theme sold in themeforest marketplace packed with angularjs, material design, rtl support with over thausands of templates and ui elements and plugins to power any type of web applications including saas and admin dashboards. Preview page of Theme #1 for "
+        name="description" />
+    <meta content="" name="author" />
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <link href="../assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/global/plugins/bootstrap-sweetalert/sweetalert.min.css" rel="stylesheet" type="text/css" />
+    <!--<link href="../assets/global/plugins/loading/css/global.min.css" rel="stylesheet" type="text/css" />-->
+    <link href="../assets/global/css/components-rounded.min.css" rel="stylesheet" id="style_components" type="text/css" />
+    <link href="../assets/pages/css/login.min.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/global/plugins/loading/css/loading.min.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/global/css/plugins.min.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/layouts/layout3/css/layout.min.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/layouts/layout3/css/themes/default.min.css" rel="stylesheet" type="text/css" id="style_color" />
+    <link type="text/css" rel="stylesheet" href="css/tooltip-classic.css">
+    <link href="css/common.css" rel="stylesheet" type="text/css" />
+    <!-- END PAGE LEVEL STYLES -->
+    <!-- BEGIN THEME LAYOUT STYLES -->
+    <!-- END THEME LAYOUT STYLES -->
+    <link rel="shortcut icon" href="favicon.ico" />
+</head>
+<!-- END HEAD -->
+<body class="login" ng-controller="loginController" style="background: #8cb3fd!important;">
+	<!--头部-->
+	<div class="col-md-12 col-sm-12" style="background: #fff;">
+		<div data-ng-include="'tpl/login-head.html'"></div>
+	</div>
+	<!--头部结束-->
+	<div class="col-md-6 col-sm-12" style="margin-top: 2.2%;">
+		<img class="school" src="./images/login/bg.png"/>
+	</div>
+	<div class="col-md-6 col-sm-12">
+        <!-- BEGIN LOGIN -->
+        <div class="content login-content" style="padding: 10px 22px 30px !important;margin: 16% 0 2% 14% !important;">
+            <!-- BEGIN LOGIN FORM -->
+            <form class="login-form" style="margin-top: 20px;">
+                <h3 class="hide form-title font-green">登录</h3>
+                <div class="form-group">
+                    <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
+                    <label class="control-label visible-ie8 visible-ie9">工号/学号</label>
+                    <input class="form-control form-control-solid placeholder-no-fix" type="text" autocomplete="off" placeholder="工号/学号" name="username" ng-model="data.username"/>
+                </div>
+                <div class="form-group">
+                    <label class="control-label visible-ie8 visible-ie9">密码</label>
+                    <input class="form-control form-control-solid placeholder-no-fix" type="password" autocomplete="off" placeholder="密码" name="password" ng-model="data.password"/>
+                </div>
+                <div class="form-group">
+                    <label class="control-label visible-ie8 visible-ie9">完成验证：</label>
+                    <div id="captcha"></div>
+                </div>
+                    <label class="rememberme check mt-checkbox mt-checkbox-outline" style="top: 10px;margin: auto;padding-bottom: 10px;">
+                        <input type="checkbox" name="remember" ng-change="changeRemember()" ng-model="data.rememberme"/>记住我
+                        <span></span>
+                    </label>
+                     <p class="register" style="padding: 15px"><a href="register.html">我要注册 >></a></p>
+                <div class="form-actions" style="padding-top: 0;margin-top:12px;padding-bottom: 10px;">
+                	<span></span>
+                    <button type="submit" ng-click="login()" class="login-sign form-control entry">登  录</button>
+                    <a href="javascript:;" id="forget-password" class="hide forget-password">忘记密码？</a>
+                </div>
+                <div class="alert alert-danger display-hide login-alert">
+                    <button class="close" data-close="alert"></button>
+                    <span>请输入您的账号和密码. </span>
+                </div>
+            </form>
+            <!-- END LOGIN FORM -->
+        	<div class="login-icon hide">
+	        	<img src="images/login/login-icon.png"/>
+	        </div>
+            <div class="reminder">
+                <h4 style="color:#E87E04;">温馨提示  :</h4>
+                <p style="color:#8290a3;margin: 0 !important;">1、支持1280*720及以上分辨率,
+                    <br>
+                    <span style="color:#8290a3;margin-left: 6%;">推荐您使用1920*1080分辨率；</span></p>
+                <p style="color:#8290a3;margin: 0 !important;">2、支持Chrome、FireFox、Safari、IE10及以上浏览器,
+                    <br>
+                    <span style="color:#8290a3;margin-left: 6%;">推荐您使用Google的Chrome浏览器,</span>
+                    <a target="_blank" href="https://www.baidu.com/s?word=%E8%B0%B7%E6%AD%8C%E6%B5%8F%E8%A7%88%E5%99%A8&tn=50000021_hao_pg&ie=utf-8&sc=UWd1pgw-pA7EnHc1FMfqnHRkPHfdrHf1P1TLPauW5y99U1Dznzu9m1YkPWnkPHRYrjbY&ssl_sample=s_4%2Cs_56&srcqid=1654663188019385102" style="color: blue;">点击此处下载。</a></p>
+            </div>
+        </div>
+	</div>
+	<!--底部-->
+	<div class="page-wrapper-row" style="clear: both;">
+	    <div class="page-wrapper-bottom">
+	    	<!-- BEGIN FOOTER -->
+            <div data-ng-include="'tpl/footer2.html'"> </div>
+            <!-- END FOOTER -->
+	    </div>
+	</div>
+	<!--底部结束-->
+    <!--[if lt IE 9]>
+    <script src="../dist/js/admin/IE9Respond.min.js"></script>
+    <![endif]-->
+    <!-- BEGIN CORE PLUGINS -->
+    <script src="../assets/global/plugins/jquery.min.js" type="text/javascript"></script>
+    <script src="../assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="../assets/global/plugins/angularjs/angular.min.js" type="text/javascript"></script>
+    <script src="../assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+    <script src="../assets/global/plugins/bootstrap-sweetalert/sweetalert.min.js" type="text/javascript"></script>
+    <script src="../assets/pages/scripts/ui-sweetalert.min.js" type="text/javascript"></script>
+    <script src="../assets/global/plugins/loading/js/loading.min.js" type="text/javascript"></script>
+    <script src="js/config.js" type="text/javascript"></script>
+    <script src="../assets/global/plugins/Geetest/gt.min.js" type="text/javascript"></script>
+    <!--<script src="js/controllers/loginController.js" type="text/javascript"></script>-->
+    <script src="../dist/js/web/controller/loginController.min.js" type="text/javascript"></script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+{
+	"total": 2,
+	"data": [
+		{
+			"id": "1",
+			"maintenanceType": {
+				"id": "1",
+				"name": "水"
+			},
+			"name": "下水疏通类",
+			"status": 1,
+			"description": "下水疏通类描述",
+			"addDateTime": "2011-04-25 13:20:21",
+			"updateDateTime": "2011-04-25 13:20:21"
+		}, {
+			"id": "2",
+			"maintenanceType": {
+				"id": "2",
+				"name": "电"
+			},
+			"name": "线路维修类",
+			"status": 1,
+			"description": "线路维修类描述",
+			"addDateTime": "2011-04-25 13:20:21",
+			"updateDateTime": "2011-04-25 13:20:21"
+		}
+	]
+}

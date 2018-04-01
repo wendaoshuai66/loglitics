@@ -1,0 +1,36 @@
+<div class="portlet light bordered" ng-controller="workLogViewController">
+    <div class="portlet-title">
+        <div class="caption font-green-sharp">
+            <i class="icon-settings font-green-sharp"></i>
+            <span class="caption-subject bold uppercase">工作日志详情</span>
+            <span class="caption-helper hide"></span>
+        </div>
+        <div class="actions">
+            <a class="btn btn-circle green-haze btn-sm" ng-click="toBack()">
+                <i class="fa fa-reply"></i> 返回
+            </a>
+        </div>
+        <div class="hide actions">
+            <a class="btn btn-circle green-haze btn-sm" ui-sref="workLogList">
+                <i class="fa fa-mail-reply"></i> 全部工作日志
+            </a>
+            <a class="btn btn-circle green-haze btn-sm" ui-sref="workLogList">
+                <i class="fa fa-mail-reply"></i> 我的工作日志
+            </a>
+        </div>
+    </div>
+    <div class="portlet-body dataTables_wrapper">
+        <div class="news_content">
+            <div class="news_title text-center">{{data.title}}</div>
+            <div class="news_time text-center">
+                <span>作者: {{data.user.name}}</span>
+                <span style="margin-right:5px;">工作日期: {{data.workDate}}
+                {{data.startTime}}</span>至<span style="margin-left:5px;">{{data.endTime}}</span>
+                <span>发布时间：{{data.addDateTime}}</span>
+            </div>
+            <div class="news_described">
+                {{data.content}}
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,135 @@
+<div class="portlet light bordered" ng-controller="dutyShowListController">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="icon-settings font-green-sharp bold"></i>
+            <span class="caption-subject  uppercase font-green-sharp bold">值班安排  - {{departmentName}}</span>
+        </div>
+        <div class="actions">
+            <a class="btn btn-circle green-haze btn-sm" ng-click="toBack()">
+                <i class="fa fa-reply"></i> 返回
+            </a>
+        </div>
+    </div>
+    <div class="portlet-body" style="min-height: 500px;">
+        <div class="table-toolbar" style="margin-bottom: 13px;">
+            <div class="table-toolbar">
+                <div class="tabbable tabbable-custom tabbable-noborder tabbable-reversed">
+                    <form class="form-horizontal">
+                        <div class="tab-pane" id="tab">
+                            <div class="portlet light bordered">
+                                <div class="form-group text-center" style="margin-bottom: 0px;">
+                                    <div class="col-xs-6">
+                                        <div class="form-group">
+                                            <label class="control-label col-xs-4" style="padding-top: 5px !important;">值班工种</label>
+                                            <div class="col-xs-8">
+                                                <select name="selectSearch" id="selectOne" ui-select2="select2Options"
+                                                        class="form-control" ng-model="typeSelectData"
+                                                        ng-options="item.id as item.name for item in maintenanceTypeSelectData"
+                                                        ng-change="checkedChange()">
+                                                    <option value="">-- 请选择 --</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <div class="form-group">
+                                            <label class="control-label col-xs-4" style="padding-top: 5px !important;">值班月份</label>
+                                            <div class="col-xs-8">
+                                                <div id="dutyYearMonth" class="input-group date form_datetime" ng-click="dateClick()">
+                                                    <input type="text" size="16" readonly name="date"
+                                                           ng-change="checkedChange()" class="form-control"
+                                                           ng-model="dutyYearMonth" required>
+                                                    <span class="input-group-btn include">
+					                                        <button class="btn default date-set" type="button"
+                                                                    style="line-height: 1.32;" ng-click="dateClick()">
+					                                            <i class="fa fa-calendar"></i>
+					                                        </button>
+					                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </form>
+                    <!-- hide是由于两次异步请求会造成页面闪动效果明显 -->
+                    <div id="checkedTypeAndDate" ng-if="checkedTypeAndDate" class="hide">
+                        <div ng-if="tableListData.length!=0" class="table-responsive">
+	                        <div class="col-xs-12 col-sm-12"
+	                             style="background-color: white;margin-bottom: 20px;">
+	                            <h3><span style="color: #000;padding: 14px 0 0 0;" class="label center-block">部门人员值班信息汇总</span></h3>
+	                            <table style="margin-top: 15px;" class="table table-bordered table-hover">
+	                                <thead>
+	                                <tr>
+	                                    <th>人员名称</th>
+	                                    <th>白班次数</th>
+	                                    <th>夜班次数</th>
+	                                    <th>普通班次数</th>
+	                                    <th>周末班次数</th>
+	                                    <th>节假日班次数</th>
+	                                </tr>
+	                                </thead>
+	                                <tbody>
+	                                <tr ng-repeat="data in listData">
+	                                    <td>{{data.name}}</td>
+	                                    <td>{{data.day || 0}}</td>
+	                                    <td>{{data.night || 0}}</td>
+	                                    <td>{{data.ordinaryDate}}</td>
+	                                    <td>{{data.weekendsDate}}</td>
+	                                    <td>{{data.holidayDate}}</td>
+	                                </tr>
+	                                </tbody>
+	                            </table>
+	                        </div>
+                        </div>
+                        <div class="col-xs-12" style="padding-left:0; padding-right:0;">
+                            <div ng-if="tableListData.length==0" class="col-xs-12 alert alert-danger" role="alert">
+								提示: 本月值班安排尚未设置！
+                            </div>
+                            <div ng-if="tableListData.length!=0" style="float: right;margin-bottom: 12px;">
+                                <button class="btn btn-lg btn-info" ng-click="saveDutyImg()" style="padding: 6px 8px;
+										font-size: 14px;"><i class="fa fa-save"></i> 保存图片
+                                </button>
+                                <button class="btn btn-lg btn-danger" ng-click="printDutyTable()"
+                                        style="margin-left: 20px;padding: 6px 8px;font-size: 14px;"><i
+                                        class="fa fa-print"></i> 打印
+                                </button>
+                            </div>
+                        </div>
+                        <!-- 需要加上背景色，不然生成的canvas 背景为透明色 -->
+                        <div class="table-responsive"  ng-if="tableListData.length!=0" style="border: 1px solid #000000;margin: 0px;padding: 0px;">
+                            <div id="dutyTable"  class="col-md-12 col-sm-12"
+                                 style="background-color: white;margin: 10px 0 0 0 !important;padding: 0px;">
+                                <span style="line-height: 25px;color: #000;font-size: 18px;" class="label center-block">{{dutyYear}} 年 {{dutyMonth}} 月 值班表</span>
+                         		<span style="line-height: 25px;color: #000;font-size: 18px;" class="hide label center-block">部门:  {{departmentName}} &nbsp; 工种: {{typeName}}</span>
+                                <table  class="table table-bordered table-hover" style="margin: 0px;padding: 0px;">
+                                    <thead>
+                                    <tr>
+                                        <th style="padding: 4px">值班日期</th>
+                                        <th style="padding: 4px">白班人员及电话</th>
+                                        <th style="padding: 4px">夜班人员及电话</th>
+                                        <th style="padding: 4px">备注</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr ng-repeat="event in tableListData">
+                                        <td style="padding: 4px">{{event.time.substr(8,7)}}</td>
+                                        <td style="padding: 4px">{{event.dayPerson.join(' , ')}}</td>
+                                        <td style="padding: 4px">{{event.nightPerson.join(' , ')}}</td>
+                                        <!-- 上班日期不显示 , 普通周末显示'普通周末' , 节假日显示 节假日第一天显示名称 其余天显示 '节假日'-->
+                                        <td style="padding: 4px">{{event.detail}}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- 存放生成的值班截图 -->
+                            <div id="canvasImg" hidden></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,139 @@
+<!-- BEGIN MAIN CONTENT -->
+<div class="row" ng-controller="specialMaintenanceController">
+    <div class="col-md-12">
+        <!-- BEGIN EXAMPLE TABLE PORTLET-->
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption font-dark">
+                    <i class="icon-settings font-dark"></i>
+                    <span class="caption-subject bold uppercase"> 专项维修列表 </span>
+                </div>
+                <div class="actions">
+                    <div class="btn-group" data-toggle="buttons">
+                    	<button id="addSpecialMaintenance" class="btn btn-primary" data-toggle="modal"
+                                ng-click="addModal()">
+                            <i class="fa fa-plus"></i> 添加
+                        </button>
+                        <!-- 
+                    	<button class="btn purple dropdown-toggle" data-toggle="dropdown">
+                    		工具
+                            <i class="fa fa-angle-down"></i>
+                        </button>
+                        <ul class="dropdown-menu pull-right">
+                            <li>
+                                <a href="javascript:;">
+                                    <i class="fa fa-print"></i> 打印列表 
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">
+                                    <i class="fa fa-file-pdf-o"></i> 导出 PDF 
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">
+                                    <i class="fa fa-file-excel-o"></i> 导出 Excel 
+                                </a>
+                            </li>
+                        </ul>
+                        -->
+                    </div>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <div class="table-toolbar">
+                	<div class="table-toolbar">
+                    	<div class="tabbable tabbable-custom tabbable-noborder tabbable-reversed">
+							<form class="form-horizontal">
+								<div class="tab-pane" id="tab">
+									<!-- 查询条件-->
+							    	<div class="portlet light bordered">
+						        		<div class="portlet-body">
+				                            <div class="form-group text-center">
+				                                <label class="control-label col-md-1">维修单号</label>
+				                                <div class="col-md-5">
+				                                	<input type="text" class="form-control" placeholder=""
+				                                		ng-model="searchObj.maintenanceNumber">
+				                                </div>
+				                                <label class="control-label col-md-1">报修时间</label>
+                                                <div class="col-md-5">
+                                                    <div class="col-md-5 searchTime">
+                                                        <div id="addDateTimeStart" class="input-group date form_datetime">
+                                                            <input  type="text" size="16" readonly class="form-control" ng-model="searchObj.addDateTimeStart">
+															<span class="input-group-btn include">
+																<button class="btn default date-reset" type="button">
+																	<i class="fa fa-times"></i>
+																</button>
+																<button class="btn default my-date-set" type="button">
+                                                                    <i class="fa fa-calendar date-set"></i>
+                                                                </button>
+															</span>
+                                                        </div>
+                                                    </div>
+	                                               	<label class="col-md-2 searchTimeLabel">至</label>
+	                                                <div class="col-md-5 searchTime">
+	                                                    <div id="addDateTimeEnd" class="input-group date form_datetime">
+	                                                        <input  type="text" size="16" readonly class="form-control" ng-model="searchObj.addDateTimeEnd">
+															<span class="input-group-btn include">
+																<button class="btn default date-reset" type="button">
+																	<i class="fa fa-times"></i>
+																</button>
+																<button class="btn default my-date-set" type="button">
+                                                                    <i class="fa fa-calendar date-set"></i>
+                                                                </button>
+															</span>
+	                                                    </div>
+	                                                </div>
+                                       			</div>
+				                            </div>
+					                    </div>
+						            </div>
+						            <div class="form-actions">
+					                    <div class="button-group text-center">
+					                        <div class="col-md-12">
+					                           	<button class="btn btn-sm btn-success btn_search" ng-click="search()">
+					                               	<i class="fa fa-search"></i> 查询
+					                           	</button>
+					                           	<button class="btn btn-sm grey-cascade" ng-click="reset()">
+					                               	<i class="fa fa-times"></i> 重置
+					                           	</button>
+					                       </div>
+					                    </div>
+					                </div>
+					           </div>
+					        </form>
+					    </div>
+                    </div>
+                </div>
+                <table class="table table-striped table-bordered table-hover table-checkable order-column dt-responsive" id="specialMaintenanceDataTable">
+                    <thead>
+                        <tr>
+                            <th class="index_width"> 序号 </th>
+                            <th class="col-md-1"> 维修单号</th>
+                            <th class="none"> 所属校区</th>
+                            <th class="none"> 维修区域</th>
+                            <th class="none"> 详细地址 </th>
+                            <th class="title_width"> 项目名称</th>
+                            <th class="none"> 维修内容</th>
+                            <th class="date_width"> 开始日期 </th>
+                            <th class="date_width"> 结束日期 </th>
+                            <th class="col-md-1"> 负责部门 </th>
+							<th class="col-md-1"> 负责人员 </th>
+							<th class="col-md-1"> 负责人员手机号  </th>
+							<th class="none"> 维修天数 </th>
+							<th class="opt_width_3"> 操作 </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+				<!-- 添加&修改的模态框 -->
+				<div data-ng-include="'views/maintenanceManagement/specialMaintenance/add.html'"></div>
+            	<!-- 删除的模态框 -->
+				<div data-ng-include="'tpl/confirmRemove.html'"></div>
+            </div>
+        </div>
+        <!-- END EXAMPLE TABLE PORTLET-->
+    </div>
+</div>
+<!-- END MAIN CONTENT -->

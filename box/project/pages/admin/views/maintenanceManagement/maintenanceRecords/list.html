@@ -1,0 +1,142 @@
+<!-- BEGIN MAIN CONTENT -->
+<div class="row" ng-controller="maintenanceRecordsController">
+    <div class="col-md-12">
+        <!-- BEGIN EXAMPLE TABLE PORTLET-->
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption font-dark">
+                    <i class="icon-settings font-dark"></i>
+                    <span class="caption-subject bold uppercase"> 维修记录列表 </span>
+                </div>
+                <div class="actions">
+                    <div class="btn-group" data-toggle="buttons">
+                        <!-- 
+                    	<button class="btn purple dropdown-toggle" data-toggle="dropdown">
+                    		工具
+                            <i class="fa fa-angle-down"></i>
+                        </button>
+                        <ul class="dropdown-menu pull-right">
+                            <li>
+                                <a href="javascript:;">
+                                    <i class="fa fa-print"></i> 打印列表 
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">
+                                    <i class="fa fa-file-pdf-o"></i> 导出 PDF 
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">
+                                    <i class="fa fa-file-excel-o"></i> 导出 Excel 
+                                </a>
+                            </li>
+                        </ul>
+                        -->
+                    </div>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <div class="table-toolbar">
+                	<div class="table-toolbar">
+                    	<div class="tabbable tabbable-custom tabbable-noborder tabbable-reversed">
+							<form class="form-horizontal">
+								<div class="tab-pane" id="tab">
+									<!-- 查询条件-->
+							    	<div class="portlet light bordered">
+						        		<div class="portlet-body">
+				                            <div class="form-group text-center">
+				                                <label class="control-label col-md-1">维修单号</label>
+				                                <div class="col-md-5">
+				                                	<input type="text" class="form-control" placeholder=""
+				                                		ng-model="searchObj.maintenanceNumber">
+				                                </div>
+				                                <label class="control-label col-md-1">报修时间</label>
+                                                <div class="col-md-5">
+                                                    <div class="col-md-5 searchTime">
+                                                        <div id="addDateTimeStart" class="input-group date form_datetime">
+                                                            <input  type="text" size="16" readonly name="date" class="form-control" ng-model="searchObj.addDateTimeStart" required>
+                                                            <span class="input-group-btn include">
+                                                                <button class="btn default date-reset" type="button">
+                                                                    <i class="fa fa-times"></i>
+                                                                </button>
+                                                                <button class="btn default my-date-set" type="button">
+                                                                    <i class="fa fa-calendar date-set"></i>
+                                                                </button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <label class="col-md-2 searchTimeLabel">至</label>
+                                                    <div class="col-md-5 searchTime">
+                                                        <div id="addDateTimeEnd" class="input-group date form_datetime">
+                                                            <input  type="text" size="16" readonly name="date" class="form-control" ng-model="searchObj.addDateTimeEnd" required>
+                                                            <span class="input-group-btn include">
+                                                                <button class="btn default date-reset" type="button">
+                                                                    <i class="fa fa-times"></i>
+                                                                </button>
+                                                                <button class="btn default my-date-set" type="button">
+                                                                    <i class="fa fa-calendar date-set"></i>
+                                                                </button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+				                            </div>
+					                    </div>
+						            </div>
+						            <div class="form-actions">
+					                    <div class="button-group text-center">
+					                        <div class="col-md-12">
+					                           	<button class="btn btn-sm btn-success btn_search" ng-click="search()">
+					                               	<i class="fa fa-search"></i> 查询
+					                           	</button>
+					                           	<button class="btn btn-sm grey-cascade" ng-click="reset()">
+					                               	<i class="fa fa-times"></i> 重置
+					                           	</button>
+					                       </div>
+					                    </div>
+					                </div>
+					           </div>
+					        </form>
+					    </div>
+                    </div>
+                </div>
+                <table class="table table-striped table-bordered table-hover table-checkable order-column dt-responsive" id="maintenanceRecordsDataTable">
+                    <thead>
+                        <tr>
+                            <th class="index_width"> 序号 </th>
+                            <th class="col-md-1"> 维修单号</th>
+                            <th class="col-md-1"> 所属校区</th>
+                            <th class="col-md-1"> 维修区域</th>
+                            <th class="none"> 详细地址 </th>
+                            <th class="none"> 维修标题 </th>
+                            <th class="col-md-1"> 维修项目</th>
+                            <th class="col-md-1"> 维修类别</th>
+                            <th class="none"> 维修内容</th>
+                            <th class="col-md-1"> 报修人员 </th>
+                            <th class="col-md-1"> 报修手机号 </th>
+                            <th class="datetime_width"> 报修时间 </th>
+							<th class="none"> 报修方式 </th>
+							<th class="none"> 维修人员 </th>
+                            <th class="none"> 维修人员手机号 </th>
+							<th class="none"> 维修开始时间 </th>
+							<th class="none"> 维修结束时间 </th>
+							<th class="none"> 维修用时(小时) </th>
+							<th class="none"> 维修状态 </th>
+							<th class="none"> 维修说明 </th>
+							<th class="opt_width_3"> 操作 </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            	<!-- 删除模态框 -->
+                <div data-ng-include="'tpl/confirmRemove.html'"></div>
+                <!-- 设置手动指派维修人员模态框 -->
+                <div data-ng-include="'views/maintenanceManagement/maintenanceRecords/assigned.html'"></div>
+            </div>
+        </div>
+        <!-- END EXAMPLE TABLE PORTLET-->
+    </div>
+</div>
+<!-- END MAIN CONTENT -->

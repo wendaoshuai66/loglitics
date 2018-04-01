@@ -1,0 +1,56 @@
+<view class="head"></view>
+<view class='timeLine'></view>
+
+<!-- 搜索框 start -->
+  <view class="TopBlock">
+    <view hidden='{{!maskFlag}}' class='cancel' size='mini' bindtap='initClick' hover-stop-propagation>取消</view>
+    <view class='searchBox'>
+      <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+      <input class='searchInput' bindfocus='searchFoucs' bindinput='searchInput' bindblur='searchBlur' type='text' value='{{searchValue}}' placeholder='搜索（标题）' bindconfirm="searchConfirm" confirm-type="search" maxlength='20'>
+      </input>
+    </view>
+    <view class='logBox' style="{{maskFlag && (logItem.length != 0)?'display:inline-block':'display:none'}}">
+      <view class='logText'>-----搜索历史-----</view>
+      <view class='logItemBox' bindtap='logItemClick' data-name="{{item}}" wx:for="{{logItem}}" wx:key="{{index}}">{{item}}</view>
+      <view class='logBottom' bindtap='clearLog'>清空历史记录</view>
+    </view>
+    <!-- 遮罩层 start -->
+    <view class='mask' bindtap='maskTap' style="height:{{windowHeightInit}}px;{{maskFlag?'display:inline-block':'display:none'}}"></view>
+    <!-- 遮罩层 end -->
+  </view>
+  <!-- 搜索框 end  -->
+
+<view class='work_content'>
+<!-- 循环此标签 -->
+<view class='list' wx:for="{{list}}" wx:key="{{index}}" data-index="{{index}}">
+  <!-- <view class='listLeft'>
+    <view class='day'>{{item.day}}</view>
+    <view class='month'>{{item.mouth}}月</view>
+  </view> -->
+  <view class='round' style="border-color:{{item.color}}">
+      <view class='roundLine'>
+          <view class='roundRight'></view>
+      </view>
+  </view>
+  <view class='listRight' data-id='{{item.id}}' bindtap='toView' style='border-color:{{item.color}}'>
+    <view class='content'>
+      <!-- <view class='span' style='background:{{item.color}}'></view> -->
+      <view class='listHead' style='background:{{item.color}}'>{{item.title}}</view>
+      <view class='date'>工作日期\t:\t{{item.workDate}} <span class="time">{{item.startTime}}\t至\t{{item.endTime}}</span></view>
+      <view class='list-content'>{{item.content}}</view>
+      
+    </view>
+    <view class='listBottom'>
+        <view class='release'>发布日期\t:\t{{item.addDateTime}}</view>
+        <view class='publisher'>发布人\t:\t{{item.user.name}}</view>
+      </view>
+  </view>
+</view>
+<view class="allDownText" hidden="{{!ifAll}}">{{ifAllText}}</view>
+</view>
+  <view class="body-view">
+    <loading hidden="{{loadingHidden}}" bindchange="loadingChange">
+      加载中...
+    </loading>
+    <view hidden='{{loadingHidden}}' class='loadingMask'></view>
+  </view> 

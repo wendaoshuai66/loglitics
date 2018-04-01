@@ -1,0 +1,67 @@
+<view class="MainContent hiddenScroll">
+  <!-- 搜索框 start -->
+  <view class="TopBlock">
+    <view hidden='{{!maskFlag}}' style="backgroud:transparent !important;border:none !important;" class='cancel' bindtap='initClick' hover-stop-propagation>取消</view>
+    <view class='searchBox'>
+      <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+      <input class='searchInput' bindfocus='searchFoucs' bindinput='searchInput' bindblur='searchBlur' type='text' value='{{searchValue}}' placeholder='搜索（标题）' bindconfirm="searchConfirm" confirm-type="search" maxlength='20'></input>
+    </view>
+    <view class='logBox' style="{{maskFlag && (logItem.length != 0)?'display:inline-block':'display:none'}}">
+      <view class='logText'>-----搜索历史-----</view>
+      <view class='logItemBox' bindtap='logItemClick' data-name="{{item}}" wx:for="{{logItem}}" wx:key="{{index}}">{{item}}</view>
+      <view class='logBottom' bindtap='clearLog'>清空历史记录</view>
+    </view>
+    <!-- 遮罩层 start -->
+    <view class='mask' bindtap='maskTap' style="height:{{windowHeightInit}}px;{{maskFlag?'display:inline-block':'display:none'}}"></view>
+    <!-- 遮罩层 end -->
+  </view>
+  <!-- 搜索框 end  -->
+
+  <!-- 选择类型开始 -->
+  <view class="searchBar">
+    <view class='ul' bindtouchmove='ulMove'>
+      <view class='li typeTitle wrap-ellipsis' data-type='type' bindtap='titleClick'>
+        <text class="iconfont icon-all"></text>\t\t\t{{typeItems[typeIndex]}}</view>
+      <view class='li timeTitle wrap-ellipsis' data-type='time' bindtap='titleClick'>
+        <text class="iconfont icon-all"></text>\t\t\t{{timeItems[timeIndex]}}</view>
+      <view class='titleList' style='max-height:{{windowHeight/2}}px' hidden='{{typeHidden}}' animation='{{animationType}}'>
+        <view wx:for="{{typeItems}}" data-index='{{index}}' wx:key='{{index}}' bindtap='typeChange'>{{item}}</view>
+      </view>
+      <view class='titleList' hidden='{{timeHidden}}' animation='{{animationTime}}'>
+        <view wx:for='{{timeItems}}' data-index='{{index}}' wx:key='{{index}}' bindtap='timeChange'>{{item}}</view>
+      </view>
+    </view>
+  </view>
+  <!-- 选择类型结束 -->
+  <!-- 列表开始 -->
+  <scroll-view class="BottomBlock" lower-threshold='1' bindscrolltolower="onReach" scroll-y="true" style="height:{{windowHeight}}px;{{typeHidden?'overflow:auto':'overflow:hidden'}}">
+    <view class="item" wx:for="{{list}}" wx:key="{{index}}" data-index="{{index}}" bindtap="toView" data-id="{{item.id}}">
+      <!-- <image class="picture" src="/images/saleAndPurchase/list/buy.png"></image> -->
+      <view class="text">
+        <view class="buy-title">
+          <span class="news-btn wrap-ellipsis">{{item.inforModule.name}}</span>
+          <text class='news-content'> {{item.title}}</text>
+        </view>
+        <view class="buy-time">
+          <!-- <view>类别\t:\t{{item.inforModule.name}}</view> -->
+          <text>发布人\t:\t{{item.author}}</text>
+          <tetx class="time">{{item.addDateTime}}</tetx>
+        </view>
+      </view>
+    </view>
+    <view class="allDownText" hidden="{{!ifAll}}">{{ifAllText}}</view>
+  </scroll-view>
+  <!-- 列表结束 -->
+</view>
+
+<!-- <import src="../../../wxParse/courseList.wxml"/>
+
+ <block >
+    <template data="{{loadingHidden}}" is="loading_style1"></template>
+</block> -->
+<view class="body-view">
+  <loading hidden="{{loadingHidden}}">
+    加载中...
+  </loading>
+  <view hidden='{{loadingHidden}}' class='loadingMask'></view>
+</view>

@@ -1,0 +1,134 @@
+/**app.wxss**/
+@import "weui/weui.wxss";
+@import "wxParse/courseList.wxss";
+.click_hover_bg{
+  background: red;
+}
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 35rpx;
+  /* background: linear-gradient(to right,#1d9c69, #24cd88); */
+  margin-top: -2rpx;
+  padding-bottom: 28rpx;
+  box-sizing: border-box;
+}
+loading{
+  z-index: 100000000000000000000000000;
+}
+.container-title {
+  font-size: 32rpx;
+  text-align: center;
+  padding: 20rpx;
+  color: #333;
+}
+
+.input-group {
+  align-items: center;
+  padding: 20rpx 10rpx;
+  margin: 20rpx 3%;
+  background: #fff;
+  border-radius: 8rpx;
+  border: 1rpx solid #e5e5e5;
+  transition: all 0.25s ease-in-out;
+  font-size: 30rpx;
+  flex-direction: row;
+  padding-right: 20rpx;
+}
+
+.input-label {
+  color: #666;
+  font-size: 30rpx;
+  height: 45rpx;
+  line-height: 45rpx;
+  padding: 0 20rpx;
+  border-right: 1rpx solid #d8d8d8;
+  float: left;
+}
+
+.input-content {
+  width: 80%;
+  font-size: 30rpx;
+  min-height: 46rpx;
+  height: 46rpx;
+  line-height: 46rpx;
+  padding: 0 20rpx;
+  color: #888;
+  margin-left: 136rpx;
+  box-sizing: border-box;
+  /* text-overflow: ellipsis; *//* overflow: hidden; *//* white-space: nowrap;  */
+}
+
+.input-button {
+  width: 80%;
+  height: 100%;
+  margin-top: 20rpx;
+}
+
+.input-textarea {
+  width: 80%;
+  height: 400rpx;
+  margin-left: 154rpx;
+  color: #888;
+}
+
+.radio {
+  margin-right: 100rpx;
+}
+
+radio .wx-radio-input {
+  width: 32rpx;
+  height: 32rpx;
+}
+
+textarea {
+   word-break: break-all; 
+  width: 100% !important;
+  height: 100%;
+  padding-bottom: 36rpx;
+  box-sizing: border-box
+}
+
+.button-submit {
+  width: 100%;
+}
+
+.confirm-btn {
+  line-height: 75rpx;
+  height: 75rpx;
+  background: #2ba245;
+  color: #fff;
+  text-align: center;
+  border-radius: 8rpx;
+  margin: 48rpx 30%;
+  font-size: 32rpx;
+  width: 270rpx;
+}
+
+.other-button-hover {
+  background-color: #227e36;
+}
+
+.describe {
+  color: #666;
+  font-size: 30rpx;
+  line-height: 45rpx;
+  padding: 0 20rpx;
+  border-right: 1rpx solid #d8d8d8;
+  float: left;
+  min-height: 398rpx;
+}
+
+.wrap-ellipsis {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.textareaSon {
+  bottom:-15rpx;
+  color: #888;
+}

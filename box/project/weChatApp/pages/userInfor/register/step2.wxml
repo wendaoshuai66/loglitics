@@ -1,0 +1,32 @@
+<!--pages/userInfor/register/step2.wxml-->
+<view class='phone'>
+  <image class='phoneImg' src='../../../images/register/timg.png'></image>
+  <view class='numberText'>输入验证码 </view>
+  <view class='text'>
+    <text class='phoneNumber'>{{phoneNumber}}</text>
+    <view class='time inline_block'>
+      <view class='inline_block' wx:if="{{time == 0}}">点击\t
+        <view class='click inline_block' bindtap='againSend'>重新发送</view>
+      </view>
+      <text wx:else>{{time}}秒后重新发送</text>
+    </view>
+    <text class=''>没收到？</text>
+  </view>
+  <view>
+
+    <!-- <input confirm-hold="true" type='number' name="number1" bindtap='click' class='input_number' focus='{{focus[0]}}' bindinput='input' data-id='1' bindfocus='colorChange' maxlength='1' style="border-color:{{index==1?'#FF8000':'#999'}}" value='{{item[0]}}'></input>
+    <input confirm-hold="true" type='number' name="number2" bindtap='click' class='input_number' focus='{{focus[1]}}' bindinput='input' data-id='2' bindfocus='colorChange' maxlength='1' style="border-color:{{index==2?'#FF8000':'#999'}}" value='{{item[1]}}'></input>
+    <input confirm-hold="true" type='number' name="number3" bindtap='click' class='input_number' focus='{{focus[2]}}' bindinput='input' data-id='3' bindfocus='colorChange' maxlength='1' style="border-color:{{index==3?'#FF8000':'#999'}}" value='{{item[2]}}'></input>
+    <input confirm-hold="true" type='number' name="number4" bindtap='click' class='input_number' focus='{{focus[3]}}' data-id='4' bindfocus='colorChange' maxlength='1' bindinput='input' style="border-color:{{index==4?'#FF8000':'#999'}}" value='{{item[3]}}'></input> -->
+    <input cursor="{{cursor}}" value="{{item}}"  cursor-spacing="-500" type='number' readonlyunselectable="on"  name='number' class='input_number' bindinput='input' maxlength='4' focus='{{focus}}'>
+        <view class='input1' data-index="1" bindtap='colorChange' style="{{clickItem==0?'border-color:#FF8000':'border-color:#999;'}}">{{inputItem[0]}}</view>
+        <view class='input2' data-index="2" bindtap='colorChange' style="{{clickItem==1?'border-color:#FF8000':'border-color:#999;'}}">{{inputItem[1]}}</view>
+        <view class='input3' data-index="3" bindtap='colorChange' style="{{clickItem==2?'border-color:#FF8000':'border-color:#999;'}}">{{inputItem[2]}}</view>
+        <view class='input4' data-index="4" bindtap='colorChange' style="{{clickItem==3?'border-color:#FF8000':'border-color:#999;'}}">{{inputItem[3]}}</view>
+    </input>
+  </view>
+</view>
+<loading hidden="{{loadingHidden}}">
+    正在发送...
+  </loading>
+  <view hidden='{{loadingHidden}}' class='loadingMask'></view>

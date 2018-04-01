@@ -1,0 +1,28 @@
+<div class="page">
+    <section>
+        <div class="col-xs-6">
+            <!-- 总页数 -->
+            <div class="row">
+                <span class="text-center tables_info">显示 {{(vm.currentPageItem-1)*vm.pageSize+1}} 至 {{vm.untilSize}} 项结果 , 总共 {{vm.totalItems}} 条数据 </span>
+                <div class="hide btn-group tables_button" role="group">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                       	每页{{vm.pageSize}}条
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li ng-click="changePageSize(5)"><a>每页5条</a></li>
+                        <li ng-click="changePageSize(10)"><a>每页10条</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 text-right">
+            <uib-pagination max-size="vm.maxSize" total-items="vm.totalItems" ng-model="vm.currentPageItem"
+                            class="pagination"
+                            previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"
+                            boundary-links="true" boundary-link-numbers="true" ng-change="changePagination()"
+                            items-per-page="vm.pageSize"></uib-pagination>
+        </div>
+    </section>
+</div>

@@ -1,0 +1,63 @@
+
+<!-- 搜索框 start -->
+  <view class="TopBlock">
+    <view hidden='{{!maskFlag}}' class='cancel' size='mini' bindtap='initClick' hover-stop-propagation>取消</view>
+    <view class='searchBox'>
+      <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+      <input class='searchInput' bindfocus='searchFoucs' bindinput='searchInput' bindblur='searchBlur' type='text' value='{{searchValue}}' placeholder='搜索（维修单号）' bindconfirm="searchConfirm" confirm-type="search" maxlength='20'></input>
+    </view>
+    <view class='logBox' style="{{maskFlag && (logItem.length != 0)?'display:inline-block':'display:none'}}">
+      <view class='logText'>-----搜索历史-----</view>
+      <view class='logItemBox' bindtap='logItemClick' data-name="{{item}}" wx:for="{{logItem}}" wx:key="{{index}}">{{item}}</view>
+      <view class='logBottom' bindtap='clearLog'>清空历史记录</view>
+    </view>
+    <!-- 遮罩层 start -->
+    <view class='mask' bindtap='maskTap' style="height:{{windowHeightInit}}px;{{maskFlag?'display:inline-block':'display:none'}}"></view>
+    <!-- 遮罩层 end -->
+  </view>
+  <!-- 搜索框 end  -->
+<view class='warn' hidden='{{warnHidden}}'>
+  {{ifAllText}}</view>
+<view class='body' hidden="{{!warnHidden}}">
+  <!-- <view class='list' bindtap='toView' data-id='{{item.id}}' data-index="{{index}}" wx:key="{{index}}" wx:for="{{list}}">
+    <view class="{{item.maintenanceRecord.maintenanceStatus.name == '待受理'?'statuR':'statuG'}}">
+      <text>{{item.maintenanceRecord.maintenanceStatus.name}}</text>
+    </view>
+    <view class='title'>{{item.maintenanceNumber}}</view>
+    <view class='headText'>
+      <view class='address'>维修区域\t:\t{{item.maintenanceRecord.maintenanceArea.name}}</view>
+    </view>
+    <view class='content'>
+      <view class='li'>报修时间\t:\t{{item.addDateTime}}</view>
+      <view class='li'>维修类别\t:\t{{item.maintenanceRecord.maintenanceCategory.name}}</view>
+      <view class='li'>维修项目\t:\t{{item.maintenanceRecord.maintenanceCategory.maintenanceType.name}}</view>
+      <view class='li'>报修内容\t:\t{{item.maintenanceContent}}</view>
+    </view>
+  </view> -->
+  <view class='item_content'>
+  <view class="item" wx:for="{{list}}" wx:key="{{index}}" data-index="{{index}}" bindtap="toView" data-id="{{item.id}}">
+    <view class="text">
+      <view class="buy-title">{{item.maintenanceItemName}}</view>
+      <view class='content-text'>
+        <span class="content-title">维修类别</span>\t\t:\t\t{{item.maintenanceRecord.maintenanceCategory.name}}</view>
+      <view class='content-text'>
+        <span class="content-title">维修项目</span>\t\t:\t\t{{item.maintenanceRecord.maintenanceCategory.maintenanceType.name}}</view>
+      <view class='content-text'>
+        <span class="content-title">维修区域</span>\t\t:\t\t{{item.maintenanceRecord.maintenanceArea.name}}</view>
+      <view class='content-text'>
+        <span class="content-title">报修人员</span>\t\t:\t\t{{item.repairStaff.name}}
+        <span>({{item.repairStaff.tel}})</span>
+      </view>
+      <view class='maintenanceStatus'>
+        <view class='before'></view>
+        <view class='after'></view>{{item.maintenanceRecord.maintenanceStatus.name}}</view>
+      <view class="buy-time">
+        <!-- <view>类别\t:\t{{item.inforModule.name}}</view> -->
+        <text class='numbers'>{{item.maintenanceNumber}}</text>
+        <span class="time">{{item.addDateTime}}</span>
+      </view>
+    </view>
+  </view>
+  <view class="allDownText" hidden="{{!ifAll}}">{{ifAllText}}</view>
+  </view>
+</view>

@@ -1,0 +1,312 @@
+<view hidden="{{showPage}}">
+<view class="container">
+  <view bindtap="bindViewTap" class="userinfo" wx:if='{{avatarUrl}}'>
+    <image class="userinfo-avatar" src="{{avatarUrl}}" background-size="cover"></image>
+    <text class="userinfo-nickname">{{nickName}}</text>
+    <view class='userType'>{{userTypeItems[index]}}</view>
+  </view>
+</view>
+<view class='listTitle'>
+</view>
+<view wx:if="{{approvalStatus != 0 && approvalStatus != 1}}"></view>
+<view wx:elif="{{approvalStatus == 1 && status == 1}}">
+  <!-- 维修人员 -->
+  <view wx:if="{{index == 1 || index == 0}}">
+    <view class="container_tjlx">
+      <view class="repair">
+        <view class="info-hd">
+          <view class="info-hd">
+            <view class="btn-open" bindtap="toViewUserInfor">
+              <view class="my iconfont icon-my"></view>
+              <view class="my details">我的个人资料</view>
+              <span>
+                <image src="/images/enter.png" class="enter"></image>
+              </span>
+            </view>
+          </view>
+          <view class="info-hd">
+            <view class="btn-open" bindtap="toModifyPassword">
+              <view class="my iconfont icon-modify"></view>
+              <view class="my details">修改个人密码</view>
+              <span>
+                <image src="/images/enter.png" class="enter"></image>
+              </span>
+            </view>
+          </view>
+          <view class='listTitle partition-column'>
+          </view>
+          <view class="repair">
+            <view class="info-hd">
+              <view class="btn-open" data-flag="{{maintenanceFlag}}" bindtap='showMaintenance'>
+                <view class="my iconfont icon-Repairapplication"></view>
+                <view class="my details">我的维修记录</view>
+                <span>
+                  <image src="/images/enter.png" class="{{!maintenanceFlag?'enter':'enterTap'}}"></image>
+                </span>
+              </view>
+            </view>
+            <view class="info-hd pdleft" style="{{maintenanceFlag?'height:120rpx':'height:0rpx'}}">
+              <view class="btn-open" data-name="lost" data-type="unfinished" bindtap='toWorkerList'>
+                <view class="my iconfont icon-error"></view>
+                <view class="my details">未完成记录</view>
+                <span>
+                  <image src="/images/enter.png" class="enter"></image>
+                </span>
+              </view>
+            </view>
+            <view class="info-hd pdleft" style="{{maintenanceFlag?'height:120rpx':'height:0rpx'}}">
+              <view class="btn-open" data-name="found" data-type="finished" bindtap='toWorkerList'>
+                <view class="my iconfont icon-complete"></view>
+                <view class="my details">已完成记录</view>
+                <span>
+                  <image src="/images/enter.png" class="enter"></image>
+                </span>
+              </view>
+            </view>
+            <view class="btn-open" bindtap='toMyMaterialCollar'>
+              <view class="my iconfont icon-icon-stocks"></view>
+              <view class="my details">我的物料领用</view>
+              <span>
+                <image src="/images/enter.png" class="enter"></image>
+              </span>
+            </view>
+            <view class="btn-open" bindtap='toDutyRecord'>
+              <view class="my iconfont icon-beonduty"></view>
+              <view class="my details">我的值班安排</view>
+              <span>
+                <image src="/images/enter.png" class="enter"></image>
+              </span>
+            </view>
+            <view class="btn-open" bindtap='toWorkLog'>
+              <view class="my iconfont icon-work"></view>
+              <view class="my details">我的工作日志</view>
+              <span>
+                <image src="/images/enter.png" class="enter"></image>
+              </span>
+            </view>
+          </view>
+        </view>
+        <view class='listTitle partition-column'>
+        </view>
+        <view class="repair">
+          <view class="info-hd">
+            <view class="btn-open" data-flag="{{repairFlag}}" bindtap='showRepair'>
+              <view class="my iconfont icon-repair"></view>
+              <view class="my details"> 我的报修记录</view>
+              <span>
+                <image src="/images/enter.png" class="{{!repairFlag?'enter':'enterTap'}}"></image>
+              </span>
+            </view>
+          </view>
+          <view class="info-hd pdleft" style="{{repairFlag?'height:120rpx':'height:0rpx'}}">
+            <view class="btn-open" data-name="lost" data-type="unfinished" bindtap='toMaintenance'>
+              <view class="my iconfont icon-error"></view>
+              <view class="my details">未完成记录</view>
+              <span>
+                <image src="/images/enter.png" class="enter"></image>
+              </span>
+            </view>
+          </view>
+          <view class="info-hd pdleft" style="{{repairFlag?'height:120rpx':'height:0rpx'}}">
+            <view class="btn-open" data-name="found" data-type="finished" bindtap='toMaintenance'>
+              <view class="my iconfont icon-complete"></view>
+              <view class="my details">已完成记录</view>
+              <span>
+                <image src="/images/enter.png" class="enter"></image>
+              </span>
+            </view>
+          </view>
+        </view>
+        <view class="info-hd">
+          <view class="btn-open" data-flag="{{saleAndPurchaseFlag}}" bindtap='showSaleAndPurchase'>
+            <view class="my iconfont icon-promotiontheseller"></view>
+            <view class="my details">我的跳蚤市场</view>
+            <span>
+              <image src="/images/enter.png" class="{{!saleAndPurchaseFlag?'enter':'enterTap'}}"></image>
+            </span>
+          </view>
+        </view>
+        <view class="info-hd pdleft" style="{{saleAndPurchaseFlag?'height:120rpx':'height:0rpx'}}">
+          <view class="btn-open" bindtap='toSale'>
+            <view class="my iconfont icon-balance2"></view>
+            <view class="my details"> 我的出售记录</view>
+            <span>
+              <image src="/images/enter.png" class="enter"></image>
+            </span>
+          </view>
+        </view>
+        <view class="info-hd pdleft" style="{{saleAndPurchaseFlag?'height:120rpx':'height:0rpx'}}">
+          <view class="btn-open" bindtap='toPurchase'>
+            <view class="my iconfont icon-buy"></view>
+            <view class="my details">我的求购记录</view>
+            <span>
+              <image src="/images/enter.png" class="enter"></image>
+            </span>
+          </view>
+        </view>
+        <view class="info-hd">
+          <view class="btn-open" data-flag="{{lostAndFoundFlag}}" bindtap='showLostAndFound'>
+            <view class="my iconfont icon-gift"></view>
+            <view class="my details"> 我的失物招领</view>
+            <span>
+              <image src="/images/enter.png" class="{{!lostAndFoundFlag?'enter':'enterTap'}}"></image>
+            </span>
+          </view>
+        </view>
+        <view class="info-hd pdleft" style="{{lostAndFoundFlag?'height:120rpx':'height:0rpx'}}">
+          <view class="btn-open" data-name="lost" bindtap='toLostAndFound'>
+            <view class="my iconfont icon-find"></view>
+            <view class="my details">我的失物记录</view>
+            <span>
+              <image src="/images/enter.png" class="enter"></image>
+            </span>
+          </view>
+        </view>
+        <view class="info-hd pdleft" style="{{lostAndFoundFlag?'height:120rpx':'height:0rpx'}}">
+          <view class="btn-open" data-name="found" bindtap='toLostAndFound'>
+            <view class="my iconfont icon-icon_voice--"></view>
+            <view class="my details">我的招领记录</view>
+            <span>
+              <image src="/images/enter.png" class="enter"></image>
+            </span>
+          </view>
+        </view>
+        <view class="info-hd">
+          <view class="btn-open" bindtap='toSuggestion'>
+            <view class="my iconfont icon-advice"></view>
+            <view class="my details">我的建言献策</view>
+            <span>
+              <image src="/images/enter.png" class="enter"></image>
+            </span>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 非维修人员 -->
+  <view wx:else>
+    <view class="container_tjlx">
+      <view class="info-hd">
+        <view class="btn-open" bindtap="toViewUserInfor">
+          <view class="my iconfont icon-my"></view>
+          <view class="my details">我的个人资料</view>
+          <span>
+            <image src="/images/enter.png" class="enter"></image>
+          </span>
+        </view>
+      </view>
+      <view class="info-hd">
+        <view class="btn-open" bindtap="toModifyPassword">
+          <view class="my iconfont icon-my"></view>
+          <view class="my details">修改个人密码</view>
+          <span>
+            <image src="/images/enter.png" class="enter"></image>
+          </span>
+        </view>
+      </view>
+      <view class="repair">
+          <view class="info-hd">
+            <view class="btn-open" data-flag="{{repairFlag}}" bindtap='showRepair'>
+              <view class="my iconfont icon-gift"></view>
+              <view class="my details"> 我的报修记录</view>
+              <span>
+                <image src="/images/enter.png" class="{{!repairFlag?'enter':'enterTap'}}"></image>
+              </span>
+            </view>
+          </view>
+          <view class="info-hd pdleft" style="{{repairFlag?'height:120rpx':'height:0rpx'}}">
+            <view class="btn-open" data-name="lost" data-type="unfinished" bindtap='toMaintenance'>
+              <view class="my iconfont icon-error"></view>
+              <view class="my details">未完成记录</view>
+              <span>
+                <image src="/images/enter.png" class="enter"></image>
+              </span>
+            </view>
+          </view>
+          <view class="info-hd pdleft" style="{{repairFlag?'height:120rpx':'height:0rpx'}}">
+            <view class="btn-open" data-name="found" data-type="finished" bindtap='toMaintenance'>
+              <view class="my iconfont icon-complete"></view>
+              <view class="my details">已完成记录</view>
+              <span>
+                <image src="/images/enter.png" class="enter"></image>
+              </span>
+            </view>
+          </view>
+        </view>
+      <view class="info-hd">
+        <view class="btn-open" data-flag="{{saleAndPurchaseFlag}}" bindtap='showSaleAndPurchase'>
+          <view class="my iconfont icon-promotiontheseller"></view>
+          <view class="my details">我的出售/求购</view>
+          <span>
+            <image src="/images/enter.png" class="{{!saleAndPurchaseFlag?'enter':'enterTap'}}"></image>
+          </span>
+        </view>
+      </view>
+      <view class="info-hd pdleft" style="{{saleAndPurchaseFlag?'height:120rpx':'height:0rpx'}}">
+        <view class="btn-open" bindtap='toSale'>
+          <view class="my iconfont icon-balance2"></view>
+          <view class="my details"> 我的出售记录</view>
+          <span>
+            <image src="/images/enter.png" class="enter"></image>
+          </span>
+        </view>
+      </view>
+      <view class="info-hd pdleft" style="{{saleAndPurchaseFlag?'height:120rpx':'height:0rpx'}}">
+        <view class="btn-open" bindtap='toPurchase'>
+          <view class="my iconfont icon-buy"></view>
+          <view class="my details">我的求购记录</view>
+          <span>
+            <image src="/images/enter.png" class="enter"></image>
+          </span>
+        </view>
+      </view>
+      <view class="info-hd">
+        <view class="btn-open" data-flag="{{lostAndFoundFlag}}" bindtap='showLostAndFound'>
+          <view class="my iconfont icon-gift"></view>
+          <view class="my details"> 我的失物/招领</view>
+          <span>
+            <image src="/images/enter.png" class="{{!lostAndFoundFlag?'enter':'enterTap'}}"></image>
+          </span>
+        </view>
+      </view>
+      <view class="info-hd pdleft" style="{{lostAndFoundFlag?'height:120rpx':'height:0rpx'}}">
+        <view class="btn-open" data-name="lost" bindtap='toLostAndFound'>
+          <view class="my iconfont icon-find"></view>
+          <view class="my details">我的失物记录</view>
+          <span>
+            <image src="/images/enter.png" class="enter"></image>
+          </span>
+        </view>
+      </view>
+      <view class="info-hd pdleft" style="{{lostAndFoundFlag?'height:120rpx':'height:0rpx'}}">
+        <view class="btn-open" data-name="found" bindtap='toLostAndFound'>
+          <view class="my iconfont icon-icon_voice--"></view>
+          <view class="my details">我的招领记录</view>
+          <span>
+            <image src="/images/enter.png" class="enter"></image>
+          </span>
+        </view>
+      </view>
+      <view class="info-hd">
+        <view class="btn-open" bindtap='toSuggestion'>
+          <view class="my iconfont icon-advice"></view>
+          <view class="my details">我的建言献策</view>
+          <span>
+            <image src="/images/enter.png" class="enter"></image>
+          </span>
+        </view>
+      </view>
+    </view>
+    <view class='listTitle partition-column'>
+    </view>
+  </view>
+</view>
+<view wx:else>
+  <view class='warn_content'>账号审核未通过，此功能暂不开放</view>
+</view>
+</view>
+<view class="body-view">
+  <loading hidden="{{loadingHidden}}">
+    加载中...
+  </loading>
+</view>

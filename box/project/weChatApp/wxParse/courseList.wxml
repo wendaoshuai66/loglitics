@@ -1,0 +1,13 @@
+<!-- 加载动画 -->
+<template name="loading_style1">
+  <view class='loading_content' hidden='{{loadingHidden}}'>
+    <view class='loading_round' animation="{{loadingAnimation}}">
+      <view class='loading_animation_round1'></view>
+      <view class='loading_animation_round2' style='background:#dba4f5'></view>
+      <!-- </view> -->
+      <view class='loading_animation_round3' style='background:#155e92'></view>
+    </view>
+    <view class='loading_text'>加载中...</view>
+  </view>
+  <view hidden='{{loadingHidden}}' class='loadingMask'></view>
+</template>

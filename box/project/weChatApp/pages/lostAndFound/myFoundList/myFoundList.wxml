@@ -1,0 +1,58 @@
+<view class="MainContent">
+<!-- 搜索框 start -->
+  <view class="TopBlock">
+    <view hidden='{{!maskFlag}}' class='cancel' size='mini' bindtap='initClick' hover-stop-propagation>取消</view>
+    <view class='searchBox'>
+      <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+      <input class='searchInput' bindfocus='searchFoucs' bindinput='searchInput' bindblur='searchBlur' type='text' value='{{searchValue}}' placeholder='搜索（标题）' bindconfirm="searchConfirm" confirm-type="search" maxlength='20'></input>
+    </view>
+    <view class='logBox' style="{{maskFlag && (logItem.length != 0)?'display:inline-block':'display:none'}}">
+      <view class='logText'>-----搜索历史-----</view>
+      <view class='logItemBox' bindtap='logItemClick' data-name="{{item}}" wx:for="{{logItem}}" wx:key="{{index}}">{{item}}</view>
+      <view class='logBottom' bindtap='clearLog'>清空历史记录</view>
+    </view>
+    <!-- 遮罩层 start -->
+    <view class='mask' bindtap='maskTap' style="height:{{windowHeightInit}}px;{{maskFlag?'display:inline-block':'display:none'}}"></view>
+    <!-- 遮罩层 end -->
+  </view>
+  <!-- 搜索框 end  -->
+
+  <view class="BottomBlock">
+    <scroll-view class="scrollView" bindscroll="scroll" scroll-y="true">
+      <view class="item" wx:for="{{list}}" wx:key="{{index}}" data-index="{{index}}" bindtap="toView" data-id="{{item.id}}">
+        <view class="text">
+          <view class="buy-title">
+            <text class="">
+            <text class='type' style='background:#7FBF7F' wx:if="{{item.type == 0}}">招领</text>
+            <text class='type' style='background:#D08A51' wx:else>失物</text>
+            </text>{{item.title}}</view>
+          <text class="content" style='display:none;'>{{item.description}}</text>
+           <view class="buy-time">
+          <!-- <text style="color:#888;">发布人:{{item.person.name}}</text> -->
+          <text class="time">{{item.addDateTime}}</text>
+        </view>
+          <!-- 删除按钮  start -->
+        <image class='delete' catchtap='deleteItem' data-id="{{item.id}}" src='../../../images/delete.png'></image>
+        <!-- 删除按钮  end -->
+         
+          <button wx:if="{{item.dealStatus == 0}}" data-id='{{item.id}}' catchtap='dealClick' class='dealButton' size='mini' disabled="{{item.approvalStatus == 0?'true':''}}">
+            <span class='muchStatu'>
+              <span class="span {{item.approvalStatus == 0?'lightgrey':'red'}}"></span>
+            </span>\t \t \t \t 确认交易</button>
+          <button class='dealButton dealText complete' size='mini' wx:else>
+            <span class='muchStatu'>
+              <!-- green -->
+              <span class='span' style="background:green;animation:greenAnimation 2s;animation-iteration-count: infinite;"></span>
+            </span>\t \t \t \t 交易完成</button>
+        </view>
+        <image wx:if="{{item.approvalStatus == 0}}" class='centerImage' src='../../../images/tabBar/noApproval.png'></image>
+        <image wx:else class='centerImage' src='../../../images/tabBar/yesApproval.png'></image>
+      
+      </view>
+      <view class="allDownText" hidden="{{!ifAll}}">{{ifAllText}}</view>
+    </scroll-view>
+    <view class="body-view">
+      <loading hidden="{{loadingHidden}}" bindchange="loadingChange">加载中...</loading>
+    </view>
+  </view>
+</view>

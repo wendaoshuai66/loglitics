@@ -1,0 +1,42 @@
+<div class="portlet box blue">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-cogs"></i>维修量分类统计 - 维修项目
+        </div>
+        <!-- ngIf: loginStatus -->
+    </div>
+	<div class="portlet-body" ng-controller="maintenanceTypeStatisticsController">
+		<div class="table-responsive" style="overflow-x: hidden">
+	    <date-range-and-labelauty></date-range-and-labelauty>
+		</div>
+	    <div class="row">
+		    <div class="col-xs-3">
+			    <div class="table-responsive">
+				    <table class="table table-bordered table-striped table-hover">
+				        <thead>
+				        <tr>
+				            <th>报修类型</th>
+				            <th>维修量/单</th>
+				        </tr>
+				        </thead>
+				        <tbody>
+				        <tr ng-repeat="item in data[0].data">
+				            <td>{{item.name}}</td>
+				            <td>{{item.value}}</td>
+				        </tr>
+				        </tbody>
+				    </table>
+		    	</div>
+			</div>
+		    <div class="col-xs-9">
+		    	<div class="table-responsive" style="overflow-x: hidden">
+				    <div id="typePie" class="myChart"></div>
+				    <div id="typeLine" class="myChart"></div>
+				    <div ng-if="noEChartsData">
+				        <img src="./../assets/global/img/noData.png" class="center-block" style="width: 200px;margin: 30px auto;">
+				    </div>
+			    </div>
+			</div>
+		</div>
+	</div>
+</div>

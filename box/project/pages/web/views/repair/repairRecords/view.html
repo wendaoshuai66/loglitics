@@ -1,0 +1,159 @@
+<!-- BEGIN EXAMPLE TABLE PORTLET-->
+<div class="portlet light bordered" data-ng-controller="myRecordsViewController">
+    <div class="portlet-title">
+        <div class="caption bold font-green-sharp">
+            <i class="fa fa-print font-green-sharp"></i>维修单打印
+        </div>
+        <div class="actions">
+			<button type="button" ng-click="printThisPage()" class="btn btn-danger"><i
+					class="fa fa-print"></i>
+				打印
+			</button>
+			<a class="btn btn-circle green-haze btn-sm" ng-click="toBack()">
+             <i class="fa fa-reply"></i> 返回
+            </a>
+        </div>
+    </div>
+    <div class="portlet-body dataTables_wrapper">
+		<div class="row">
+			<div class="col-xs-12">
+    			<!-- 打印列表-->
+			    <div id="printingModal" class="">
+					<div class="text-right">
+					</div>
+		            <div id="printPage" class="row">
+		                <!-- BEGIN FORM-->
+		                <p class="text-center">
+		                    <!--<span style="font-size: 27px;">-->
+		                        <!--<b>维修单</b>-->
+		                    <!--</span>-->
+		                </p>
+		                <div class="col-xs-12" style="font-size: 20px;font-weight: 500;">
+		                        <span>维修单号 : {{data.maintenanceNumber}}</span>
+		                        <span style="float: right">时间 : {{pageDate}}</span>
+		                </div>
+		                <div class="col-xs-12" style="margin-top: 20px">
+		                    <table class="table table-bordered boldTableBorder">
+		                    	<tbody>
+		                        <tr>
+		                            <td class="col-xs-1"><b>报修人员</b></td>
+		                            <td class="col-xs-5">{{data.repairStaff.name}}</td>
+									<td class="col-xs-1"><b>报修人手机号</b></td>
+		                            <td class="col-xs-5">{{data.repairStaff.tel}}</td>
+		                        </tr>
+		                        <tr>
+									<td><b>报修时间</b></td>
+		                            <td>{{data.addDateTime}}</td>
+									<td><b>报修方式</b></td>
+									<td>{{data.repairMethod}}</td>
+		                        </tr>
+		                        <tr>
+									<td><b>所属校区</b></td>
+		                            <td>{{data.maintenanceRecord.maintenanceArea.campus.name}}</td>
+									<td><b>所属区域</b></td>
+									<td>{{data.maintenanceRecord.maintenanceArea.name}}</td>
+		                        </tr>
+								<tr>
+									<td><b>详细地址</b></td>
+									<td colspan="3" style="white-space:normal!important;">{{data.address}}</td>
+								</tr>
+								<tr>
+									<td><b>维修标题</b></td>
+									<td colspan="3">{{data.maintenanceItemName}}</td>
+								</tr>
+								<tr>
+									<td><b>维修项目</b></td>
+									<td>{{data.maintenanceRecord.maintenanceCategory.maintenanceType.name}}</td>
+									<td><b>维修类别</b></td>
+									<td>{{data.maintenanceRecord.maintenanceCategory.name}}</td>
+								</tr>
+		                        <tr>
+									<td><b>问题描述</b></td>
+		                            <td colspan="3" style="white-space:normal!important;">{{data.maintenanceContent}}</td>
+		                        </tr>
+								<tr>
+									<td><b>维修人员</b></td>
+									<td>{{data.maintenanceStaff.name}}</td>
+									<td><b>维修人手机号</b></td>
+		                            <td>{{data.maintenanceStaff.tel}}</td>
+								</tr>
+								<tr>
+									<td><b>所属部门</b></td>
+									<td colspan="3">{{data.maintenanceStaff.maintenanceWorker.department.name}}</td>
+								</tr>
+								<tr>
+									<td><b>开始时间</b></td>
+									<td>{{data.maintenanceStartDateTime}}</td>
+									<td><b>结束时间</b></td>
+									<td>{{data.maintenanceEndDateTime}}</td>
+								</tr>
+								<tr>
+									<td><b>维修结果</b></td>
+									<td>
+										<span ng-if="data.maintenanceRecord.maintenanceStatus.weight===6">
+											正常维修完成
+										</span>
+										<span ng-if="data.maintenanceRecord.maintenanceStatus.weight===7 || data.maintenanceRecord.maintenanceStatus.weight===8">
+											{{data.maintenanceRecord.maintenanceStatus.name}}
+										</span>
+									</td>
+									<td><b>维修用时(小时)</b></td>
+									<td>{{data.maintenanceTime}}</td>
+								</tr>
+								<tr>
+									<td><b>结果说明</b></td>
+									<td colspan="3" style="white-space:normal!important;">
+										<span ng-if="data.maintenanceRecord.maintenanceStatus.weight===8">
+											{{data.maintenanceRecord.unableRepairReason}}
+										</span>
+										<span ng-if="data.maintenanceRecord.maintenanceStatus.weight!==8">
+											无
+										</span>
+									</td>
+								</tr>
+		                        </tbody>
+		                    </table>
+		                </div>
+						<p class="text-center" ng-if="materialList.length>0">
+		                    <span style="font-size: 16px;">
+		                        <b>使用耗材</b>
+		                    </span>
+						</p>
+						<div class="col-xs-12" style="margin-top: 20px">
+							<div ng-repeat="item in materialList">
+							<table class="table table-bordered boldTableBorder" style="border-bottom: none !important;margin-bottom: 0px;">
+								<tbody>
+								<tr>
+									<td class="col-xs-1"><b>物料{{$index+1}}名称</b></td>
+									<td class="col-xs-11">{{item.material.name}}</td>
+								</tr>
+							</tbody>
+							</table>
+							<table class="table table-bordered boldTableBorder" style="border-bottom: none !important;margin-bottom: 0px;">
+								<tr>
+									<td class="col-xs-1"><b>规格型号</b></td>
+									<td class="col-xs-5">{{item.material.specificationsModel}}</td>
+									<td class="col-xs-1"><b>物料类别</b></td>
+									<td class="col-xs-5">{{item.material.materialCategory.name}}</td>
+								</tr>
+							</tbody>
+							</table>
+							<table class="table table-bordered boldTableBorder" style="border: 1px solid #e7ecf1 !important;">
+								<tr>
+									<td class="col-xs-1"><b>出库数量</b></td>
+									<td class="col-xs-5">{{item.stockRemovalCount}} ( {{item.material.materialUnit.name}} )</td>
+									<td class="col-xs-1"><b>出库时间</b></td>
+									<td class="col-xs-5">{{item.stockRemovalDate.substr(0,10)}}</td>
+								</tr>
+								</tbody>
+							</table>
+							</div>
+						</div>
+		                <!-- END FORM-->
+		            </div>
+			    </div>
+		 	</div>
+        </div>
+    </div>
+</div>
+<!-- END EXAMPLE TABLE PORTLET-->

@@ -1,0 +1,77 @@
+{
+	"total": 2,
+	"data": [
+		{
+			"id": "1",
+			"maintenanceNumber": "201708150001",
+			"maintenanceRecord":{
+				"ifDone": "1",
+				"progressDescription": "正常维修完成",
+				"maintenanceCategory": {
+					"name": "下水疏通类",
+					"maintenanceType": {
+						"id": "1",
+						"name": "水"
+					}
+				},
+				"maintenanceArea": {
+					"name": "图书馆",
+					"campus": {
+						"id": "1",
+						"name": "长安校区"
+					}
+				}
+			},
+			"address": "二楼东侧301室",
+			"maintenanceContent": "水管漏水",
+			"repairStaff": {
+				"tel": "15555555555",
+				"name": "李处长"
+			},
+			"maintenanceStartDateTime": "2017-05-25 13:20:21",
+			"repairMethod": "微信报修",
+			"maintenanceStaff": {
+				"id": "1",
+				"name": "李四"
+			},
+			"maintenanceTime": "30小时",
+			"maintenanceProgress": "已报修  -- 待受理 -- 已派工 -- 维修中 -- 待评价 -- 已评价 -- 已结束"
+		},
+		{
+			"id": "2",
+			"maintenanceNumber": "201708150002",
+			"maintenanceRecord":{
+				"ifDone": "0",
+				"progressDescription": "重复报修",
+				"maintenanceCategory": {
+					"name": "线路维修类",
+					"maintenanceType": {
+						"id": "1",
+						"name": "电"
+					}
+				},
+				"maintenanceArea": {
+					"name": "男生宿舍楼",
+					"campus": {
+						"id": "1",
+						"name": "白鹿原校区"
+					}
+				}
+			},
+			"address": "7栋8层025室",
+			"maintenanceContent": "板凳修理",
+			"repairStaff": {
+				"tel": "15555555555",
+				"name": "王五"
+			},
+			"maintenanceStartDateTime": "2017-04-25 13:20:21",
+			"repairMethod": "网站报修",
+			"maintenanceStaff": {
+				"id": "1",
+				"name": "赵六"
+			},
+			"maintenanceTime": "0.3小时",
+			"maintenanceProgress": "已报修  -- 待受理 -- 已派工 -- 维修中 -- 已结束"
+		}
+	]
+}

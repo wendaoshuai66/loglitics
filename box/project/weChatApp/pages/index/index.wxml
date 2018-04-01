@@ -1,0 +1,5 @@
+<view class="container">
+  <!-- <image src="/images/index/start02.jpg" style="width:{{windowWidth}}px;Height:{{windowHeight}}px;"></image> -->
+  <image src="/images/index/start.jpg" mode="widthFix" style="width:750rpx; height:1334rpx;"></image>
+</view>
+<loading hidden='{{loadingHidden}}'>加载中...</loading>

@@ -1,0 +1,45 @@
+.label {
+  margin-left: 20rpx;
+  font-size: 30rpx;
+  color: #666;
+}
+
+.imgBox {
+  display: inline-block;
+  padding-left: 20rpx;
+}
+
+.upload, .addImage {
+  width: 100rpx;
+  height: 100rpx;
+}
+
+.addImageBox {
+  display: inline-block;
+  position: relative;
+}
+
+.addImage {
+  margin-right: 20rpx;
+}
+
+.deleteImage {
+  position: absolute;
+  top: -15rpx;
+  right: 5rpx;
+  width: 30rpx;
+  height: 30rpx;
+  background: white;
+  border-radius: 50%;
+  /* transform: translate(-10%,-50%) */
+}
+
+.text {
+  width: 95%;
+  color: black;
+  box-sizing: border-box;
+}
+.textareaSon {
+bottom: -15rpx;
+color: #888;
+}

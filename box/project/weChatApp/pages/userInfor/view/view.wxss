@@ -1,0 +1,254 @@
+.body {
+  background: #f2f5fd;
+}
+.choose_title{
+  font-size: 34rpx;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.campusAndDeparmentText{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.child_style{
+  width: 10rpx;
+  height: 10rpx;
+  border-radius: 100%;
+  background: #666;
+  position: absolute;
+  top: 50%;
+  left: 10rpx;
+  /* 第一个参数控制左右，第二个参数控制上下 */
+  transform: translate(-30rpx,-50%);
+}
+.headImg {
+  width: 150rpx;
+  height: 150rpx;
+  border-radius: 50%;
+  margin-top: 50rpx;
+}
+
+.userType {
+  font-size: 28rpx;
+  padding:0rpx 28rpx 2rpx 28rpx;
+  border: 1px solid #1BA39C;
+  color: #1BA39C;
+  border-radius: 36rpx;
+  margin: 10rpx 0 28rpx 0;
+}
+
+.content {
+  width: 100%;
+  background: white;
+  position: relative;
+  /* margin-top: 80rpx; *//* top:-50rpx; */
+}
+
+.input {
+  display: inline-block;
+  padding-left: 20rpx;
+}
+
+.radio {
+  display: inline-block;
+}
+
+.input-gender {
+  padding-left: 50rpx;
+}
+
+.content_last {
+  width: 90%;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 5rpx 5rpx 50rpx #dedede;
+  background: white;
+}
+
+.input-group {
+  border: 0;
+  border-bottom: 1px solid #e5e5e5;
+  margin-top: 10rpx;
+  margin-bottom: 10rpx;
+}
+.choose_input_group{
+  border: 1px solid #e5e5e5;
+  margin-top: 20rpx;
+  margin-bottom: 30rpx;
+}
+.choose_input_group .picker{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 85%;
+}
+.contentHead {
+  width: 100%;
+  height: 30rpx;
+  background: #f2f5fd;
+}
+.child{
+  color:#888 !important;
+  font-size: 28rpx;
+}
+.picker {
+  padding-left: 30rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mask{
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 888;
+}
+
+.save {
+  margin-top: 20rpx;
+  width: 300rpx;
+}
+
+.treeTitle {
+  font-size: 32rpx;
+  /* width: 93%; */
+  /* margin: 0 auto; */
+  /* border: 1px solid #e5e5e5; */
+   /* border-radius: 5px;  */
+  padding: 0 20rpx 20rpx 20rpx;
+  box-sizing: border-box;
+  color: #666;
+  background: white;
+}
+
+.tree {
+  font-size: 30rpx;
+  color: #333;
+  height: 74rpx;
+  line-height: 74rpx;
+  border-bottom:1px solid #e5e5e5;
+  position: relative;
+}
+
+.choose_content {
+  /* position: absolute;
+  top: 50%;
+  left: 50%; */
+  margin: 50% auto;
+  /* transform: translate(-50%,-50%); */
+  width: 80%;
+  /* height: 50%; */
+  background: white;
+  overflow-y: auto;
+  overflow-x: hidden;
+  border-radius: 5px;
+  padding-bottom: 40rpx;
+}
+
+.chooseHead {
+  height: 50rpx;
+  /* background: greenyellow */
+}
+
+.content_head {
+  width: 100%;
+  height: 80rpx;
+  background: #6AA2E0;
+  text-align: center;
+  line-height: 80rpx;
+  color: #fff;
+  font-size: 32rpx;
+}
+
+.cancel {
+  height: 80rpx;
+  line-height: 80rpx;
+  float: right;
+  font-size: 50rpx;
+  color: white;
+  margin-right: 20rpx;
+}
+
+.modifyBtn{
+  position: absolute;
+  top: 20rpx;
+  right: 40rpx;
+  font-size: 28rpx;
+  color: #E87E04;
+}
+.mask {
+  width: 100%;
+  height: 100%;
+  background: black; 
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 888;
+  opacity: 0.5; 
+}
+@keyframes maskStart{
+  from{
+    opacity: 0;
+  }
+  to{
+    opacity: 0.5;
+  }
+}
+
+.chooseBox {
+  position: fixed;
+  width: 100%;
+  /* height: 200rpx; */
+  left: 0;
+  bottom: 0;
+  /* transform: translateY(100rpx); */
+  z-index: 999;
+  padding-bottom: 50rpx;
+  background: white;
+}
+
+@keyframes opcityStart {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+.cancelBtn{
+  float: left;
+  font-size: 34rpx;
+  color: #888;
+  padding-left: 20rpx;
+}
+.enterBtn{
+  float: right;
+  font-size: 34rpx;
+  color: #1AAD19;
+  padding-right: 20rpx;
+}
+.choose_head{
+  width: 100%;
+  height: 70rpx;
+  line-height: 70rpx;
+  background: white;
+  border-top: 1px solid #ccc;
+  position: relative;
+}
+.departmentClass{
+  max-height: 500rpx;
+}

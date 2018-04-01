@@ -1,0 +1,54 @@
+<view class="">
+  <form bindsubmit="formSubmit" bindreset="formReset">
+    <!-- <view class="container-title">失物/招领</view> -->
+    <view class="container-body">
+      <view class="input-group">
+        <view class="input-label">
+          <text class="">类别:</text>
+        </view>
+        <view class="input-content">
+          <radio-group class="" bindchange="typeChange">
+            <label class="radio" wx:for="{{typeItems}}" wx:key="{{index}}" data-index="{{index}}">
+              <radio value="{{item.value}}" checked="{{item.checked}}" />{{item.name}}
+            </label>
+          </radio-group>
+        </view>
+      </view>
+      <view class="input-group">
+        <view class="input-label">
+          <text class="">标题:</text>
+        </view>
+        <view class="input-content">
+          <input id="text" value="{{title}}" name="title" type="text" maxlength="30" placeholder="输入长度不能大于30" />
+        </view>
+      </view>
+
+      <view class="input-group">
+        <view class="describe">
+          <text class="">内容:</text>
+        </view>
+        <view class="input-textarea">
+          <textarea show-confirm-bar='' id="text" value="{{description}}" name="description" maxlength="200" placeholder="请输入你的失物/招领的详细描述, 字数保持在200以内" bindinput='listenTextareaFromDescription'>
+          <view class='textareaSon'>{{descriptionNumber}}/200</view>
+          </textarea>
+        </view>
+      </view>
+      <!-- 上传图片 -->
+      <view class="label">
+        <text class="text">选择图片:</text>
+      </view>
+      <view class="input-group imgHeight">
+        <view class=" imgBox">
+          <view class='addImageBox' wx:for="{{imgPathItems}}" data-index="{{index}}" wx:key="{{index}}">
+            <image class='addImage' data-index='{{index}}' bindtap='previewClick' src='{{item}}'></image>
+            <image data-index="{{index}}" class='deleteImage' bindtap='deleteImageClick' src='../../../images/server/deleteImage.png'></image>
+          </view>
+          <image hidden='{{imgPathItems.length > 9}}' class='upload' bindtap='clickChooseImage' src='../../../images/server/uploadImage.png'></image>
+        </view>
+      </view>
+
+      <button class="confirm-btn" hover-class="other-button-hover" form-type="submit">保  存</button>
+
+    </view>
+  </form>
+</view>

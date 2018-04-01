@@ -1,0 +1,27 @@
+<!-- BEGIN MAIN CONTENT -->
+<div class="portlet box blue" ng-controller="serviceController">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-comments-o"></i>
+            <span class="caption-subject  uppercase">便民服务</span>
+        </div>
+    </div>
+	<div class="portlet-body dataTables_wrapper">
+		<div class="row">
+              <div data-ng-include="'views/service/top.html'"></div>          
+        </div>
+        <div class="row" style="margin-top: 12px;">
+            <div class="col-xs-12 col-sm-12 col-xs-12 footer-block">
+                <ul class="friendship-link">
+                    <li ng-repeat="item in serviceList">
+                        <!--<span  style="font-weight: 700; padding-right: 5px;">•</span>-->
+                        <i class="fa fa-star" style="color: #40D1FF;"></i>
+                        <a style="color: #67809F;" href="{{item.url}}" data-original-title="rss" class="" target="_blank">
+                            {{item.title}}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+	</div>
+</div>

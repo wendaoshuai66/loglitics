@@ -1,0 +1,58 @@
+<div ng-controller="dutyRegisterTwoStepController">
+    <div class="table-toolbar">
+        <div class="table-toolbar">
+            <div class="tabbable tabbable-custom tabbable-noborder tabbable-reversed">
+                <!-- 工种,人员下拉框 -->
+                <div class="col-md-8 col-sm-6">
+                    <div class="col-md-12">
+                        <div class="form-group" style="line-height: 32px;padding-bottom: 50px;">
+                            <label class="col-md-3">
+                                <span style="font-size: 16px;">排班工种</span>
+                            </label>
+                            <div class="col-md-9">
+                                <select name="selectSearch" id="selectOne" ui-select2="select2Options" class="form-control" ng-model="typeSelectData"
+                                        ng-options="item.id as item.name for item in maintenanceTypeSelectData" ng-change="typeSelectChange()">
+                                    <option value="">-- 请选择 --</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div ng-if="typeIsValid" ng-repeat="type in selectedTypeInfo">
+                            <div class="form-group" style="padding-bottom: 60px;line-height: 32px;">
+                                <label class="col-md-3">
+                                   <!--<span style="font-size: 16px;">{{type.name}}：排班人员</span>-->
+                                    <span style="font-size: 16px;">排班人员</span>
+                                </label>
+                                <div class="col-md-9">
+                                    <select ui-select2="multipleSelect2" multiple="multiple" data-placeholder="-- 请选择 --"
+                                            ng-model="$parent.maintenanceItems[type.id]" ng-change="checkAllTypeHasOwnWorker()"
+                                            ng-options="worker.id as worker.name for worker in workerFromType{{type.id}}" required>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 提示 -->
+                <div class="col-md-4 col-sm-6">
+                    <div class="note note note-info note-bordered" ng-if="!allTypeHasOwnWorkerFlag">
+                        <h4 style="font-weight: bold;font-size: 16px;"><span class="label" style="font-size: 16px;color: red;">信息提示:  &nbsp;请保证每个工种最少留一人值班</span></h4>
+                    </div>
+                    <div class="note note note-info note-bordered" ng-if="allTypeHasOwnWorkerFlag">
+                        <h4 style="font-weight: bold;font-size: 16px;color: red;"><span class="label" style="font-size: 16px;color: red;">信息提示:  &nbsp;确认添加结果无误,&nbsp;点击下一步</span></h4>
+                    </div>
+                    <ul class="list-group hide">
+                        <li class="list-group-item list-group-item-success">
+                            <h3>
+                                排班工种以及对应的值班人数
+                            </h3>
+                        </li>
+                        <li class="list-group-item list-group-item-info" ng-class="maintenanceItems[type.id].length>0?'list-group-item-info':'list-group-item-danger'" ng-repeat="type in selectedTypeInfo">
+                            <span class="badge" ng-class="maintenanceItems[type.id].length>0?'badge-danger':''">{{maintenanceItems[type.id].length+0}}</span>
+                            <h4>{{type.name}}</h4>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

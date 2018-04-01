@@ -1,0 +1,49 @@
+<view wx:if="{{approvalStatus != 0 && approvalStatus != 1}}"></view>
+<view wx:elif="{{approvalStatus == 1 && status == 1}}">
+<swiper class="container-photo" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" circular="{{circular}}" interval="{{interval}}" duration="{{duration}}" indicator-active-color="{{indicatorActiveColor}}" indicator-color="{{indicatorColor}}" bindchange="bindchange">
+  <block wx:for="{{slideData}}" wx:key="{{index}}" data-index="{{index}}">
+    <swiper-item>
+      <image src="{{item.slidePicture}}" class="service-photo" bindtap="swipclick" />
+    </swiper-item>
+  </block>
+</swiper>
+<view class="service-category" bindtap="toAddMaintenance">
+  <text class="iconfont icon-repair"></text> 我要报修
+  <span>
+    <image src="/images/enter.png" class="enter"></image>
+  </span>
+</view>
+<view class="service-category" bindtap="toAddSP">
+  <text class="iconfont icon-promotiontheseller"></text> 跳蚤市场
+  <span>
+    <image src="/images/enter.png" class="enter"></image>
+  </span>
+</view>
+<view class="service-category" bindtap="toAddLF">
+  <text class="iconfont icon-laba"></text> 失物招领
+  <span>
+    <image src="/images/enter.png" class="enter"></image>
+  </span>
+</view>
+<view class="service-category" bindtap="toAddSugget">
+  <text class="iconfont icon-advice"></text> 建言献策
+  <span>
+    <image src="/images/enter.png" class="enter"></image>
+  </span>
+</view>
+<view class="service-category" bindtap="toWorkLog" wx:if="{{role == 1 || role == 0}}">
+  <text class="iconfont icon-work"></text> 工作日志
+  <span>
+    <image src="/images/enter.png" class="enter"></image>
+  </span>
+</view>
+
+
+</view>
+<view wx:else>
+      <view class='warn_content'>账号审核暂未通过，此功能暂不开放</view>
+</view>
+
+ <loading hidden="{{loadingHidden}}">
+  加载中...
+</loading> 

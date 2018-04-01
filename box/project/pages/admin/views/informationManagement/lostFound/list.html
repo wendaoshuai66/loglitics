@@ -1,0 +1,165 @@
+<!-- BEGIN MAIN CONTENT -->
+<div class="row" ng-controller="lostFoundController">
+    <div class="col-md-12">
+        <!-- BEGIN EXAMPLE TABLE PORTLET-->
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption font-dark">
+                    <i class="icon-settings font-dark"></i>
+                    <span class="caption-subject bold uppercase"> 失物招领信息列表 </span>
+                </div>
+                <div class="actions">
+                    <div class="btn-group" data-toggle="buttons">
+                    	<!--
+                    	<button class="btn purple dropdown-toggle" data-toggle="dropdown">
+                    		工具
+                            <i class="fa fa-angle-down"></i>
+                        </button>
+                        <ul class="dropdown-menu pull-right">
+                            <li>
+                                <a href="javascript:;">
+                                    <i class="fa fa-print"></i> 打印列表
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">
+                                    <i class="fa fa-file-pdf-o"></i> 导出 PDF
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">
+                                    <i class="fa fa-file-excel-o"></i> 导出 Excel
+                                </a>
+                            </li>
+                        </ul>
+                        -->
+                    </div>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <div class="table-toolbar">
+                    <div class="table-toolbar">
+                        <div class="tabbable tabbable-custom tabbable-noborder tabbable-reversed">
+                            <form class="form-horizontal">
+                                <div class="tab-pane" id="tab">
+                                    <!-- 查询条件-->
+                                    <div class="portlet light bordered">
+                                        <div class="portlet-body">
+                                            <div class="form-group text-center">
+                                                <label class="control-label col-md-1">标题</label>
+                                                <div class="col-md-5">
+                                                    <input type="text" class="form-control" placeholder=""
+                                                           ng-model="searchObj.title">
+                                                </div>
+                                                <label class="control-label col-md-1">发布时间</label>
+                                                <div class="col-md-5">
+                                                    <div class="col-md-5 searchTime">
+                                                        <div id="addDateTimeStart" class="input-group date form_datetime">
+                                                            <input  type="text" size="16" readonly name="date" class="form-control" ng-model="searchObj.addDateTimeStart" required>
+                                                            <span class="input-group-btn include">
+                                                                <button class="btn default date-reset" type="button">
+                                                                    <i class="fa fa-times"></i>
+                                                                </button>
+                                                                <button class="btn default my-date-set" type="button">
+                                                                    <i class="fa fa-calendar date-set"></i>
+                                                                </button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <label class="col-md-2 searchTimeLabel">至</label>
+                                                    <div class="col-md-5 searchTime">
+                                                        <div id="addDateTimeEnd" class="input-group date form_datetime">
+                                                            <input  type="text" size="16" readonly name="date" class="form-control" ng-model="searchObj.addDateTimeEnd" required>
+                                                            <span class="input-group-btn include">
+                                                                <button class="btn default date-reset" type="button">
+                                                                    <i class="fa fa-times"></i>
+                                                                </button>
+                                                                <button class="btn default my-date-set" type="button">
+                                                                    <i class="fa fa-calendar date-set"></i>
+                                                                </button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group text-center">
+                                            	<label class="control-label col-md-1">类别</label>
+                                                <div class="col-md-5">
+                                                    <select name="selectSearch" ui-select2="select2NoSearch" class="form-control" ng-model="searchObj.type"
+                                                            ng-options="item.id as item.name for item in lostFoundStatusData">
+                                                        <option value="">-- 请选择 --</option>
+                                                    </select>
+                                                </div>
+                                                <label class="control-label col-md-1">审核状态</label>
+                                                <div class="col-md-5">
+                                                    <select name="selectSearch3" ui-select2="select2NoSearch" class="form-control" ng-model="searchObj.approvalStatus"
+                                                            ng-options="item.id as item.name for item in approvalStatusData">
+                                                        <option value="">-- 请选择 --</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                          	<div class="form-group text-center">
+                                          		<label class="control-label col-md-1">发布人</label>
+                                                <div class="col-md-5">
+                                                    <input type="text" class="form-control" placeholder=""
+                                                           ng-model="searchObj.person.name">
+                                                </div>
+                                                <label class="control-label col-md-1">完成状态</label>
+                                                <div class="col-md-5">
+                                                    <select name="selectSearch2" ui-select2="select2NoSearch" class="form-control" ng-model="searchObj.dealStatus"
+                                                            ng-options="item.id as item.name for item in finishedlSelectData">
+                                                        <option value="">-- 请选择 --</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-actions">
+                                        <div class="button-group text-center">
+                                            <div class="col-md-12">
+                                                <button class="btn btn-sm btn-success btn_search" ng-click="search()"
+                                                        style="margin-right: 25px;">
+                                                    <i class="fa fa-search"></i> 查询
+                                                </button>
+                                                <button class="btn btn-sm grey-cascade" ng-click="reset()">
+                                                    <i class="fa fa-times"></i> 重置
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <table class="table table-striped table-bordered table-hover table-checkable order-column dt-responsive" id="lostFoundDataTable">
+                    <thead>
+                    <tr>
+                        <th class="index_width"> 序号</th>
+                        <th class="title_width"> 标题</th>
+                        <th class="price_width"> 类别</th>
+                        <th class="none"> 内容</th>
+                        <th class="col-md-1"> 发布人</th>
+                        <th class="status_width"> 手机号</th>
+                        <th class="datetime_width"> 发布时间</th>
+                        <th class="status_width"> 通过审核</th>
+                        <!-- <th class="none"> 审核人员 </th> -->
+                        <th class="none"> 审核时间</th>
+                        <th class="none"> 浏览次数</th>
+                        <th class="status_width"> 是否完成</th>
+                        <th class="opt_width_3"> 操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            	<!-- 删除的模态框 -->
+				<div data-ng-include="'tpl/confirmRemove.html'"></div>
+                <!-- 状态改变的模态框 -->
+                <div data-ng-include="'tpl/confirmChangeStatus.html'"></div>
+            </div>
+        </div>
+        <!-- END EXAMPLE TABLE PORTLET-->
+    </div>
+</div>
+<!-- END MAIN CONTENT -->

@@ -1,0 +1,32 @@
+<div id="carousel2Dom" class="carouselShadow" style="width: 100%;border-radius: 4px">
+    <div class="shutter" id="shutter2">
+        <div class="shutter-img">
+            <a href="#" data-shutter-title=""><img src="./images/carousel/banner01.jpg" alt="#"></a>
+            <a href="#" data-shutter-title=""><img src="./images/carousel/banner02.jpg" alt="#"></a>
+            <a href="#" data-shutter-title=""><img src="./images/carousel/banner03.jpg" alt="#"></a>
+            <a href="#" data-shutter-title=""><img src="./images/carousel/banner04.jpg" alt="#"></a>
+        </div>
+        <ul class="shutter-btn hide">
+            <li class="prev"></li>
+            <li class="next"></li>
+        </ul>
+        <div class="shutter-desc hide">
+            <p>banner01.jpg</p>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        var parent = $('#carousel2Dom');
+        var width = parent.width();
+        $('#shutter2').shutter({
+            shutterW: width, // 容器宽度
+            shutterH: 342, // 容器高度
+            isAutoPlay: true, // 是否自动播放
+            playInterval: 3000, // 自动播放时间
+            curDisplay: 0, // 当前显示页
+            fullPage: false, // 是否全屏展示
+            wayToPlay: 'special'
+        });
+    });
+</script>

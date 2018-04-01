@@ -1,0 +1,123 @@
+{
+	"total": 3,
+	"data": [
+		{
+			"id": "23",
+			"campus": {
+				"id": "1",
+				"name": "白鹿原校区"
+			},
+			"dredgeThePipeline": {
+				"id": [
+					"1",
+					"2",
+					"3"
+				]
+			},
+			"waterTap": {
+				"id": [
+					"1",
+					"2",
+					"3"
+				]
+			},
+			"publicLighting": {
+				"id": [
+					"1",
+					"2",
+					"3"
+				]
+			},
+			"indoorLighting": {
+				"id": [
+					"1",
+					"2",
+					"3"
+				]
+			},
+			"name": "家属区",
+			"status": 1,
+			"description": "类别1描述",
+			"addDateTime": "2017-04-25 13:20:21",
+			"updateDateTime": "2017-04-25 13:20:21"
+		}, {
+			"id": "22",
+			"campus": {
+				"id": "2",
+				"name": "长安校区"
+			},
+			"dredgeThePipeline": {
+				"id": [
+					"1",
+					"2",
+					"3"
+				]
+			},
+			"waterTap": {
+				"id": [
+					"1",
+					"2",
+					"3"
+				]
+			},
+			"publicLighting": {
+				"id": [
+					"1",
+					"2",
+					"3"
+				]
+			},
+			"indoorLighting": {
+				"id": [
+					"1",
+					"2",
+					"3"
+				]
+			},
+			"name": "教学区",
+			"status": 1,
+			"description": "类别2描述",
+			"addDateTime": "2017-04-25 13:20:21",
+			"updateDateTime": "2017-04-25 13:20:21"
+		}, {
+			"id": "22",
+			"campus": {
+				"id": "2",
+				"name": "长安校区"
+			},
+			"dredgeThePipeline": {
+				"id": [
+					"1",
+					"2",
+					"3"
+				]
+			},
+			"waterTap": {
+				"id": [
+					"1",
+					"2",
+					"3"
+				]
+			},
+			"publicLighting": {
+				"id": [
+					"1",
+					"2",
+					"3"
+				]
+			},
+			"indoorLighting": {
+				"id": [
+					"1",
+					"2",
+					"3"
+				]
+			},
+			"name": "生活区",
+			"status": 1,
+			"description": "类别2描述",
+			"addDateTime": "2017-04-25 13:20:21",
+			"updateDateTime": "2017-04-25 13:20:21"
+		}
+	]
+}

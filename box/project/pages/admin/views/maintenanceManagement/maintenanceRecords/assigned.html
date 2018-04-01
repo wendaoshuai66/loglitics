@@ -1,0 +1,36 @@
+<div id="assignedModal" class="modal fade" tabindex="-1" data-backdrop="static" aria-hidden="true" data-width="400" ng-controller="maintenanceRecordsAssignedController">
+    <div class="modal-header">
+        <button type="button" class="modal_close" data-dismiss="modal" aria-hidden="true">x</button>
+        <h4 class="modal-title"><p>选择手动指派人员名称</p></h4>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <!-- BEGIN FORM-->
+            <form>
+                <div class="form-body">
+                    <div class="form-group col-md-12">
+                        <label class="col-md-12 control-label">
+                           	维修人员
+                            <span class="fa fa-bell-o"></span>
+                        </label>
+                        <div class="col-md-12">
+                            <select ui-select2="select2Options" style="width: 100%;" name="select"
+                                    class="form-control" ng-model="data.assignedWorker.id"
+                                    ng-options="item.id as item.name for item in assignedWorkerList">
+                                <option value="">-- 请选择 --</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <!-- END FORM-->
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" data-dismiss="modal" class="btn btn-outline dark"><i class="fa fa-reply"></i> 关闭</button>
+        <!-- 验证成功后取消禁用 -->
+        <button type="button" ng-disabled="!data.assignedWorker.id" ng-click="assignedSave()" class="btn green-haze"><i class="fa fa-check"></i>
+           	保存
+        </button>
+    </div>
+</div>

@@ -1,0 +1,34 @@
+<div class="portlet box blue">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-cogs"></i>维修质量分类统计 - 维修评价
+        </div>
+    </div>
+    <div class="portlet-body" ng-controller="evaluationStatisticsController">
+        <div class="table-responsive" style="overflow-x: hidden">
+        <date-range-and-labelauty></date-range-and-labelauty>
+        </div>
+        <div class="table-responsive">
+        <table class="table table-bordered table-striped table-hover">
+            <thead>
+            <tr>
+                <th>评价类型</th>
+                <th ng-repeat="item in data[0].data">{{item.name}}</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>维修量/单</td>
+                <td ng-repeat="item in data[0].data track by $index">{{item.value}}</td>
+            </tr>
+            </tbody>
+        </table>
+        </div>
+        <div class="table-responsive" style="overflow-x: hidden">
+	        <div id="evaluationPie" class="myChart"></div>
+	        <div ng-if="noEChartsData">
+	            <img src="./../assets/global/img/noData.png" class="center-block" style="width: 200px;margin: 30px auto;">
+	        </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,16 @@
+
+<div class="row" ng-controller="UserProfileController" style="margin-top: 35px;">
+    <div class="col-xs-12">
+        <div class="profile-sidebar heightL">
+            <div class="portlet light profile-sidebar-portlet">
+                <div class="profile-userpic">
+                    <img ng-src="{{user.headPicture}}" class="img-responsive" alt="图片不见了">
+                </div>
+                <div class="profile-usertitle">
+                    <div class="profile-usertitle-name">{{user.name}}</div>
+                </div>
+            </div>
+        </div>
+        <div ui-view class="profile-content fade-in-up"> </div>
+    </div>
+</div>

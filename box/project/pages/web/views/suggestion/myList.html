@@ -1,0 +1,90 @@
+<!--Banner图-->
+<img class="top_img" src="images/suggestion/banner.jpg"/>
+<div class="portlet box blue" ng-controller="mySuggestionController">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-envelope-o"></i>
+            <span class="caption-subject  uppercase">我的建言献策</span>
+        </div>
+        <div class="actions">
+            <a class="btn public-button" ui-sref="suggestionAdd">
+                <i class="fa fa-plus"></i> 我要献策
+            </a>
+        </div>
+        <div class="actions  mgright" ng-if="loginStatus">
+            <a class="btn public-button" ui-sref="suggestionList">
+                <i class="fa fa-envelope-o"></i> 全部建言献策
+            </a>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="portlet-body dataTables_wrapper">
+            <div class="suggestionList general-item-list"
+                 ng-repeat="item in suggestionList | orderBy:'addDateTime':'desc'">
+                <table class="list-border hide">
+                    <tbody>
+                    <tr>
+                        <td>标题</td>
+                        <td colspan="3" style="position: relative;overflow: hidden; line-height:42px;">
+                            {{item.title}}
+                            <!--
+                            <button ng-class="item.approvalStatus==1? 'btn blue btn-outline btnstatus' : 'btn red btn-outline btnstatus' " style="float: right;">
+                                <i ng-class="item.approvalStatus==1? 'fa fa-check complate' :'fa fa-times' ">
+                                    {{item.approvalStatus=='1'? '审核通过' : '审核未通过'}}
+                                </i>
+                            </button>
+                            -->
+                            <div ng-class="item.approvalStatus==1? 'status blue' : 'status red' ">
+                                {{item.approvalStatus=='1'? '审核通过' : '审核未通过'}}
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-xs-1">作者</td>
+                        <td class="col-xs-7">{{item.author.name}}</td>
+                        <td class="col-xs-2">发布时间</td>
+                        <td class="col-xs-2">{{item.addDateTime}}</td>
+                    </tr>
+                    <tr>
+                        <td>内容</td>
+                        <td colspan="3" style="height:80px;min-height:80px">{{item.article}}</td>
+                    </tr>
+                    <tr ng-if="item.reply">
+                        <td>回复</td>
+                        <td colspan="3" style="height:80px;min-height:80px">{{item.reply}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="item" style="border-bottom:  1px solid #e5e5e5;padding: 0 0 6px 0">
+                    <div class="item-head">
+                        <div style="width: 100%;height: 60px;">
+                            <div style="width: 88%;height: 60px;float: left;">
+                                <div style="margin: 14px 0;">
+                                    <p class="item-name" style="margin-left: 0;color: #2A7CC9;font-size: 16px;">{{item.title}}</p>
+                                </div>
+                                <div class="mt-author-datetime" style="color: #999;">
+                                    <span class="fa fa-clock-o"></span>
+                                    <span class="item-label ng-binding">{{item.addDateTime}}</span>
+                                </div>
+                            </div>
+                            <div ng-class="item.approvalStatus==1? 'status blue' : 'status red' ">
+                                {{item.approvalStatus=='1'? '审核通过' : '审核未通过'}}
+                            </div>
+                        </div>
+                        <div class="item-body" style="width: 100%;"> {{item.article}}</div>
+                        <div class="item-body" ng-if="item.reply" style="color: #999;width: 100%;">
+                            <span style="color: #36C6D3;font-weight: bold;">回复：</span>{{item.reply}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- paging -->
+            <div class="row" ng-if="suggestionList.length>0">
+                <div data-ng-include="'tpl/pages.html'"></div>
+            </div>
+            <div class="" ng-if="suggestionList.length==0">
+            	没有查询出数据
+           	</div>
+        </div>
+    </div>
+</div>

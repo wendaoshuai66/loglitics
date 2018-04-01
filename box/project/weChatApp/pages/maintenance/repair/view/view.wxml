@@ -1,0 +1,373 @@
+<view class="body" style="{{showSuccess?'':'height:'+windowHeight+'px'}}">
+  <!-- 添加物料 标记完成 按钮 start -->
+  <button class='addMateriel' style="{{showMaterielBtn?'display:inline-block':'display:none'}}" bindtap='showMateriel'>添加物料领用</button>
+  <button class='success' style="{{showSuccessBtn?'display:inline-block':'display:none'}}" bindtap='showSuccess'>标记维修完成</button>
+  <!-- 添加物料 标记完成 end -->
+  <view class='box'>
+    <view class='title'>维修基本信息</view>
+    <view class='head'>
+      <view class='now'>
+        <view class='li'>
+          <span class="content-title">维修单号</span>\t:\t{{list.maintenanceNumber}}</view>
+        <view class='li'>
+          <span class="content-title">报修时间</span>\t:\t{{list.addDateTime}}</view>
+        <view class='li'>
+          <span class="content-title">报修人员</span>\t:\t{{list.repairStaff.name}} {{list.repairStaff.tel}}
+        </view>
+        <view class='now'>
+          <view class='li' wx:if="{{list.repairMethod == 1}}">
+            <span class="content-title">报修方式</span>\t:\t微信报修
+          </view>
+          <view class='li' wx:else>
+            <span class="content-title">报修方式</span>\t:\t网页报修</view>
+        </view>
+        <view class='li'>
+          <span class="content-title">维修标题</span>\t:\t{{list.maintenanceItemName}}</view>
+        <view class='li pdLeft'>
+          <span class="content-title">所属校区</span>\t:\t{{list.maintenanceRecord.maintenanceArea.campus.name}}</view>
+        <view class='li pdLeft'>
+          <span class="content-title">维修区域</span>\t:\t{{list.maintenanceRecord.maintenanceArea.name}}</view>
+        <view class='li'>
+          <span class="content-title">详细地址</span>\t:\t{{list.address}}</view>
+      </view>
+      <view class='now'>
+        <view class='li'>
+          <span class="content-title">维修项目</span>\t:\t{{list.maintenanceRecord.maintenanceCategory.maintenanceType.name}}</view>
+        <view class='li'>
+          <span class="content-title">维修类别</span>\t:\t{{list.maintenanceRecord.maintenanceCategory.name}}</view>
+      </view>
+      <view class='boxBottom'>
+        <view class='li'>
+          <span class="content-title">维修内容</span>\t:\t{{list.maintenanceContent}}</view>
+      </view>
+    </view>
+  </view>
+  <view class='box' style="{{showHandle?'display:block':'display:none'}}" wx:if="{{list.maintenanceRecord.maintenanceStatus.name != '待受理' && list.maintenanceRecord.maintenanceStatus.name != '待派工'}}">
+
+    <view class='title'>
+      维修处理信息
+    </view>
+    <view class='head'>
+      <view class='now'>
+        <view class='li'>
+          <span class="content-title">维修部门</span>\t:\t{{list.maintenanceStaff.maintenanceWorker.department.campus.name}}\t\t{{list.maintenanceStaff.maintenanceWorker.department.name}}
+        </view>
+        <view class='li'>
+          <span class="content-title">维修人员</span>\t:\t{{list.maintenanceStaff.name}}  {{list.maintenanceStaff.tel}}
+        </view>
+      </view>
+      <view class='now'>
+        <view class='li'>
+          <span class="content-title">开始时间</span>\t:\t{{list.maintenanceStartDateTime}}
+        </view>
+        <view class='li'>
+          <span class="content-title">结束时间</span>\t:\t{{list.maintenanceEndDateTime}}
+        </view>
+      </view>
+      <view class='now'>
+        <view class='li'>
+          <span class="content-title">维修用时</span>\t:\t{{list.maintenanceTime?list.maintenanceTime+'小时':list.maintenanceTime}}
+        </view>
+        <view class='li'>
+          <span class="content-title">维修状态</span>\t:\t{{list.maintenanceRecord.maintenanceStatus.name}}({{list.maintenanceRecord.maintenanceStatus.percent}})
+        </view>
+        <view class='li' style="{{list.maintenanceRecord.maintenanceStatus.name == '无法维修'?'display:block':'display:none'}}">
+          <span class="content-title">无法维修原因</span>\t:\t{{list.maintenanceRecord.unableRepairReason}}
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 图片区域 start -->
+  <view class='box' wx:if="{{imgUrls.length != 0}}">
+    <view class='title'>报修图片</view>
+    <view class='image_box'>
+      <swiper class='swiper' indicator-dots="{{imgUrls.length == 1?'':'true'}}" circular="true" interval="5000" duration="500">
+        <block wx:for="{{imgUrls}}" wx:key="{{index}}">
+          <swiper-item>
+            <image bindtap='perviewImage' data-src="{{item}}" src="{{item}}" class="image" />
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+  </view>
+  <!-- 图片区域 end -->
+
+  <view class='box'>
+    <view class=''>
+      <view class='statuPic'>
+        <view class="title">维修进度</view>
+        <view class='pic'>
+          <view class='statuPic_mask' hidden="{{!(autoFlag == 0)}}"></view>
+          <!-- 小圆点 start-->
+          <!-- 报修开始小圆点 -->
+          <view class='roundSmall_start' style="background:{{status >=1 && progressFlag?roundBackgroundColor:'#EBEBEB'}}"></view>
+          <!-- 待受理小圆点 -->
+          <view class='roundSmall_1' style="background:{{status >=1 && progressFlag?roundBackgroundColor:'#EBEBEB'}}"></view>
+          <!-- 待派工小圆点组合 -->
+          <view class='roundSmall_2' style="background:{{(status >=2 && autoFlag == 0 && progressFlag)?roundBackgroundColor:'#EBEBEB'}}"></view>
+          <view class='roundSmall_3' style="background:{{(status > 2 && autoFlag == 0 && progressFlag)?roundBackgroundColor:'#EBEBEB'}}"></view>
+          <!-- 维修中小圆点 -->
+          <view class='roundSmall_4' style="background:{{status >= 3 && progressFlag?roundBackgroundColor:'#EBEBEB'}}"></view>
+          <!-- 维修中下分支的小圆点 -->
+          <view class='roundSmall_5' style="background:{{status > 3 && progressFlag?roundBackgroundColor:'#EBEBEB'}}"></view>
+          <!-- 重复报修小圆点组合 -->
+          <view class='roundSmall_6' style="background:{{status == 7 && progressFlag?roundBackgroundColor:'#EBEBEB'}}"></view>
+          <view class='roundSmall_7' style="background:{{status == 7 && progressFlag?roundBackgroundColor:'#EBEBEB'}}"></view>
+          <!-- 无法维修小圆点组合 -->
+          <view class='roundSmall_8' style="background:{{status == 8 && progressFlag?roundBackgroundColor:'#EBEBEB'}}"></view>
+          <view class='roundSmall_9' style="background:{{status == 8 && progressFlag?roundBackgroundColor:'#EBEBEB'}}"></view>
+          <!-- 待评价小圆点 -->
+          <view class='roundSmall_10' style="background:{{(status == 4 || status == 5 || status == 6)&& progressFlag?roundBackgroundColor:'#EBEBEB'}}"></view>
+          <!-- 评价待审核小圆点 -->
+          <view class='roundSmall_11' style="background:{{(status == 5 || status == 6)&& progressFlag?roundBackgroundColor:'#EBEBEB'}}"></view>
+          <!-- 报修结束 小圆点 -->
+          <view class='roundSmall_end' style="background:{{(status == 6 || status == 7 || status == 8)&& progressFlag?roundBackgroundColor:'#EBEBEB'}}"></view>
+          <!-- 小圆点 end -->
+          <!-- 主干进度条 start -->
+          <progress class="trunk" percent="{{statusTrunk}}" active></progress>
+          <!-- 主干进度条 end -->
+          <!-- 待派工进度条组合开始 -->
+          <progress class="autoDis_1" percent="{{autoFlag == 0 && status >= 2 && progressFlag?'100':'0'}}" active></progress>
+          <progress class='autoDis_2' percent="{{autoFlag == 0 && status >= 2 && progressFlag?'100':'0'}}" active></progress>
+          <view class='auto_text' style="color:{{status >=2 && autoFlag == 0 && progressFlag?textColor:'#EBEBEB'}}">待派工</view>
+          <progress class='autoDis_3' percent="{{autoFlag == 0 && status > 2 && progressFlag?'100':'0'}}" active></progress>
+          <progress class='autoDis_4' percent="{{autoFlag == 0 && status > 2 && progressFlag?'100':'0'}}" active></progress>
+          <!-- 待派工进度条组合结束 -->
+          <!-- 重复报修进度条组合 start -->
+          <progress class='repeat_1' percent="{{status == 7 && progressFlag?'100':'0'}}" active></progress>
+          <progress class='repeat_2' percent="{{status == 7 && progressFlag?'100':'0'}}" active></progress>
+          <progress class='repeat_3' percent="{{status == 7 && progressFlag?'100':'0'}}" active></progress>
+          <progress class='repeat_4' percent="{{status == 7 && progressFlag?'100':'0'}}" active></progress>
+          <!-- 重复报修进度条组合 end -->
+          <!-- 无法维修进度条组合 start -->
+          <progress class='unable_1' percent="{{status == 8 && progressFlag?'100':'0'}}" active></progress>
+          <progress class='unable_2' percent="{{status == 8 && progressFlag?'100':'0'}}" active></progress>
+          <progress class='unable_3' percent="{{status == 8 && progressFlag?'100':'0'}}" active></progress>
+          <progress class='unable_4' percent="{{status == 8 && progressFlag?'100':'0'}}" active></progress>
+          <!-- 无法维修进度条组合 end -->
+          <view class='NO_start' style="color:{{status >= 1 && progressFlag?textColor:'#EBEBEB'}}">报修开始</view>
+          <view class='NO_1' style="color:{{status >= 1 && progressFlag?textColor:'#EBEBEB'}}">-待受理</view>
+          <view class='NO_2' style="color:{{status > 1 && autoFlag == 1 && progressFlag?textColor:'#EBEBEB'}}">自动调度-</view>
+          <view class='NO_3' style="color:{{status >= 3 && progressFlag?textColor:'#EBEBEB'}}">-维修中</view>
+          <view class='NO_4' style="color:{{(status == 4 || status == 5 || status == 6)&& progressFlag?textColor:'#EBEBEB'}}">待评价-</view>
+          <view class='NO_5' style="color:{{(status == 5 || status == 6) && progressFlag?textColor:'#EBEBEB'}}">-评价待审核</view>
+          <view class='NO_6' style="color:{{(status == 7 || status == 8 || status == 6) && progressFlag?textColor:'#EBEBEB'}}">已完成</view>
+          <view class='NO_7' style="color:{{status == 7 && progressFlag?textColor:'#EBEBEB'}}">重复报修</view>
+          <view class='NO_8' style="color:{{status == 8 && progressFlag?textColor:'#EBEBEB'}}">无法维修</view>
+        </view>
+      </view>
+      <form bindsubmit="formSubmitComment">
+        <view style="{{list.maintenanceRecord.maintenanceStatus.name == '待评价' && userId == list.repairStaff.id?'display:block':'display:none'}}">
+          <view class='commentTitle'>评价基本信息</view>
+          <view wx:if="{{!list.maintenanceRecord.evaluationGrade}}">
+            <radio-group class="radio-group" bindchange="radioChange">
+              <label class="radio" wx:for="{{commentItems}}" wx:key="{{index}}">
+                <radio value="{{item.name}}" checked="{{item.checked}}" />{{item.value}}
+              </label>
+            </radio-group>
+            <textarea placeholder='最大输入200个字，最少输入5个字' hidden='{{!(commentIndex == 0)}}' show-confirm-bar='' maxlength='200' name="commentText" class='txt' bindinput='listenTextareaFromCommentText'>
+              <view class='textareaSon'>{{commentTextNumber}}/200</view>
+            </textarea>
+            <button formType="submit" class="confirm-btn" hover-class="other-button-hover">评价</button>
+          </view>
+        </view>
+      </form>
+    </view>
+  </view>
+  <view class='box' wx:if="{{(list.maintenanceRecord.maintenanceStatus.name == '已完成' || list.maintenanceRecord.maintenanceStatus.name == '评价待审核')}}">
+    <!-- 好评和中评  差评-->
+    <view class='' wx:if="{{(list.maintenanceRecord.maintenanceStatus.name == '已完成')}}">
+      <view class='title'>评价信息</view>
+      <view class='result_icon'></view>
+      <view class='result_text'>
+        <text>评价时间</text>\t:\t\t\t
+        <text class='result_time'>{{list.maintenanceRecord.evaluationDateTime}}</text>
+      </view>
+      <view class='result_text' wx:if="{{list.maintenanceRecord.evaluationGrade == 0}}">
+        <text>评价等级</text>
+        <span class="comment-content">\t:\t\t\t差评</span>
+        <view>评价内容
+          <span class="comment-content">\t:\t\t\t {{list.maintenanceRecord.evaluationContent}}
+          </span>
+        </view>
+      </view>
+      <view class='result_text' wx:elif="{{list.maintenanceRecord.evaluationGrade == 1}}">
+        <text>评价等级</text>\t:\t\t\t好评
+      </view>
+      <view class='result_text' wx:else>
+        <text>评价等级</text>\t:\t\t\t中评
+      </view>
+    </view>
+
+    <!-- 好评和中评 差评 -->
+    <!-- 评价待审核 start -->
+    <view class='' wx:if="{{(list.maintenanceRecord.maintenanceStatus.name == '评价待审核')}}">
+      <view class='result_body'>
+        <view class='title'>评价信息</view>
+        <view class='result_icon'></view>
+        <view class='comment-information'>
+          <text class="comment-time">评价时间</text>\t:\t\t\t
+          <text class='result_time'>{{list.maintenanceRecord.evaluationDateTime}}</text>
+        </view>
+        <view class='comment-information' wx:if="{{list.maintenanceRecord.evaluationGrade == 0}}">
+          <text class="comment-time">评价等级</text>\t:\t\t\t
+          <text class='check'>评价待审核</text>
+        </view>
+      </view>
+    </view>
+    <!-- 评价待审核 end -->
+  </view>
+
+  <!-- 维修物料列表 -->
+  <view class='box' wx:if="{{showMaterialList && materialItemListLength > 0}}">
+    <view class='title'>维修物料列表</view>
+    <view class='material_content' wx:for="{{materialItemList}}" wx:key="{{index}}">
+      <view class='li'>
+        <span class="content-title">物料名称</span>\t:\t
+        <span class="comment-content">{{item.material.name}}</span>
+      </view>
+      <view class='li'>
+        <span class="content-title">物料类别</span>\t:\t
+        <span class="comment-content">{{item.material.materialCategory.name}}</span>
+      </view>
+      <view class='li'>
+        <span class="content-title">规格型号</span>\t:\t
+        <span class="comment-content">{{item.material.specificationsModel}}</span>
+      </view>
+      <view class='li'>
+        <span class="content-title">出库数量</span>\t:\t
+        <span class="comment-content">{{item.stockRemovalCount}} ({{item.material.materialUnit.name}})</span>
+      </view>
+      <view class='li'>
+        <span class="content-title">出库日期</span>\t:\t
+        <span class="comment-content">{{item.stockRemovalDate}}</span>
+      </view>
+      <button size='mini' data-name="{{item.material.name}}" data-id='{{item.id}}' bindtap='deleteMaterial' style='margin-left:42%;margin-top:12rpx;'>删除</button>
+    </view>
+  </view>
+  <!-- 无维修物料时所渲染结构 -->
+  <view class='box' wx:if="{{showMaterialList && materialItemListLength <= 0}}">
+    <span class="prompt">提示： 无物料</span>
+  </view>
+</view>
+<view class='loadingMask loadingAnimation' hidden='{{loadingHidden}}'></view>
+<!-- 添加物料 start -->
+<view class='addMeterielBox' hidden='{{showMateriel}}'>
+  <view class='addMeterielBox_head'>
+    <view class='addMeterielBox_title'>添加出库信息</view>
+    <view class='addMeterielBox_cancel' bindtap='toCancel'>x</view>
+  </view>
+  <form bindsubmit="formSubmit">
+    <view class='addMeterielBox_content'>
+      <view class="input-group">
+        <view class="input-label">
+          <text class="">物料名称:</text>
+        </view>
+        <view class="input-content">
+          <picker class='meterielName' bindchange='materialNameChange' value='0' range='{{materialNameItems}}'>
+            <view class='ellipsis'>{{materialName}}</view>
+          </picker>
+        </view>
+      </view>
+      <view class="input-group input-group-scale">
+        <view class="input-label">
+          <text class="">规格型号:</text>
+        </view>
+        <view class="input-content">
+          <input class='ellipsis' disabled='true' id="text" type="text" value='{{materialSpeacificationsModelItems[materialIndex]}}' />
+        </view>
+      </view>
+      <view class="input-group">
+        <view class="input-label">
+          <text class="">物料类别:</text>
+        </view>
+        <view class="input-content">
+          <input class='ellipsis' id="text" type="text" disabled='true' value='{{materialCategotyItems[materialIndex]}}' />
+        </view>
+      </view>
+      <view class="input-group">
+        <view class="input-label">
+          <text class="">物料单位:</text>
+        </view>
+        <view class="input-content">
+          <input id="text" type="text" disabled='true' value='{{materialUnitNameItems[materialIndex]}}' />
+        </view>
+      </view>
+      <view class="input-group">
+        <view class="input-label">
+          <text class="">维修单号:</text>
+        </view>
+        <view class="input-content">
+          <input id="text" value='{{list.maintenanceNumber}}' type="text" disabled='true' />
+        </view>
+      </view>
+      <view class="input-group">
+        <view class="input-label">
+          <text class="">维修人员:</text>
+        </view>
+        <view class="input-content">
+          <input id="text" value='{{list.maintenanceStaff.name}}' type="text" disabled='true' />
+        </view>
+      </view>
+      <view class="input-group">
+        <view class="input-label">
+          <text class="">出库数量:</text>
+        </view>
+        <view class="input-content">
+          <input id="text" value="{{outNumber}}" type='number' name='outNumber' />
+        </view>
+      </view>
+      <view class="input-group">
+        <view class="input-label">
+          <text class="">出库日期:</text>
+        </view>
+        <view class="input-content">
+          <picker mode="date" value="{{date}}" start="2017-09-01" end="2020-09-01" bindchange="bindDateChange">
+            <view class="picker">
+              {{date}}
+            </view>
+          </picker>
+        </view>
+      </view>
+      <button size='mini' class='close' bindtap='toCancel'>关闭</button>
+      <button size='mini' class='save' hover-class="other-button-hover" form-type="submit">保存</button>
+    </view>
+  </form>
+</view>
+<!-- 添加物料 end -->
+<!-- 标记完成 start -->
+<form bindsubmit='formSubmitStatus'>
+  <view class='complete' hidden='{{showSuccess}}'>
+    <view class='completeHead'>
+      <view class='completeHead_title'>手动设置完成状态</view>
+      <view class='complete_cancel' bindtap='toCancel'>x</view>
+    </view>
+    <view class='complete_content'>
+      <view class='complete_content_title'>设置维修状态</view>
+      <radio-group class="radio-group" bindchange="radioStatusChange">
+        <label class="radio_status" wx:for="{{statusItems}}" wx:key="{{index}}">
+          <radio value="{{item.name}}" checked="{{item.checked}}" />{{item.value}}
+        </label>
+      </radio-group>
+    </view>
+    <view wx:if="{{radioValue == 8}}">
+      <view style='text-align:left;font-size:30rpx;margin-left:32rpx;margin-bottom:12rpx;'>无法维修原因</view>
+      <textarea show-confirm-bar="" class='complete_txtarea' placeholder='最大输入200个字符' name="textarea" maxlength='200' bindinput='listenTextareaFromcomplete_txtarea'>
+        <view class='textareaSon'>{{complete_txtareaNumber}}/200</view>
+      </textarea>
+    </view>
+
+    <view class='complete_bottom'>
+      <button size='mini' class='close' bindtap='toCancel'>取消</button>
+      <button form-type='submit' size='mini' hover-class="other-button-hover" class='save'>保存</button>
+    </view>
+  </view>
+</form>
+<!-- 标记完成  end -->
+
+<view class="body-view">
+  <loading wx:if="{{showLoading}}" hidden="{{loadingHidden}}">
+    加载中...
+  </loading>
+  <view hidden='{{loadingHidden}}' class='loadingMask'></view>
+</view>

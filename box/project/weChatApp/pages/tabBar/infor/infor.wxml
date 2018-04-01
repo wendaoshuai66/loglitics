@@ -1,0 +1,97 @@
+
+  <view class="body-view">
+    <loading hidden="{{loadingHidden}}" bindchange="loadingChange">
+      加载中...
+    </loading>
+    <view hidden='{{loadingHidden}}' class='loadingMask'></view>
+  </view> 
+
+ <swiper class="container-photo" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" circular="{{circular}}" interval="{{interval}}" duration="{{duration}}" indicator-active-color="{{indicatorActiveColor}}" indicator-color="{{indicatorColor}}">
+  <block wx:for="{{slideData}}" wx:key="{{index}}" data-index="{{index}}">
+    <swiper-item>
+      <image src="{{item.slidePicture}}" class="news-photo" width="100%" height="200" />
+    </swiper-item>
+  </block>
+</swiper> 
+<!-- 菜单链接  -->
+<!-- 维修人员菜单 -->
+ <view class="container_infor" wx:if="{{role == 1 || role == 0}}">
+  <view class="maintenanceInfor" bindtap="toInforList">
+    <text class="iconfont icon-news mantenanceClass"></text>
+    <view class='inforText'>新闻资讯</view>
+  </view>
+  <view class="maintenanceInfor" bindtap="toMaintenanceServer">
+    <view class="iconfont icon-repair mantenanceClass"></view>
+    <view class='inforText'>维修服务</view>
+  </view>
+  <view class="maintenanceInfor" bindtap="toMaterialCollar">
+    <view class="iconfont icon-icon-stocks mantenanceClass"></view>
+    <view class='inforText'>物料库存</view>
+  </view>
+  <view class="maintenanceInfor" bindtap="toDutyRecord">
+    <view class="iconfont icon-beonduty mantenanceClass"></view>
+    <view class='inforText'>值班安排</view>
+  </view>
+  <view class="maintenanceInfor" bindtap="toSaleAndPurchaseList">
+    <view class="iconfont icon-balance mantenanceClass"></view>
+    <view class='inforText'>跳蚤市场</view>
+  </view>
+  <view class="maintenanceInfor" bindtap="toLostAndFoundList">
+    <view class="iconfont icon-gift mantenanceClass"></view>
+    <view class='inforText'>失物招领</view>
+  </view>
+  <view class="maintenanceInfor" bindtap="toSuggestion">
+    <view class="iconfont icon-ico_suggestions mantenanceClass"></view>
+    <view class='inforText'>建言献策</view>
+  </view>
+  <view class="maintenanceInfor" bindtap="toWorkList">
+    <view class="iconfont icon-work mantenanceClass"></view>
+    <view class='inforText'>工作日志</view>
+  </view>
+</view> 
+<!-- 非维修人员菜单 -->
+ <view class="container_infor" wx:elif="{{role == 2 || role == 3}}">
+  <view class="infor" bindtap="toInforList">
+    <view class="iconfont icon-news noRoleClass"></view>
+    <view class='inforText'>新闻资讯</view>
+  </view>
+  <view class="infor" bindtap="toMaintenanceServer">
+    <view class="iconfont icon-repair noRoleClass"></view>
+    <view class='inforText'>维修服务</view>
+  </view>
+  <view class="infor" bindtap="toWorkList">
+    <view class="iconfont icon-work noRoleClass"></view>
+    <view class='inforText'>工作日志</view>
+  </view>
+  <view class="infor" bindtap="toSaleAndPurchaseList">
+    <view class="iconfont icon-balance noRoleClass"></view>
+    <view class='inforText'>跳蚤市场</view>
+  </view>
+  <view class="infor" bindtap="toLostAndFoundList">
+    <view class="iconfont icon-gift noRoleClass"></view>
+    <view class='inforText'>失物招领</view>
+  </view>
+
+
+  <view class="infor" bindtap="toSuggestion">
+    <view class="iconfont icon-ico_suggestions noRoleClass"></view>
+    <view class='inforText'>建言献策</view>
+  </view>
+</view> 
+<!-- 最新资讯  -->
+<view class='listTitle'>
+</view>
+<view class='text'>
+  <text class="latest-information icon-icon_basicinformation"></text> 最新资讯</view>
+<view class='bottomBlock'>
+  <view wx:for="{{newslist}}" wx:key="{{index}}" data-index="{{index}}" bindtap='toView' data-id='{{item.inforPicture.id}}' class='list'>
+    <image src="{{item.slidePicture?item.slidePicture:'/images/information/list/list.jpg'}}" class='picture'></image>
+    <view class='title'>{{item.title}}</view>
+    <view class='bottom'>
+      <view class='author'>{{item.inforPicture.author}}</view>
+      <view class='name'>{{item.inforPicture.inforModule.name}}</view>
+      <view class='dateTime'>{{item.addDateTime}}</view>
+    </view>
+  </view>
+</view>
+<view class='bottomMessage' hidden='{{messageHidden}}' bindtap='toManyMessage'>{{ifAllText}}</view>

@@ -1,0 +1,38 @@
+<!--pages/maintenance/materialCollar/view/view.wxml-->
+<view class='body'>
+  <!-- <view class='h3'></view> -->
+  <view class='text'>
+    <span class='h3'>物料名称: </span>{{item.name}}</view>
+  <!-- <view class='h3'></view> -->
+  <view class='text'>
+    <span class='h3'>规格型号: </span>{{item.specificationsModel}}</view>
+  <!-- <view class='h3'></view> -->
+  <view class='text'>
+    <span class='h3'>物料类别: </span>{{item.materialCategory.name}}</view>
+  <!-- <view class='h3'></view> -->
+  <view class='text'>
+    <span class='h3'>库存数量: </span>{{item.inventoryQuantity}}</view>
+  <!-- <view class='h3'></view> -->
+  <view class='text'>
+    <span class='h3'>物料单位: </span>{{item.materialUnit.name}}</view>
+  <!-- <view class='h3'></view> -->
+  <view class='text'>
+    <span class='h3'>添加时间: </span>{{item.addDateTime}}</view>
+  <!-- <view class='h3'></view> -->
+  <view class='text'>
+    <span class='h3'>保管人员: </span>{{item.custodian}}</view>
+  <!-- <view class='h3'></view> -->
+  <view class='text'>
+    <span class='h3'>存放地点: </span>{{item.storageLocation}}</view>
+  <!-- <view class='h3'></view> -->
+  <view class='text'>
+    <span class='h3'>备注说明: </span>{{item.remarks}}</view>
+</view>
+
+
+<view class="body-view">
+  <loading hidden="{{loadingHidden}}">
+    加载中...
+  </loading>
+  <view hidden='{{loadingHidden}}' class='loadingMask'></view>
+</view>

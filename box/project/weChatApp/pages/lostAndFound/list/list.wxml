@@ -1,0 +1,77 @@
+
+<view class="MainContent">
+  <!-- 搜索框 start -->
+  <view class="TopBlock">
+  <view hidden='{{!maskFlag}}' class='cancel' size='mini' bindtap='initClick' >取消</view>
+    <view class='searchBox'>
+    
+      <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+      <input class='searchInput' bindfocus='searchFoucs' bindinput='searchInput' bindblur='searchBlur' type='text' value='{{searchValue}}' placeholder='搜索（标题）' bindconfirm="searchConfirm" confirm-type="search" maxlength='20'></input>
+    </view>
+     <view class='logBox' style="{{maskFlag && (logItem.length != 0)?'display:inline-block':'display:none'}}">
+        <view class='logText' >-----搜索历史-----</view>
+        <view class='logItemBox' bindtap='logItemClick' data-name="{{item}}" wx:for="{{logItem}}" wx:key="{{index}}">{{item}}</view>
+        <view class='logBottom' bindtap='clearLog'>清空历史记录</view>
+    </view> 
+    <!-- 遮罩层 start -->
+    <view class='mask' bindtap='maskTap' style="height:{{windowHeightInit}}px;{{maskFlag?'display:inline-block':'display:none'}}"></view>
+    <!-- 遮罩层 end -->
+  </view>
+  <!-- 搜索框 end  -->
+  <view class="searchBar">
+    <view class='ul'>
+      <view class='li typeTitle' data-type='type' bindtap='titleClick'>
+        <text class="iconfont icon-all"></text>\t\t\t{{typeItems[typeIndex]}}</view>
+      <view class='li timeTitle' data-type='time' bindtap='titleClick'>
+        <text class="iconfont icon-all"></text>\t\t\t{{timeItems[timeIndex]}}</view>
+      <view class='titleList' hidden='{{typeHidden}}' animation='{{animationType}}'>
+        <view wx:for="{{typeItems}}" data-index='{{index}}' wx:key='{{index}}' bindtap='typeChange'>{{item}}</view>
+      </view>
+      <view class='titleList' hidden='{{timeHidden}}' animation='{{animationTime}}'>
+        <view wx:for='{{timeItems}}' data-index='{{index}}' wx:key='{{index}}' bindtap='timeChange'>{{item}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="BottomBlock">
+    <scroll-view class="scrollView" bindscroll="scroll" scroll-y="true">
+      <view class="item" wx:for="{{list}}" wx:key="{{index}}" data-index="{{index}}" bindtap="toView" data-id="{{item.id}}">
+        <!-- <view class="text">
+                                         <text class="number">{{index+1}}</text> 
+                                        <text class="title">{{item.title}}</text>
+                                        <text class="content">{{item.description}}</text>
+                                        <view class='person'>
+                                                <text class="price">{{item.person.name}}</text>
+                                        </view>
+                                        <view>
+                                                <text class="typeTitle">
+                                                        <text class='type' style='background:#8B2323' wx:if="{{item.type == 0}}">失物</text>
+                                                        <text class='type' style='background:#96CDCD' wx:else>招领</text>
+                                                </text>
+                                                <text class="addDateTime font_small">发布时间\t:\t{{item.addDateTime}}</text>
+                                        </view>
+                                </view> -->
+        <view class="text">
+          <view class="buy-title">
+            <text class="">
+                                                        <text class='type' style='background:#7FBF7F' wx:if="{{item.type == 0}}">招领</text>
+            <text class='type' style='background:#D08A51' wx:else>失物</text>
+            </text>{{item.title}}</view>
+          <text class="content">{{item.description}}</text>
+          <view class="buy-time">
+            <text>发布人:{{item.person.name}}</text>
+            <tetx class="time">{{item.addDateTime}}</tetx>
+          </view>
+        </view>
+        <view class="{{item.dealStatus==0?'statusN':'statusY'}}">
+          <text>{{statusItems[item.dealStatus]}}</text>
+        </view>
+      </view>
+      <view class="allDownText" hidden="{{!ifAll}}">{{ifAllText}}</view>
+    </scroll-view>
+    <view class="body-view">
+      <loading hidden="{{loadingHidden}}" bindchange="loadingChange">加载中...</loading>
+      <view hidden='{{loadingHidden}}' class='loadingMask'></view>
+    </view>
+  </view>
+</view>

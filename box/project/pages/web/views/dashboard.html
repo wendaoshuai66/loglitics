@@ -1,0 +1,585 @@
+<!-- BEGIN PAGE BREADCRUMB -->
+<ul class="page-breadcrumb breadcrumb hide">
+    <li>
+        <a ui-sref="dashboard">Home</a>
+        <i class="fa fa-circle"></i>
+    </li>
+    <li class="active"> Dashboard</li>
+</ul>
+<!-- END PAGE BREADCRUMB -->
+<!-- BEGIN MAIN CONTENT -->
+<div ng-controller="DashboardController">
+    <div class="note note-info hide">
+        <h3>欢迎来到{{schoolName}}数字后勤服务大厅
+            <span class="close hide" data-close="note"></span>
+        </h3>
+    </div>
+    <!-- BEGIN DASHBOARD STATS -->
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-5">
+            <div data-ng-include="'views/news/carouselNews.html'"
+                 data-ng-controller="carouselNewsController"
+                     style="margin-top: -49px;margin-bottom: -35px;"></div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-7">
+            <!-- BEGIN PORTLET-->
+            <div class="portlet box blue emphasize-dark" style="min-height: 270px">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="icon-globe"></i> 新闻资讯
+                    </div>
+                    <div class="actions">
+                        <a class="btn public-button" ui-sref="newsList">
+                           	更多 <i class="icon-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="portlet-body" style="padding:10px;min-height: 227px;">
+                    <!--BEGIN TABS-->
+                    <div class="mt-element-list">
+                        <div class="mt-list-container list-simple">
+                            <ul>
+                                <li class="mt-list-item" ng-repeat="item in newsList | orderBy:'addDateTime':'desc'">
+                                    <div class="list-datetime"> {{item.addDateTime.substr(5,11)}}</div>
+                                    <div class="list-item-content" data-microtip='{{item.title}}'
+                                         data-microtip-position='bottom'>
+                                       	 <div class="hide uppercase wrap-ellipsis" style="max-width: 80px!important;">
+                                         		{{item.inforModule.name}}
+                                         </div> 
+                                        <div class="uppercase wrap-ellipsis" style="max-width: 650px!important;">
+                                            <a ui-sref="viewNews({id:{{item.id}}})">{{item.title}}</a>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!--END TABS-->
+                </div>
+            </div>
+            <!-- END PORTLET-->
+        </div>
+    </div>
+    <!--<div class="row" style="margin-top: 5px;">-->
+        <!--<div class="col-lg-2 col-xs-2 col-sm-6 col-xs-12">-->
+            <!--<div class="dashboard-stat green-seagreen">-->
+                <!--<div class="visual">-->
+                    <!--<i class="fa fa-wrench"></i>-->
+                <!--</div>-->
+                <!--<div class="details">-->
+                    <!--<div class="number">-->
+                    <!--</div>-->
+                    <!--<div class="desc"> 普通维修</div>-->
+                <!--</div>-->
+                <!--<a class="more" ui-sref="commonRepair"> 更多-->
+                    <!--<i class="m-icon-swapright m-icon-white"></i>-->
+                <!--</a>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="col-lg-2 col-xs-2 col-sm-6 col-xs-12">-->
+            <!--<div class="dashboard-stat yellow-casablanca">-->
+                <!--<div class="visual">-->
+                    <!--<i class="fa fa-gears"></i>-->
+                <!--</div>-->
+                <!--<div class="details">-->
+                    <!--<div class="number">-->
+                    <!--</div>-->
+                    <!--<div class="desc"> 专项维修</div>-->
+                <!--</div>-->
+                <!--<a class="more" ui-sref="specialRepairList"> 更多-->
+                    <!--<i class="m-icon-swapright m-icon-white"></i>-->
+                <!--</a>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="col-lg-2 col-xs-2 col-sm-6 col-xs-12">-->
+            <!--<div class="dashboard-stat green-jungle">-->
+                <!--<div class="visual">-->
+                    <!--<i class="fa fa-balance-scale"></i>-->
+                <!--</div>-->
+                <!--<div class="details">-->
+                    <!--<div class="number">-->
+                    <!--</div>-->
+                    <!--<div class="desc"> 出售记录</div>-->
+                <!--</div>-->
+                <!--<a class="more" ui-sref="fleaMarketListSale"> 更多-->
+                    <!--<i class="m-icon-swapright m-icon-white"></i>-->
+                <!--</a>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="col-lg-2 col-xs-2 col-sm-6 col-xs-12">-->
+            <!--<div class="dashboard-stat purple">-->
+                <!--<div class="visual">-->
+                    <!--<i class="fa fa-cart-plus"></i>-->
+                <!--</div>-->
+                <!--<div class="details">-->
+                    <!--<div class="number">-->
+                    <!--</div>-->
+                    <!--<div class="desc"> 求购记录</div>-->
+                <!--</div>-->
+                <!--<a class="more" ui-sref="fleaMarketListPurchase"> 更多-->
+                    <!--<i class="m-icon-swapright m-icon-white"></i>-->
+                <!--</a>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="col-lg-2 col-xs-2 col-sm-6 col-xs-12">-->
+            <!--<div class="dashboard-stat red-sunglo">-->
+                <!--<div class="visual">-->
+                    <!--<i class="fa fa-search"></i>-->
+                <!--</div>-->
+                <!--<div class="details">-->
+                    <!--<div class="number">-->
+                    <!--</div>-->
+                    <!--<div class="desc"> 失物记录</div>-->
+                <!--</div>-->
+                <!--<a class="more" ui-sref="lostList"> 更多-->
+                    <!--<i class="m-icon-swapright m-icon-white"></i>-->
+                <!--</a>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="col-lg-2 col-xs-2 col-sm-6 col-xs-12">-->
+            <!--<div class="dashboard-stat blue">-->
+                <!--<div class="visual">-->
+                    <!--<i class="fa fa-volume-up"></i>-->
+                <!--</div>-->
+                <!--<div class="details">-->
+                    <!--<div class="number">-->
+                    <!--</div>-->
+                    <!--<div class="desc"> 招领记录</div>-->
+                <!--</div>-->
+                <!--<a class="more" ui-sref="foundList"> 更多-->
+                    <!--<i class="m-icon-swapright m-icon-white"></i>-->
+                <!--</a>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+    <div class="row">
+        <div class="col-lg-2 col-xs-2 col-sm-6 col-xs-12">
+            <div class="portlet light emphasize-dark" style="text-align: center;padding: 16px 0px 16px;">
+                <div class="card-title">
+                    <span id='commonRepairRecordCount' data-counter="counterup" data-value="0">0</span>
+                </div>
+                <div class="card-icon">
+                    <i class="fa fa-gear" style="color:#1BA39C;"></i>
+                </div>
+                <div class="card-desc">
+                    <a ui-sref="commonRepair">
+                    	<button type="button" class="btn blue btn-sm">普通维修  <i class="icon-arrow-right"></i></button>
+                	</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-xs-2 col-sm-6 col-xs-12">
+            <div class="portlet light emphasize-dark" style="text-align: center;padding: 16px 0px 16px;">
+                <div class="card-title">
+                    <span id='specialRepairRecordCount' data-counter="counterup" data-value="0">0</span>
+                </div>
+                <div class="card-icon">
+                    <i class="fa fa-gears" style="color: #F2784B";></i>
+                </div>
+                <div class="card-desc">
+                	<a ui-sref="specialRepairList">
+                    	<button type="button" class="btn blue btn-sm">专项维修  <i class="icon-arrow-right"></i></button>
+                   	</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-xs-2 col-sm-6 col-xs-12">
+            <div class="portlet light emphasize-dark" style="text-align: center;padding: 16px 0px 16px;">
+                <div class="card-title">
+                    <span id='saleCount' data-counter="counterup" data-value="0">0</span>
+                </div>
+                <div class="card-icon">
+                    <i class="fa fa-balance-scale" style="color: #26C281;"></i>
+                </div>
+                <div class="card-desc">
+                	<a ui-sref="fleaMarketListSale">
+                    	<button type="button" class="btn blue btn-sm">出售记录  <i class="icon-arrow-right"></i></button>
+                   	</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-xs-2 col-sm-6 col-xs-12">
+            <div class="portlet light emphasize-dark" style="text-align: center;padding: 16px 0px 16px;">
+                <div class="card-title">
+                    <span id='purchaseCount' data-counter="counterup" data-value="0">0</span>
+                </div>
+                <div class="card-icon">
+                    <i class="fa fa-cart-plus"style="color:#8E44AD; "></i>
+                </div>
+                <div class="card-desc">
+                	<a ui-sref="fleaMarketListPurchase">
+                    	<button type="button" class="btn blue btn-sm">求购记录  <i class="icon-arrow-right"></i></button>
+                   	</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-xs-2 col-sm-6 col-xs-12">
+            <div class="portlet light emphasize-dark" style="text-align: center;padding: 16px 0px 16px;">
+                <div class="card-title">
+                    <span id='lostCount' data-counter="counterup" data-value="0">0</span>
+                </div>
+                <div class="card-icon">
+                    <i class="fa fa-search" style="color: #E26A6A;"></i>
+                </div>
+                <div class="card-desc">
+                	<a ui-sref="lostList">
+                    	<button type="button" class="btn blue btn-sm">失物记录  <i class="icon-arrow-right"></i></button>
+                   	</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-xs-2 col-sm-6 col-xs-12">
+            <div class="portlet light emphasize-dark" style="text-align: center;padding: 16px 0px 16px;">
+                <div class="card-title">
+                    <span id='foundCount' data-counter="counterup" data-value="0">0</span>
+                </div>
+                <div class="card-icon">
+                    <i class="fa fa-volume-up" style="color: #3598DC;"></i>
+                </div>
+                <div class="card-desc">
+                	<a ui-sref="foundList">
+                    	<button type="button" class="btn blue btn-sm">招领记录  <i class="icon-arrow-right"></i></button>
+                   	</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row pricing-content-1">
+        <div class="col-xs-3">
+            <div class="price-column-container border-active emphasize-dark">
+                <div class="price-table-head bg-blue">
+                    <h2 class="no-margin"><i class="icon-wrench white" style="font-size: 16px;"></i> 我要报修</h2>
+                </div>
+                <div class="arrow-down border-top-blue"></div>
+                <div class="price-table-pricing">
+                    <p>全天24小时在线维修服务</p>
+                </div>
+                <div class="arrow-down arrow-grey"></div>
+                <div class="price-table-footer">
+                    <a ui-sref="repairRecordsAdd"><button type="button" class="btn blue btn-sm">马上体验</button></a>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-3">
+            <div class="price-column-container border-active emphasize-dark">
+                <div class="price-table-head bg-green">
+                    <h2 class="no-margin"><i class="fa fa-cubes white" style="font-size: 16px;"></i> 物料管理</h2>
+                </div>
+                <div class="arrow-down border-top-green"></div>
+                <div class="price-table-pricing">
+                    <p>精准的信息化管理</p>
+                </div>
+                <div class="arrow-down arrow-grey"></div>
+                <div class="price-table-footer">
+                    <a ng-click="toMaterialList()"><button type="button" class="btn blue btn-sm">马上体验</button></a>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-3">
+            <div class="price-column-container border-active emphasize-dark">
+                <div class="price-table-head bg-red">
+                    <h2 class="no-margin"><i class="fa fa-calendar-minus-o white" style="font-size: 16px;"></i> 值班管理</h2>
+                </div>
+                <div class="arrow-down border-top-red"></div>
+                <div class="price-table-pricing">
+                    <p>随时了解值班新动态</p>
+                </div>
+
+                <div class="arrow-down arrow-grey"></div>
+                <div class="price-table-footer">
+                    <a ng-click="toDutyList()"><button type="button" class="btn blue btn-sm">马上体验</button></a>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-3">
+            <div class="price-column-container border-active emphasize-dark">
+                <div class="price-table-head bg-purple">
+                    <h2 class="no-margin"><i class="fa fa-file-text-o white"style="font-size: 16px;"></i> 工作日志</h2>
+                </div>
+                <div class="arrow-down border-top-purple"></div>
+                <div class="price-table-pricing">
+                    <p>记录工作每一天</p>
+                </div>
+                <div class="arrow-down arrow-grey"></div>
+                <div class="price-table-footer">
+                    <a ui-sref="workLogList"><button type="button" class="btn blue btn-sm">马上体验</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-12">
+            <!-- BEGIN PORTLET-->
+            <div class="portlet box purple emphasize-dark">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="fa fa-wrench"></i>
+                       	维修服务
+                    </div>
+                    <div class="actions">
+                        <a class="btn public-button" ui-sref="commonRepair">
+                           	更多 <i class="icon-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <div class="table-scrollable table-scrollable-borderless" style="min-height: 500px;">
+                        <table class="table table-hover table-light">
+                            <thead>
+                            <tr class="uppercase">
+                                <th class="col-xs-1"> 维修单号</th>
+                                <th class="col-xs-1"> 维修项目</th>
+                                <th class="col-xs-2"> 维修类别</th>
+                                <th class="col-xs-4"> 维修标题</th>
+                                <th colspan="2" class="col-xs-1"> 报修人员</th>
+                                <th class="col-xs-1"> 报修时间</th>
+                                <th class="col-xs-1"> 维修状态</th>
+                                <th class="col-xs-1"> 维修用时(小时)</th>
+                            </tr>
+                            </thead>
+                            <tr ng-repeat="item in repairList | limitTo:10">
+                                <td> 
+                                	<a ui-sref="viewMyRepair({id:{{item.id}}})" class="primary-link">
+                                	{{item.maintenanceNumber}}
+                                	</a>
+                               	</td>
+                                <td class="wrap-ellipsis" style="max-width: 100px!important;"> {{item.maintenanceRecord.maintenanceCategory.maintenanceType.name}}</td>
+                                <td class="wrap-ellipsis" style="max-width: 100px!important;"> {{item.maintenanceRecord.maintenanceCategory.name}}</td>
+                                <td>
+                                    <div data-microtip='{{item.maintenanceItemName}}'
+                                       data-microtip-position='top' class="item-name">
+                                        <div class="wrap-ellipsis" style="max-width: 330px!important;">
+                                            {{item.maintenanceItemName}}
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="fit">
+                                    <img class="user-pic rounded" ng-src="{{item.repairStaff.headPicture || 'images/user/male.jpg'}}">
+                                </td>
+                                <td class="wrap-ellipsis" style="max-width: 100px!important;"> {{item.repairStaff.name}}</td>
+                                <td> {{item.addDateTime.substr(5,11)}}</td>
+                                <td>
+                                    <span class="bold font-green">{{item.maintenanceRecord.maintenanceStatus.name}}</span>
+                                </td>
+                                <td> {{item.maintenanceTime}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- END PORTLET-->
+        </div>
+    </div>
+    <div style="margin-top: -44px;margin-bottom: -36px;" data-ng-include="'tpl/carousel.html'"></div>
+    <div class="row">
+        <div class="col-xs-6 col-sm-6">
+            <!-- BEGIN REGIONAL STATS PORTLET-->
+            <div class="portlet box blue emphasize-dark">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="fa fa-reorder"></i>
+                       	跳蚤市场
+                    </div>
+                    <div class="actions">
+                        <div class="btn-group">
+                            <a href="javascript:;" class="btn public-button dropdown-toggle" dropdown-menu-hover=""
+                               data-toggle="dropdown" data-close-others="true">
+                               	更多
+                                <span class="fa fa-angle-down"> </span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-default">
+                                <li>
+                                    <a ui-sref="fleaMarketListSale">
+                                        <i class="fa fa-balance-scale"></i> 出售 </a>
+                                </li>
+                                <li>
+                                    <a ui-sref="fleaMarketListPurchase">
+                                        <i class="fa fa-cart-plus"></i> 求购 </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <div class="scroller" style="height: 500px;" data-always-visible="1" data-rail-visible1="0"
+                         data-handle-color="#D7DCE2">
+                        <div class="general-item-list">
+                            <div class="item" ng-repeat="item in marketList | limitTo:10">
+                                <div class="item-head">
+                                    <div class="item-details">
+                                        <!-- 出售-->
+                                        <button ng-if="item.type==1" type="button" class="btn green-meadow" style="margin-bottom: 8px;"><i
+                                                class="fa fa-balance-scale"></i> 出售
+                                        </button>
+                                        <!-- 求购-->
+                                        <button ng-if="item.type==0" type="button" class="btn purple-sharp" style="margin-bottom: 8px;"><i
+                                                class="fa fa-cart-plus"></i> 求购
+                                        </button>
+                                        <a ui-sref="viewFleaMarket({id:{{item.id}}})" data-microtip='{{item.title}}'
+                                           data-microtip-position='bottom' class="item-name primary-link">
+                                            <div class="wrap-ellipsis" style="max-width: 300px!important;">
+                                                {{item.title}}
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <span>
+	                                   <img class="depicts-img" ng-if="item.uploadFileUrl.split(',')[0]" 
+	                                   ng-src="{{item.uploadFileUrl.split(',')[0]}}">
+                                    </span>
+                                    <div class="item-body"> {{item.description}}</div>
+                                    <div class="item-status">
+	                                    <span class="fa fa-clock-o"></span>
+	                                    <span class="item-label ng-binding">{{item.addDateTime}}</span>
+	                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END REGIONAL STATS PORTLET-->
+        </div>
+        <div class="col-xs-6 col-sm-6">
+            <!-- BEGIN REGIONAL STATS PORTLET-->
+            <div class="portlet box blue emphasize-dark">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="fa fa-tags"></i>
+                       	失物招领
+                    </div>
+                    <div class="actions">
+                        <div class="btn-group">
+                            <a href="javascript:;" class="btn public-button dropdown-toggle" dropdown-menu-hover=""
+                               data-toggle="dropdown" data-close-others="true">
+                               	更多
+                                <span class="fa fa-angle-down"> </span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-default">
+                                <li>
+                                    <a ui-sref="lostList">
+                                        <i class="fa fa-search"></i> 失物 </a>
+                                </li>
+                                <li>
+                                    <a ui-sref="foundList">
+                                        <i class="fa fa-volume-up"></i> 招领 </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <div class="scroller" style="height: 500px;" data-always-visible="1" data-rail-visible1="0"
+                         data-handle-color="#D7DCE2">
+                        <div class="general-item-list">
+                            <div class="item" ng-repeat="item in lostFoundList | limitTo:10">
+                                <div class="item-head">
+                                    <div class="item-details">
+                                        <!-- 出售-->
+                                        <button ng-if="item.type==1" type="button" class="btn red-sunglo" style="margin-bottom: 8px;"><i
+                                                class="fa fa-search"></i> 失物
+                                        </button>
+                                        <!-- 求购-->
+                                        <button ng-if="item.type==0" type="button" class="btn btn-primary" style="margin-bottom: 8px;"><i
+                                                class="fa fa-volume-up"></i> 招领
+                                        </button>
+                                        <a ui-sref="viewLostFound({id:{{item.id}}})" data-microtip='{{item.title}}'
+                                           data-microtip-position='bottom' class="item-name primary-link">
+                                            <div class="wrap-ellipsis" style="max-width: 300px!important;">
+                                                {{item.title}}
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <span>
+	                                   <img class="depicts-img"  ng-if="item.uploadFileUrl.split(',')[0]"
+	                                   ng-src="{{item.uploadFileUrl.split(',')[0]}}">
+                                    </span>
+                                    <div class="item-body"> {{item.description}}</div>
+                                    <div class="item-status">
+	                                    <span class="fa fa-clock-o"></span>
+	                                    <span class="item-label ng-binding">{{item.addDateTime}}</span>
+	                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END REGIONAL STATS PORTLET-->
+        </div>
+    </div>
+
+    <!-- END DASHBOARD STATS -->
+    <div class="row">
+        <div class="col-xs-12 col-sm-12">
+        	<!-- BEGIN REGIONAL STATS PORTLET-->
+            <div class="portlet box purple emphasize-dark">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="fa fa-envelope-o"></i>
+                       	建言献策
+                    </div>
+                    <div class="actions">
+                        <div class="btn-group">
+                            <a class="btn public-button" ui-sref="suggestionList">
+	                           	更多 <i class="icon-arrow-right"></i>
+	                        </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <div class="scroller" style="height: 480px;" data-always-visible="1" data-rail-visible1="0"
+                         data-handle-color="#D7DCE2">
+                        <div class="general-item-list">
+                            <div class="item" ng-repeat="item in inforTextList | limitTo:10" style="padding: 0 0 6px 0;">
+                                <div class="item-head">
+                                    <div class="item-details" style="margin-top: 32px;">
+                                        <p class="item-name" style="margin-left: 0;color: #2A7CC9;font-size: 16px;">{{item.title}}</p>
+                                    </div>
+                                    <div class="item-status mt-author" style="float: right;">
+                                        <div class="mt-avatar">
+                                            <img class="user-pic rounded" ng-src="{{item.author.headPicture || 'images/user/male.jpg'}}">
+                                        </div>
+                                        <div class="mt-author-name  font-grey-mint">
+                                            <span class="item-label ng-binding">{{item.author.name}}</span>
+                                        </div>
+                                        <div class="mt-author-datetime">
+                                            <span class="fa fa-clock-o"></span>
+                                            <span class="item-label ng-binding">{{item.addDateTime}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="item-body" style="width: 100%;margin-top: 16px;"> {{item.article}}</div>
+                                    <div class="item-body" ng-if="item.reply" style="color: #999;width: 100%;"> <span style="color: #36C6D3;font-weight: bold;">回复：</span>{{item.reply}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END REGIONAL STATS PORTLET-->
+        </div>
+    </div>
+	<div class="row">
+        <div class="col-xs-12">
+            <!-- BEGIN SAMPLE TABLE PORTLET-->
+            <div class="portlet box blue emphasize-dark">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="fa fa-comments"></i>便民服务
+                    </div>
+                    <div class="actions">
+                        <a class="btn btn-circle public-button btn-sm" ui-sref="serviceList">
+                            <!--  <i class="fa fa-list-ul"></i> -->
+                           	更多 <i class="icon-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <div class="row">
+                        <div data-ng-include="'views/service/top.html'"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- END SAMPLE TABLE PORTLET-->
+        </div>
+    </div>
+</div>

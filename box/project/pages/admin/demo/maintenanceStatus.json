@@ -1,0 +1,68 @@
+{
+  "total": 9,
+  "data": [
+    {
+      "id": "1",
+      "name": "待受理",
+      "description": "待受理描述",
+      "addDateTime": "2017-04-25 13:20:21",
+      "updateDateTime": "2017-04-25 13:20:21"
+    },
+    {
+      "id": "2",
+      "name": "已派工",
+      "description": "已派工描述",
+      "addDateTime": "2017-04-25 13:20:21",
+      "updateDateTime": "2017-04-25 13:20:21"
+    },
+    {
+      "id": "3",
+      "name": "待派工",
+      "description": "待派工描述",
+      "addDateTime": "2017-04-25 13:20:21",
+      "updateDateTime": "2017-04-25 13:20:21"
+    },
+    {
+      "id": "4",
+      "name": "维修中",
+      "description": "维修中描述",
+      "addDateTime": "2017-04-25 13:20:21",
+      "updateDateTime": "2017-04-25 13:20:21"
+    },
+    {
+      "id": "5",
+      "name": "已完工",
+      "description": "已完工描述",
+      "addDateTime": "2017-04-25 13:20:21",
+      "updateDateTime": "2017-04-25 13:20:21"
+    },
+    {
+      "id": "6",
+      "name": "待评价",
+      "description": "待评价描述",
+      "addDateTime": "2017-04-25 13:20:21",
+      "updateDateTime": "2017-04-25 13:20:21"
+    },
+    {
+      "id": "7",
+      "name": "已评价",
+      "description": "已评价描述",
+      "addDateTime": "2017-04-25 13:20:21",
+      "updateDateTime": "2017-04-25 13:20:21"
+    },
+    {
+      "id": "8",
+      "name": "驳回",
+      "description": "驳回描述",
+      "addDateTime": "2017-04-25 13:20:21",
+      "updateDateTime": "2017-04-25 13:20:21"
+    },
+    {
+      "id": "9",
+      "name": "暂定",
+      "description": "暂定描述",
+      "addDateTime": "2017-04-25 13:20:21",
+      "updateDateTime": "2017-04-25 13:20:21"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+	"total": 3,
+	"data": [
+		{
+			"id": "2",
+			"name": "通知公告",
+			"inforType": 1,
+			"description": "描述",
+			"status": 1,
+			"homeShow": 1,
+			"addDateTime": "2017-04-25 13:20:21",
+			"updateDateTime": "2017-04-25 13:20:21"
+		}, {
+			"id": "1",
+			"name": "服务动态",
+			"inforType": 1,
+			"description": "描述",
+			"status": 0,
+			"homeShow": 0,
+			"addDateTime": "2017-04-25 13:20:21",
+			"updateDateTime": "2017-04-25 13:20:21"
+		}, {
+			"id": "3",
+			"name": "新闻资讯",
+			"inforType": 1,
+			"description": "描述",
+			"status": 1,
+			"homeShow": 1,
+			"addDateTime": "2017-04-25 13:20:21",
+			"updateDateTime": "2017-04-25 13:20:21"
+		}
+	]
+}

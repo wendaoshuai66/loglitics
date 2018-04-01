@@ -1,0 +1,59 @@
+{
+	"total": 2,
+	"data": [
+		{
+			"id": "1",
+			"maintenanceNumber": "201708150001",
+			"maintenanceItemName": "体育馆专项改造项目",
+			"maintenanceSpecial":{
+				"ifDone": "1",
+				"progressDescription": "已完成",
+				"department": {
+					"name": "后勤维修1部",
+					"campus": {
+						"id": "1",
+						"name": "白鹿原校区"
+					}
+				}
+			},
+			"maintenanceAreaName": "体育馆",
+			"address": "白鹿原校区体育馆改造",
+			"maintenanceContent": "整体施工",
+			"addDateTime": "2017-05-25 13:20:21",
+			"maintenanceStartDateTime": "2017-05-25 00:00:00",
+			"maintenanceEndDateTime": "2017-08-25 00:00:00",
+			"maintenanceStaff": {
+						"tel": "15555555555",
+						"name": "王处长"
+					},
+			"maintenanceTime": "90天"
+		},
+		{
+			"id": "2",
+			"maintenanceNumber": "201708150002",
+			"maintenanceItemName": "游泳池专项改造项目",
+			"maintenanceSpecial":{
+				"ifDone": "0",
+				"progressDescription": "进行中",
+				"department": {
+					"name": "后勤维修2部",
+					"campus": {
+						"id": "1",
+						"name": "长安校区"
+					}
+				}
+			},
+			"maintenanceAreaName": "游泳池",
+			"address": "白鹿原校区游泳池改造",
+			"maintenanceContent": "整体施工",
+			"addDateTime": "2017-08-25 13:20:21",
+			"maintenanceStartDateTime": "2017-08-25 00:00:00",
+			"maintenanceEndDateTime": "",
+			"maintenanceStaff": {
+						"tel": "15555555555",
+						"name": "李处长"
+					},
+			"maintenanceTime": ""
+		}
+	]
+}

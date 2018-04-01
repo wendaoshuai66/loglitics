@@ -1,0 +1,73 @@
+<!--Banner图-->
+<img class="top_img" src="images/suggestion/banner.jpg"/>
+<div class="portlet box blue" ng-controller="suggestionController">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-envelope-o"></i>
+            <span class="caption-subject  uppercase">建言献策</span>
+        </div>
+        <div class="actions" ng-if="loginStatus">
+            <a class="btn btn-circle public-button btn-sm" ui-sref="mySuggestionList">
+                <i class="fa fa-envelope-o"></i> 我的建言献策
+            </a>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div data-always-visible="1" data-rail-visible1="0" data-handle-color="#D7DCE2">
+            <div class="suggestionList general-item-list" ng-repeat="item in suggestionList | orderBy:'-addDateTime'">
+                <table class="list-border hide">
+                    <tbody>
+                    <tr>
+                        <td>标题</td>
+                        <td colspan="3">{{item.title}}</td>
+                    </tr>
+                    <tr>
+                        <td class="col-xs-1">作者</td>
+                        <td class="col-xs-7">{{item.author.name}}</td>
+                        <td class="col-xs-2">发布时间</td>
+                        <td class="col-xs-2">{{item.addDateTime}}</td>
+                    </tr>
+                    <tr>
+                        <td>内容</td>
+                        <td colspan="3" style="height:80px;min-height:80px">{{item.article}}</td>
+                    </tr>
+                    <tr ng-if="item.reply">
+                        <td>回复</td>
+                        <td colspan="3" style="height:80px;min-height:80px">{{item.reply}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="item" style="border-bottom:  1px solid #e5e5e5;padding: 0 0 6px 0">
+                    <div class="item-head">
+                        <div class="item-details" style="margin-top: 32px;">
+                            <p class="item-name" style="margin-left: 0;color: #2A7CC9;font-size: 16px;">{{item.title}}</p>
+                        </div>
+                        <div class="item-status mt-author" style="float: right;">
+                            <div class="mt-avatar">
+                                <img class="user-pic rounded" ng-src="{{item.author.headPicture || 'images/user/male.jpg'}}">
+                            </div>
+                            <div class="mt-author-name  font-grey-mint">
+                                <span class="item-label ng-binding">{{item.author.name}}</span>
+                            </div>
+                            <div class="mt-author-datetime">
+                                <span class="fa fa-clock-o"></span>
+                                <span class="item-label ng-binding">{{item.addDateTime}}</span>
+                            </div>
+                        </div>
+                        <div class="item-body" style="width: 100%;margin-top: 16px;"> {{item.article}}</div>
+                        <div class="item-body" ng-if="item.reply" style="color: #999;width: 100%;">
+                            <span style="color: #36C6D3;font-weight: bold;">回复：</span>{{item.reply}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- paging -->
+            <div class="row" ng-if="suggestionList.length>0">
+                <div data-ng-include="'tpl/pages.html'"></div>
+            </div>
+            <div class="" ng-if="suggestionList.length==0">
+            	没有查询出数据
+           	</div>
+        </div>
+    </div>
+</div>

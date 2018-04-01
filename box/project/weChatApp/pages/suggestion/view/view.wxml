@@ -1,0 +1,29 @@
+<import src="../../../wxParse/wxParse.wxml" />
+<view class="content">
+  <scroll-view scroll-y="true" style="height:{{height}}px">
+    <text class="title">{{data.title}}</text>
+    <view class="tabTitle">
+      <text class="minTitle">发布人\t:\t{{data.author.name}}</text>
+      <!-- <tetx class="minTitle">发布时间\t:\t{{data.addDateTime}}</tetx> -->
+      <text class="minTitle">浏览次数\t:\t{{data.viewTimes}}</text>
+    </view>
+    <view class="article">
+      <template is="wxParse" data="{{wxParseData:article.nodes}}" />
+      <view class='bottomText'>
+        <text class='addDateTime'>发布时间\t:\t{{data.addDateTime}}</text>
+      </view>
+    </view>
+    
+    <view class='article relative' wx:if="{{data.reply != ''}}">
+        <text class='reply_title'>回复:</text>
+        <text class='WxEmojiView wxParse-inline'>{{data.reply}}</text>
+    </view>
+  </scroll-view>
+</view>
+
+ <view class="body-view">
+    <loading hidden="{{loadingHidden}}" bindchange="loadingChange">
+      加载中...
+    </loading>
+    <view hidden='{{loadingHidden}}' class='loadingMask'></view>
+  </view> 

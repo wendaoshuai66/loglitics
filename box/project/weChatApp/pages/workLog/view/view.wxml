@@ -1,0 +1,18 @@
+<view class="body">
+    <view class='title'>{{item.title}}</view>
+    <view class='listTitle'>
+        <view class='name inline_block'>发布人\t\t:\t\t{{item.user.name}}</view>
+        <view class='date inline_block'>发布时间\t\t:\t\t{{addDateTime}}</view>
+    </view>
+    <view class='bottom'>
+        <span class='workDate'>工作日期\t\t:\t\t{{workDate}}</span>
+        <span class='startTime'>{{startTime}}\t\t至\t\t{{endTime}}</span>
+    </view>
+    <view class="content">{{item.content}}</view>
+</view>
+  <view class="body-view">
+    <loading hidden="{{loadingHidden}}" bindchange="loadingChange">
+      加载中...
+    </loading>
+    <view hidden='{{loadingHidden}}' class='loadingMask'></view>
+  </view> 

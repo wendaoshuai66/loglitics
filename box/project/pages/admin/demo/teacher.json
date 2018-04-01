@@ -1,0 +1,58 @@
+{
+  "total": 1,
+  "data": [
+    {
+      "account": "67567",
+      "addDateTime": "2017-08-28 18:00:25",
+      "headPicture": "",
+      "id": 4,
+      "idCardNum": "610526199900000000",
+      "ifDelete": 0,
+      "lastLoginDateTime": "2017-08-28 18:00:25",
+      "name": "王伟",
+      "password": "123456",
+      "role": 2,
+      "sex": 1,
+      "status": 1,
+      "teacher": {
+        "department": {
+          "addDateTime": "2017-08-28 15:46:06",
+          "campus": {
+            "addDateTime": "2017-08-28 15:46:28",
+            "description": "1",
+            "id": 1,
+            "ifDelete": 0,
+            "name": "校区1",
+            "status": 1,
+            "updateDateTime": "2017-08-28 15:46:34"
+          },
+          "children": [],
+          "description": "1",
+          "id": 1,
+          "ifDelete": 0,
+          "ifLogistics": 1,
+          "name": "部门1",
+          "parent": null,
+          "status": 1,
+          "updateDateTime": "2017-08-28 15:46:20"
+        },
+        "id": 4,
+        "position": {
+          "addDateTime": "2017-08-28 15:47:04",
+          "cardDisplay": 1,
+          "description": "1",
+          "id": 1,
+          "ifDelete": 0,
+          "name": "职务1",
+          "status": 1,
+          "updateDateTime": "2017-08-28 15:47:11"
+        },
+        "status": 1
+      },
+      "tel": "13999999999",
+      "updateDateTime": "2017-08-28 18:00:25",
+      "weChatOpenId": "dsadsdsaddwwdadwadaw",
+      "weChatNickName": "wanghui222"
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "total": 3,
+  "data": [
+    {
+      "id": "1",
+      "material": {
+        "id": "1",
+        "name": "物料1",
+        "specificationsModel":"物料型号1",
+        "materialCategory":{
+          "id":"1",
+          "name":"物料类别1"
+        },
+        "materialUnit":{
+          "id":"1",
+          "name":"物料单位1"
+        }
+      },
+      "warrantyNumber": {
+        "id": "1",
+        "maintenanceNumber": "维修单号1",
+        "maintenanceStaff":{
+          "id":"1",
+          "name":"张三"
+        }
+      },
+      "stockRemovalCount": 11,
+      "stockRemovalDate": "2017-04-25",
+	  "addDateTime": "2017-04-25 13:20:21"
+    },
+    {
+      "id": "2",
+      "material": {
+        "id": "2",
+        "name": "物料2",
+        "specificationsModel":"物料型号2",
+        "materialCategory":{
+          "id":"2",
+          "name":"物料类别2"
+        },
+        "materialUnit":{
+          "id":"2",
+          "name":"物料单位2"
+        }
+      },
+      "warrantyNumber": {
+        "id": "2",
+        "maintenanceNumber": "维修单号2",
+        "maintenanceStaff":{
+          "id":"1",
+          "name":"王五"
+        }
+      },
+      "stockRemovalCount": 11,
+      "stockRemovalDate": "2017-04-25",
+	  "addDateTime": "2017-04-25 13:20:21"
+    },
+    {
+      "id": "3",
+      "material": {
+        "id": "3",
+        "name": "物料3",
+        "specificationsModel":"物料型号3",
+        "materialCategory":{
+          "id":"1",
+          "name":"物料类别3"
+        },
+        "materialUnit":{
+          "id":"3",
+          "name":"物料单位3"
+        }
+      },
+      "warrantyNumber": {
+        "id": "3",
+        "maintenanceNumber": "维修单号3",
+        "maintenanceStaff":{
+          "id":"1",
+          "name":"李四"
+        }
+      },
+      "stockRemovalCount": 11,
+      "stockRemovalDate": "2017-04-25",
+	  "addDateTime": "2017-04-25 13:20:21"
+    }
+  ]
+}

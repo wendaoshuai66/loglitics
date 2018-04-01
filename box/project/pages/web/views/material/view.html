@@ -1,0 +1,57 @@
+<div ng-controller="materialViewController">
+    <div class="portlet light bordered ng-scope">
+        <div class="portlet-title">
+            <div class="caption font-green-sharp bold">
+                <i class="fa fa-cubes font-green-sharp"></i>物料库存详情
+            </div>
+            <div class="actions">
+                <a class="btn btn-circle green-haze btn-sm" ng-click="toBack()">
+                    <i class="fa fa-reply"></i> 返回
+                </a>
+            </div>
+        </div>
+                    <div class="portlet-body dataTables_wrapper">
+                        <div class="timeline-body repairPeople" style="margin-left: 0;padding: 20px;">
+                            <div class="repairPeopleDiv" style="width: 100%;">
+                                <span style="font-weight: bold;">物料名称：</span>
+                                <span>{{data.name}}</span>
+                            </div>
+                            <div class="repairPeopleDiv">
+                                <span style="font-weight: bold;">规格型号：</span>
+                                <span style="margin:0;font-size: 14px;">{{data.specificationsModel}}</span>
+                            </div>
+                            <div class="repairPeopleDiv">
+                                <span style="font-weight: bold;">物料类别：</span>
+                                <span style="margin:0;font-size: 14px;">
+                                	{{data.materialCategory.name}}
+                               	</span>
+                            </div>
+                            <div class="repairPeopleDiv">
+                                <span style="font-weight: bold;">库存数量：</span>
+                                <span>{{data.inventoryQuantity}}</span>
+                            </div>
+                            <div class="repairPeopleDiv">
+                                <span style="font-weight: bold;">物料单位：</span>
+                                <span>{{data.materialUnit.name}}</span>
+                            </div>
+                            <div class="repairPeopleDiv" ng-if="data.repairMethod===1? '微信报修':'网页报修' ">
+                                <span style="font-weight: bold;">添加时间：</span>
+                                <span>{{data.addDateTime}}</span>
+                            </div>
+                            <div class="repairPeopleDiv">
+                                <span style="font-weight: bold;"> 保管人员：</span>
+                                <span>{{data.custodian}}</span>
+                            </div>
+                            <div class="repairPeopleDiv" style="width: 100%;">
+                                <span style="font-weight: bold;">存放地点：</span>
+                                <span>{{data.storageLocation}}</span>
+                            </div>
+                            <div class="repairPeopleDiv" style="width: 100%;">
+                                <span style="font-weight: bold;">备注说明：</span>
+                                <span>{{data.remarks}}</span>
+                            </div>
+                        </div>
+                    </div>
+    </div>
+</div>
+

@@ -1,0 +1,64 @@
+<div ng-controller="dutyRegisterThreeStepController">
+    <div class="table-toolbar">
+        <div class="table-toolbar">
+            <div class="tabbable tabbable-custom tabbable-noborder tabbable-reversed">
+                <!-- 提示 -->
+                <!-- 日历选择 -->
+                <div class="col-md-6 col-sm-6">
+                    <div id="calendar" class="has-toolbar table-responsive" style="padding: 15px;"></div>
+                </div>
+                <!-- 提示 -->
+                <div class="col-md-6 col-sm-6" style="margin:0px 0 20px 0;">
+                    <div data-ng-include="'views/dutyManagement/duty/registerStep/calendarTip.html'"></div>
+                </div>
+                <!-- 值班人员初始顺序选择,默认按照第二步传递过来的顺序 -->
+                <div class="col-md-6 col-sm-6">
+                    <div style="border: 1px solid #dbe8f8;height: 254px;">
+                        <div class="note note note-info note-bordered">
+                            <div class="caption-subject bold" style="font-size: 16px;">选择白班与夜班的起始值班人员</div>
+                        </div>
+                        <div class="calendarHelpTable" style="margin: 20px -46px;">
+                            <div class="col-md-12 calendarHelpGroup">
+                                <label class="col-md-4">
+                                    <h4 style="font-size: 16px;">白班起始值班人员</h4>
+                                </label>
+                                <div class="col-md-8">
+                                    <select id="selectDay" ui-select2="select2Options" class="form-control"
+                                            ng-model="dayDutyPersonId"
+                                            ng-options="item.id as item.name for item in dutyPerson">
+                                        <option value="">-- 请选择 --</option>
+                                    </select>
+                                </div>
+
+                            </div>
+                            <div class="col-md-12 calendarHelpGroup">
+                                <label class="col-md-4">
+                                    <h4 style="font-size: 16px;">夜班起始值班人员</h4>
+                                </label>
+                                <div class="col-md-8">
+                                    <select id="selectNight" ui-select2="select2Options" class="form-control"
+                                            ng-model="nightDutyPersonId"
+                                            ng-options="item.id as item.name for item in dutyPerson">
+                                        <option value="">-- 请选择 --</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-12 calendarHelpGroup">
+                                <div class="col-md-12" style="border-top:1px solid #e5e5e5;">
+                                    <div class="col-md-4">
+                                    </div>
+                                    <div class="btn btn-lg col-md-8"
+                                         style="width: 160px;padding:6px 16px;margin: 16px 0 0 10px;"
+                                         ng-class="$eval(checkAllPersonSelectStr)?'btn-danger':'btn-info'"
+                                         ng-disabled="$eval(checkAllPersonSelectStr)" ng-click="generateAutoDuty()">
+                                        {{$eval(checkAllPersonSelectStr)?'请选择值班起始人员':'点击生成值班表'}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

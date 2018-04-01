@@ -1,0 +1,30 @@
+<!--pages/maintenance/dutyRecord/summary/summary.wxml-->
+<!-- 汇总开始 -->
+<view class='summary'>
+    <view class='table_title'>部门人员值班信息汇总</view>
+    <view class='table'>
+        <view class='tr'>
+            <view class='td lastTd'>人员名称/次数</view>
+            <view class='td'>白班</view>
+            <view class='td'>夜班</view>
+            <view class='td'>普通班</view>
+            <view class='td'>周末班</view>
+            <view class='td '>节假日班</view>
+        </view>
+        <view class='tr' wx:for="{{list}}" wx:key="{{index}}">
+            <view class='td lastTd'><text class='name'>{{item.name}}</text></view>
+            <view class='td'><view class='name'>{{item.day}}</view></view>
+            <view class='td'><view class='name'>{{item.night}}</view></view>
+            <view class='td'><view class='name'>{{item.ordinaryDate}}</view></view>
+            <view class='td'><view class='name'>{{item.weekendsDate?item.weekendsDate:'无'}}</view></view>
+            <view class='td '><view  class='name'>{{item.holidayDate?item.holidayDate:'无'}}</view></view>
+        </view>
+    </view>
+</view>
+<!-- 汇总结束 -->
+<view class="body-view">
+  <loading hidden="{{loadingHidden}}">
+    加载中...
+  </loading>
+  <view hidden='{{loadingHidden}}' class='loadingMask'></view>
+</view>

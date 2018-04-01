@@ -1,0 +1,59 @@
+{
+  "total": 5,
+  "data": [
+  {
+      "id": "1",
+      "name": "校长",
+      "description": "校长职务描述",
+      "status": 1,
+      "addDateTime": "2017-04-25 13:20:21",
+      "updateDateTime": "2017-04-25 13:20:21",
+      "cardDisplay":1
+    },
+    {
+      "id": "2",
+      "name": "院长",
+      "description": "院长职务描述",
+      "status": 1,
+      "addDateTime": "2017-04-25 13:20:21",
+      "updateDateTime": "2017-04-25 13:20:21",
+      "cardDisplay":1
+    },
+    {
+      "id": "3",
+      "name": "系主任",
+      "description": "系主任职务描述",
+      "status": 1,
+      "addDateTime": "2017-04-25 13:20:21",
+      "updateDateTime": "2017-04-25 13:20:21",
+      "cardDisplay":1
+    },
+    {
+      "id": "1",
+      "name": "部长",
+      "description": "部长职务描述",
+      "status": 1,
+      "addDateTime": "2017-04-25 13:20:21",
+      "updateDateTime": "2017-04-25 13:20:21",
+      "cardDisplay":1
+    },
+    {
+      "id": "2",
+      "name": "科长",
+      "description": "科长职务描述",
+      "status": 1,
+      "addDateTime": "2017-04-25 13:20:21",
+      "updateDateTime": "2017-04-25 13:20:21",
+      "cardDisplay":1
+    },
+    {
+      "id": "3",
+      "name": "组长",
+      "description": "组长职务描述",
+      "status": 1,
+      "addDateTime": "2017-04-25 13:20:21",
+      "updateDateTime": "2017-04-25 13:20:21",
+      "cardDisplay":1
+    }
+  ]
+}

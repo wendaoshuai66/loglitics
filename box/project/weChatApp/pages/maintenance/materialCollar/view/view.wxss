@@ -1,0 +1,28 @@
+/* pages/maintenance/materialCollar/view/view.wxss */
+.body{
+  padding: 10rpx 30rpx;
+}
+
+.text{
+  color: #888;
+  font-size: 30rpx;
+  border-bottom: 1px solid #e5e5e5;
+  padding: 32rpx 0rpx;
+  line-height: 52rpx;
+}
+.h3{
+  color: #4B77BE;
+  font-size: 28rpx;
+  font-weight: bold;
+}
+/* .h3 {
+  font-size: 26rpx;
+  border: 1px solid #4B77BE;
+  color: #4B77BE;
+  width: 180rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  text-align: center;
+  border-radius: 50%;
+  margin-left:36%;
+} */

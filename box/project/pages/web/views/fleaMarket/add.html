@@ -1,0 +1,93 @@
+<div class="portlet light bordered" ng-controller="fleaMarketAddController">
+    <div class="portlet-title">
+        <div class="caption bold font-green-sharp">
+            <i class="fa fa-gift font-green-sharp"></i>新增跳蚤市场
+        </div>
+        <div class="actions">
+            <a ng-if="data.type" ui-sref="myFleaMarketListSale" class="hide btn btn-circle green-haze btn-sm">
+                <i class="fa fa-reply"></i> 返回
+            </a>
+            <a ng-if="!data.type" ui-sref="myFleaMarketListPurchase" class="hide btn btn-circle green-haze btn-sm">
+                <i class="fa fa-reply"></i> 返回
+            </a>
+            <a class="btn btn-circle green-haze btn-sm" ng-click="toBack()">
+                <i class="fa fa-reply"></i> 返回
+            </a>
+        </div>
+    </div>
+    <div class="portlet-body form">
+        <!-- BEGIN FORM-->
+        <form w5c-form-validate="validateOptions" class="w5c-form form-horizontal form-bordered" novalidate name="myForm">
+            <div class="form-body">
+                <div class="form-group">
+                    <label class="col-xs-3 control-label">
+                       	<span class="fa fa-bell-o"></span>
+                       	类别
+                    </label>
+              		<div class="col-xs-9 form-md-radios">
+                        <div class="md-radio-inline">
+                            <div class="md-radio" ng-repeat="item in fleaMarketStatusData">
+                                <input type="radio"  id="editCheckbox{{item.value}}" ng-model="data.type"
+                                       class="md-radiobtn" ng-value="{{item.value}}">
+                                <label for="editCheckbox{{item.value}}">
+                                    <span></span>
+                                    <span class="check"></span>
+                                    <span class="box"></span> {{item.name}} </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-3">
+                    	<span class="fa fa-bell-o"></span>
+                       	标题
+                    </label>
+                    <div class="col-xs-9">
+                        <input type="text" class="form-control" name="name2" ng-blur="checkValidateWithSensitive($event,'data.title')"
+                               ng-minlength="length.langNameMin" ng-maxlength="length.modelMax" ng-pattern="regex.name"
+                               ng-model="data.title" placeholder="请输入标题" required>
+                        <span class="validateErrorInfo"> </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-3">价格</label>
+                    <div class="col-xs-9">
+                        <div class="input-inline input-medium">
+                            <input id="price" type="text" value="1" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-3">
+                       	<span class="fa fa-bell-o"></span>
+                       	内容
+                    </label>
+                    <div class="col-xs-9">
+                        <textarea id="maxlength_textarea" name="name3" ng-model="data.description"
+                                  class="form-control" maxlength="200"  rows="8"
+                                  placeholder="最大输入200个字符" ng-blur="checkValidateWithSensitive($event,'data.description')" required>
+                        </textarea>
+                        <span class="validateErrorInfo"> </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-3">
+                       	图片
+                    </label>
+                    <div class="col-xs-9">
+                        <div id="uploadImg"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-actions">
+                <div class="row">
+                    <div class="col-xs-offset-3 col-xs-9">
+                        <button type="submit" class="btn green btn-circle" ng-disabled="myForm.$invalid" ng-click="save()">
+                            <i class="fa fa-check"></i> 保存</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <!-- END FORM-->
+    </div>
+</div>

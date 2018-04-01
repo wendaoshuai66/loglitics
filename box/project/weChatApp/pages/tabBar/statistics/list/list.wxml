@@ -1,0 +1,69 @@
+<!--pages/statistics/list/list.wxml-->
+<view class='body'>
+  <view class='content'>
+    <view class='ul'>
+      <view class='title time-sharing' bindtap='titleClick' data-type='sharing'>
+        <text class="iconfont icon-timer1"></text>\t\t\t维修量分时统计</view>
+      <view class='list' hidden='{{sharingHidden}}'>
+        <view class='li' bindtap='toView' data-id='24小时'>24小时
+          <view class='arrow'>
+            <image src='/images/enter.png'></image>
+          </view>
+        </view>
+        <view class='li' bindtap='toView' data-id='周期'>周期
+          <view class='arrow'>
+            <image src='/images/enter.png'></image>
+          </view>
+        </view>
+        <view class='li' bindtap='toView' data-id='月度'>月度
+          <view class='arrow'>
+            <image src='/images/enter.png'></image>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class='ul'>
+      <view class='title maintenance-capacity' bindtap='titleClick' data-type='type'>
+        <text class="iconfont icon-capacity"></text>\t\t\t维修量分类统计</view>
+      <view class='list' hidden='{{typeHidden}}'>
+        <view class='li' bindtap='toView' data-id='报修来源'>报修来源
+          <view class='arrow'>
+            <image src='/images/enter.png'></image>
+          </view>
+        </view>
+        <view class='li' bindtap='toView' data-id='维修项目'>维修项目
+          <view class='arrow'>
+            <image src='/images/enter.png'></image>
+          </view>
+        </view>
+        <view class='li' bindtap='toView' data-id='维修区域'>维修区域
+          <view class='arrow'>
+            <image src='/images/enter.png'></image>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class='ul'>
+      <view class='title maintenance-quality' bindtap='titleClick' data-type='quality'>
+        <text class="iconfont icon-site-quality"></text>\t\t\t维修质量分类统计</view>
+      <view class='list' hidden='{{qualityHidden}}'>
+        <view class='li' bindtap='toView' data-id='维修用时'>维修用时
+          <view class='arrow'>
+            <image src='/images/enter.png'></image>
+          </view>
+        </view>
+        <view class='li' bindtap='toView' data-id='维修评价'>维修评价
+          <view class='arrow'>
+            <image src='/images/enter.png'></image>
+          </view>
+        </view>
+        <view class='li' bindtap='toView' data-id='维修状态'>维修状态
+          <view class='arrow'>
+            <image src='/images/enter.png'></image>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- <view bindtap='toTest' class='toTest'>功能测试</view> -->

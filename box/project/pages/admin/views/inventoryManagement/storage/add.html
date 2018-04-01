@@ -1,0 +1,156 @@
+<div id="addModal" class="modal fade" tabindex="-1" data-backdrop="static" aria-hidden="true" data-width="800" ng-controller="storageAddController">
+    <div class="modal-header">
+        <button type="button" class="modal_close" data-dismiss="modal" aria-hidden="true">x</button>
+        <h4 class="modal-title"><p ng-bind="modalTitle"></p></h4>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <!-- BEGIN FORM-->
+            <form w5c-form-validate="validateOptions" class="w5c-form" novalidate name="myForm">
+                <div class="form-body">
+                    <div class="form-group col-md-12">
+                        <label class="col-md-4 control-label">
+                        	物料名称
+                        	<span class="fa fa-bell-o"></span>
+                       	</label>
+                        <span class="col-md-8">
+							<span class="validateErrorInfo">
+                            </span>
+						</span>
+                        <div class="col-md-12">
+                            <select required name="select" ui-select2="select2Options"
+                                    style="width: 100%;" class="form-control"
+                                    ng-model="data.material.id" ng-change="selectMaterial()"
+                                    ng-options="item.id as item.name for item in materialSelectData | orderBy:'addDateTime':'desc'">
+                                <option value="">-- 请选择 --</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label class="col-md-12 control-label">
+                           	规格型号
+                        </label>
+                        <span class="col-md-8">
+							<span class="validateErrorInfo"> </span>
+		                </span>
+                        <div class="col-md-12">
+                            <input type="text" disabled class="form-control" ng-model="data.material.specificationsModel" name="modelName">
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="col-md-12 control-label">
+                           	物料类别
+                        </label>
+                        <span class="col-md-8">
+							<span class="validateErrorInfo"> </span>
+						</span>
+                        <div class="col-md-12">
+                            <input type="text" disabled class="form-control" ng-model="data.material.materialCategory.name" name="name">
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="col-md-12 control-label">
+                           	物料单位
+                        </label>
+                        <span class="col-md-8">
+							<span class="validateErrorInfo"> </span>
+						</span>
+                        <div class="col-md-12">
+                            <input type="text" disabled class="form-control" ng-model="data.material.materialUnit.name" name="name2">
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="col-md-4 control-label">
+                           	入库单号
+                            <span class="fa fa-bell-o"></span>
+                        </label>
+                        <span class="col-md-8">
+							<span class="validateErrorInfo"> </span>
+						</span>
+                        <div class="col-md-12">
+                            <input type="text" class="form-control" ng-model="data.storageDocuments" name="documents"
+                                   ng-pattern="regex.name" ng-blur="checkValidateWithSensitive($event, 'data.storageDocuments')"
+                                   ng-minlength="length.langNameMin" ng-maxlength="length.langNameMax" required>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="col-md-4 control-label">
+                           	入库数量
+                            <span class="fa fa-bell-o"></span>
+                        </label>
+                        <span class="col-md-8">
+							<span class="validateErrorInfo"> </span>
+						</span>
+                        <div class="col-md-12">
+                            <input type="text" class="form-control" ng-pattern="regex.positiveInteger" ng-model="data.storageCount" name="positiveInteger"
+                                   min="1" maxlength="6" ng-minlength="length.storageCountMin" ng-maxlength="length.storageCountMax" required>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="col-md-4 control-label">
+                           	入库人员
+                            <span class="fa fa-bell-o"></span>
+                        </label>
+                        <span class="col-md-8">
+							<span class="validateErrorInfo"> </span>
+						</span>
+                        <div class="col-md-12">
+                            <input type="text" class="form-control" ng-model="data.storagePerson" name="personName"
+                                   ng-pattern="regex.personName" ng-blur="checkValidateWithSensitive($event, 'data.storagePerson')"
+                                   ng-minlength="length.personMin" ng-maxlength="length.personMax" required>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="col-md-4 control-label">
+                           	单价(元)
+                            <span class="fa fa-bell-o"></span>
+                        </label>
+                        <span class="col-md-8">
+							<span class="validateErrorInfo"> </span>
+						</span>
+                        <div class="col-md-12">
+                            <input id="price2" type="text" value="1" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6" style="float: right">
+                        <label class="col-md-4 control-label">
+                           	入库日期
+                            <span class="fa fa-bell-o"></span>
+                        </label>
+                        <span class="col-md-8">
+							<span class="validateErrorInfo"> </span>
+						</span>
+                        <div style="padding: 0px 15px; " class="col-md-12 input-group date form_datetime">
+                            <input type="text" size="16" readonly name="date" class="form-control" ng-model="data.storageDate" required>
+                            <span class="input-group-btn include">
+                                <button class="btn default date-reset" type="button">
+                                    <i class="fa fa-times"></i>
+                                </button>
+                                <button class="btn default my-date-set" type="button">
+                                    <i class="fa fa-calendar date-set"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="col-md-12 control-label">
+                           	总价(元)
+                        </label>
+                        <div class="col-md-12">
+                            <input type="text" class="form-control" disabled ng-model="data.totalPrice">
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <!-- END FORM-->
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" data-dismiss="modal" class="btn btn-outline dark"><i class="fa fa-reply"></i> 关闭</button>
+        <!-- 验证成功后取消禁用 -->
+        <button type="button" ng-disabled="myForm.$invalid || countError" ng-click="save()" class="btn green-haze"><i
+                class="fa fa-check"></i>
+           	保存
+        </button>
+    </div>
+</div>

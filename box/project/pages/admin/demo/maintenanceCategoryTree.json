@@ -1,0 +1,32 @@
+[
+  {
+    "id": "maintenanceCategoryTree_1",
+    "parent": "#",
+    "text": "水",
+    "icon": "fa fa-file icon-state-warning icon-lg",
+    "state": {
+      "opened": true
+    }
+  },
+  {
+    "id": "maintenanceCategoryTree_2",
+    "parent": "#",
+    "text": "电",
+    "icon": "fa fa-file icon-state-warning icon-lg",
+    "state": {
+      "opened": true
+    }
+  },
+  {
+    "id": "maintenanceCategoryTree_3",
+    "parent": "maintenanceCategoryTree_1",
+    "text": "下水疏通类",
+    "icon": "fa fa-folder icon-lg icon-state-success"
+  },
+  {
+    "id": "maintenanceCategoryTree_4",
+    "parent": "maintenanceCategoryTree_2",
+    "text": "线路维修类",
+    "icon": "fa fa-folder icon-lg icon-state-success"
+  }
+]

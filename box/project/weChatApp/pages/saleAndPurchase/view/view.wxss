@@ -1,0 +1,72 @@
+@import "../../../wxParse/wxParse.wxss";
+
+/* 解决图片左右移动的样式 */
+
+.wxParse-p {
+  overflow: hidden;
+}
+
+.addDateTime {
+  font-size: 25rpx;
+  color:#888;
+  text-align:center;
+  margin: 20rpx auto;
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+  color:#666;
+}
+
+.description {
+  width: 100% - 60rpx;
+  margin: 30rpx;
+  justify-content: center;
+}
+
+.tabTitle {
+  background-color: #e8e8fd;
+  padding: 20rpx;
+  display: flex;
+  justify-content: center;
+}
+
+.minTitle {
+  align-items: center;
+  padding-right: 30rpx;
+  font-size: 25rpx;
+}
+
+.article {
+  font-family: '宋体';
+  font-size: 30rpx;
+  /* text-indent: 28px; */
+  /* padding-bottom: 60rpx; */
+  margin: 0rpx 30rpx 20rpx 30rpx;
+  color: #666;
+}
+
+.bottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  background: #2BA245;
+  color: white;
+  font-size: 26rpx;
+  padding:12rpx 0 6rpx 0;
+}
+
+ .phone, .price {
+  display: inline-block;
+  margin-left: 36rpx;
+} 
+.uploadImage{
+  text-align: center;
+}

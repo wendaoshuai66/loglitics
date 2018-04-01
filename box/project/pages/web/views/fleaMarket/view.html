@@ -1,0 +1,69 @@
+<!--跳蚤市场详情开始-->
+<div class="portlet light bordered" ng-controller="fleaMarketViewController">
+    <div class="portlet-title">
+        <div class="caption font-green-sharp">
+            <i class="icon-settings font-green-sharp"></i>
+            <span class="caption-subject bold uppercase">跳蚤市场详情</span>
+        </div>
+        <div class="actions">
+            <a class="btn btn-circle green-haze btn-sm" ng-click="toBack()">
+                <i class="fa fa-reply"></i> 返回
+            </a>
+        </div>
+    </div>
+    <div class="portlet-body dataTables_wrapper">
+        <div class="news_content">
+            <div class="news_title text-center">
+                <div class="tab-pane active" style="float: left;margin-top: -21px;">
+                    <div class="clearfix" ng-class="data.type" >
+                        <div href="javascript:;" class="icon-btn icon-button">
+                            <i class="fa {{data.type==1?'fa fa-balance-scale':'fa fa-cart-plus'}}"></i>
+                            <div> {{data.type==1?'出售':'求购'}} </div>
+                        </div>
+                    </div>
+                </div>
+                {{data.title}}
+               <div class="tab-pane active " style="float: right">
+                   <div class="clearfix" style="height: 45px;">
+                       <button ng-if="data.dealStatus==1" class="btn blue btn-outline  btntip"
+                               ng-disabled="true">
+                           <i class="fa fa-check complete" > 完成</i>
+                       </button>
+                       <div ng-if="data.dealStatus==0">
+	                       <button ng-if="ifAuthorSelf" class="hide btn red btn-outline  btntip"
+	                               ng-click="showModule()" ng-disabled="data.approvalStatus==0" data-microtip="更改发布状态"
+	                               data-microtip-position='bottom'>
+	                           <i class="fa fa-times"> 未完成</i>
+	                       </button>
+	                       <button ng-if="!ifAuthorSelf" class="hide btn red btn-outline  btntip"
+                               ng-disabled="true">
+                        		<i class="fa fa-times"> 未完成</i>
+                       		</button>
+                       		<button class="btn red btn-outline">
+                        		<i class="fa fa-times"> 未完成</i>
+                       		</button>
+                       </div>
+                   </div>
+                </div>
+            </div>
+            <br/>
+            <div class="news_time text-center">
+                <span>发布人：{{data.person.name}}</span>
+                <span>价格(元)：{{data.price}}</span>
+                <span>手机号: {{data.person.tel}}</span>
+                <span>发布时间：{{data.addDateTime}}</span>
+                <span>浏览：{{data.viewTimes}} 次</span>
+            </div>
+            <div class="news_described">
+                {{data.description}}
+            </div>
+            <div style="margin: 20px 45px;">
+           	    <span ng-repeat="url in data.urls track by $index">
+                	  <img ng-src="{{url}}" ng-style="{'width':'{{slideImageHeight}}px','height':'{{slideImageHeight}}px','margin': '10px 10px'}">  
+                </span>
+            </div>
+        </div>
+    </div>
+    <!-- 状态改变的模态框 -->
+    <div data-ng-include="'tpl/confirmChangeStatus.html'"></div>
+</div>

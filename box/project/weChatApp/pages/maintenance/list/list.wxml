@@ -1,0 +1,70 @@
+<view class="MainContent hiddenScroll">
+  <!-- 搜索框 start -->
+  <view class="TopBlock">
+    <view hidden='{{!maskFlag}}' class='cancel' size='mini' bindtap='initClick' hover-stop-propagation>取消</view>
+    <view class='searchBox'>
+      <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+      <input class='searchInput' bindfocus='searchFoucs' bindinput='searchInput' bindblur='searchBlur' type='text' value='{{searchValue}}' placeholder='搜索（维修单号）' bindconfirm="searchConfirm" confirm-type="search" maxlength='20'>
+      </input>
+    </view>
+    <view class='logBox' style="{{maskFlag && (logItem.length != 0)?'display:inline-block':'display:none'}}">
+      <view class='logText'>-----搜索历史-----</view>
+      <view class='logItemBox' bindtap='logItemClick' data-name="{{item}}" wx:for="{{logItem}}" wx:key="{{index}}">{{item}}</view>
+      <view class='logBottom' bindtap='clearLog'>清空历史记录</view>
+    </view>
+    <!-- 遮罩层 start -->
+    <view class='mask' bindtap='maskTap' style="height:{{windowHeightInit}}px;{{maskFlag?'display:inline-block':'display:none'}}"></view>
+    <!-- 遮罩层 end -->
+  </view>
+  <!-- 搜索框 end  -->
+  <!-- 选择类型开始 -->
+  <view class="searchBar">
+    <view class='ul' bindtouchmove='ulMove'>
+      <view class='li typeTitle' data-type='type' bindtap='titleClick'>
+        <text class="iconfont icon-all"></text>\t\t\t{{typeItems[typeIndex]}}</view>
+      <view class='li timeTitle' data-type='time' bindtap='titleClick'>
+        <text class="iconfont icon-all"></text>\t\t\t{{timeItems[timeIndex]}}</view>
+      <view class='titleList' style='height:{{windowHeight/2}}px' hidden='{{typeHidden}}' animation='{{animationType}}'>
+        <view wx:for="{{typeItems}}" data-index='{{index}}' wx:key='{{index}}' bindtap='typeChange'>{{item}}</view>
+      </view>
+      <view class='titleList' hidden='{{timeHidden}}' animation='{{animationTime}}'>
+        <view wx:for='{{timeItems}}' data-index='{{index}}' wx:key='{{index}}' bindtap='timeChange'>{{item}}</view>
+      </view>
+    </view>
+  </view>
+  <!-- 选择类型结束 -->
+  <view class='showPage BottomBlock' hidden='{{showPage}}'></view>
+  <!-- 列表开始 -->
+  <scroll-view class="BottomBlock" lower-threshold='1'  scroll-y="true" style="{{typeHidden?'overflow:auto':'overflow:hidden'}}">
+    <view class="item" wx:for="{{list}}" wx:key="{{index}}" data-index="{{index}}" bindtap="toView" data-id="{{item.id}}">
+      <!-- <image class="picture" src="/images/saleAndPurchase/list/buy.png"></image> -->
+      <view class="text">
+        <view class="buy-title">{{item.maintenanceItemName}}</view>
+        <view class='content-text'>
+          <span class="content-title">所属校区</span>\t\t:\t\t{{item.maintenanceRecord.maintenanceArea.campus.name}}</view>
+        <view class='content-text'>
+          <span class="content-title">维修区域</span>\t\t:\t\t{{item.maintenanceRecord.maintenanceArea.name}}</view>
+        <view class='content-text'>
+          <span class="content-title">维修项目</span>\t\t:\t\t{{item.maintenanceRecord.maintenanceCategory.maintenanceType.name}}</view>
+        <view class='content-text'>
+          <span class="content-title">维修类别</span>\t\t:\t\t{{item.maintenanceRecord.maintenanceCategory.name}}</view>
+        <view class='maintenanceStatus'>
+          <view class='before'></view>
+          <view class='after'></view>{{item.maintenanceRecord.maintenanceStatus.name}}</view>
+        <view class="buy-time">
+          <!-- <view>类别\t:\t{{item.inforModule.name}}</view> -->
+          <text class='numbers'>{{item.maintenanceNumber}}</text>
+          <span class="time">{{item.addDateTime}}</span>
+        </view>
+      </view>
+    </view>
+    <view class="allDownText" hidden="{{!ifAll}}">{{ifAllText}}</view>
+  </scroll-view>
+  <view class="body-view">
+    <loading hidden="{{loadingHidden}}" bindchange="loadingChange">
+      加载中...
+    </loading>
+    <view hidden='{{loadingHidden}}' class='loadingMask'></view>
+  </view>
+  <!-- 列表结束 -->
+</view>

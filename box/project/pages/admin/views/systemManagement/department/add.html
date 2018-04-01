@@ -1,0 +1,115 @@
+<div id="addModal" class="modal fade" tabindex="-1" data-backdrop="static" aria-hidden="true" data-width="800" ng-controller="departmentAddController">
+    <div class="modal-header">
+        <button type="button" class="modal_close" data-dismiss="modal" aria-hidden="true">x</button>
+        <h4 class="modal-title"><p ng-bind="modalTitle"></p></h4>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <!-- BEGIN FORM-->
+            <form w5c-form-validate="validateOptions" class="w5c-form" novalidate name="myForm">
+                <div class="form-body">
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">
+                        	所属校区
+                        	<span class="fa fa-bell-o"></span>
+                        </label>
+                        <span class="col-md-8">
+							<span class="validateErrorInfo"></span>
+						</span>
+                        <div class="col-md-12">
+                            <select name="select" ui-select2="select2Options" ng-change="changeCampus()"
+                                    class="form-control" ng-model="data.campus.id" required
+                                    ng-options="item.id as item.name for item in campusSelectData">
+                                <option value="">-- 请选择 --</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">上级部门</label>
+                        <span class="col-md-8">
+							<span class="validateErrorInfo"></span>
+						</span>
+                        <div class="col-md-12">
+                            <select name="select2" ui-select2="select2FormatOptions" ng-change="changeParentDepartment()"
+                                    class="form-control" ng-model="data.parent.id"
+                                    ng-options="item.id as item.name for item in departmentSelectData">
+                                <option value="">-- 请选择 --</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">
+                           	 部门名称
+                            <span class="fa fa-bell-o"></span>
+                        </label>
+                        <span class="col-md-8">
+                            <span class="validateErrorInfo"></span>
+                        </span>
+                        <div class="col-md-12">
+                            <input type="text" name="name" class="form-control" ng-change="checkRepeat();" ng-pattern="regex.name"
+                                   ng-minlength="length.langNameMin" ng-maxlength="length.langNameMax" ng-blur="checkValidateWithSensitive($event, 'data.name')"
+                                   placeholder="" ng-model="data.name" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">
+                            是否后勤部门
+                        </label>
+                        <div class="col-md-4 form-md-radios">
+                            <div class="md-radio-inline">
+                                <div class="md-radio" ng-repeat="item in showStatusData">
+                                    <input type="radio" ng-disabled="true && data.parent.id || isEdit" id="editCheckbox2{{item.value}}"
+                                           ng-model="data.ifLogistics" ng-value="{{item.value}}"
+                                           class="md-radiobtn">
+                                    <label for="editCheckbox2{{item.value}}">
+                                        <span></span>
+                                        <span class="check"></span>
+                                        <span class="box"></span> {{item.name}}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <label class="col-md-2 control-label">
+                            	部门状态
+                        </label>
+                        <div class="col-md-4 form-md-radios">
+                            <div class="md-radio-inline">
+                                <div class="md-radio" ng-repeat="item in statusUseTypeData">
+                                    <input type="radio" id="editCheckbox{{item.value}}" 
+                                           ng-model="data.status" ng-value="{{item.value}}"
+                                           class="md-radiobtn" ng-change="changeDepartmentStatus()">
+                                    <label for="editCheckbox{{item.value}}">
+                                    	<span></span>
+                                        <span class="check"></span>
+                                        <span class="box"></span> {{item.name}} 
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">部门描述</label>
+                        <div class="col-md-8">
+                        </div>
+                        <div class="col-md-12">
+                            <textarea class="form-control" name="description" rows="3" ng-model="data.description"
+                                      id="maxlength_textarea" maxlength="200" placeholder="最大输入200个字符"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <!-- END FORM-->
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" data-dismiss="modal" class="btn btn-outline dark">
+        	<i class="fa fa-reply"></i> 
+        	关闭
+        </button>
+        <!-- 验证成功后取消禁用 -->
+        <button ng-disabled="myForm.$invalid || ifRepeat" type="button" ng-click="save()" class="btn green-haze">
+			<i class="fa fa-check"></i>
+           	保存
+        </button>
+    </div>
+</div>

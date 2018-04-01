@@ -1,0 +1,19 @@
+<div ng-if="showCarouse" id="carouselDom" class="emphasize-dark" style="width: 100%;border-radius: 4px">
+    <div class="shutter" id="shutter1">
+        <div class="shutter-img">
+            <a ng-repeat="item in carouselPic" repeat-finish="renderFinish()"  target="_blank"
+               data-shutter-title="{{item.title}}"><img ng-src="{{item.slidePicture}}" alt="#"></a>
+        </div>
+        <ul class="shutter-btn">
+            <li class="prev"></li>
+            <li class="next"></li>
+        </ul>
+        <div class="shutter-desc">
+            <p>{{firstTitle}}</p>
+        </div>
+    </div>
+</div>
+<div ng-if="!showCarouse">
+    <img ng-src="./images/carousel/news1.jpg" class="emphasize-dark"
+         style="margin-top: 50px;width: 100%;height: 270px;border-radius: 4px;">
+</div>

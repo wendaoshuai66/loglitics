@@ -1,0 +1,124 @@
+@import "../../../wxParse/wxParse.wxss";
+
+/* 解决图片左右移动的样式 */
+
+.wxParse-p {
+  overflow: hidden;
+}
+
+.addDateTime {
+  float: right;
+  font-size: 25rpx;
+  color:#666;
+margin-top:16rpx;
+
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #666;
+}
+
+.description {
+  width: 100% - 60rpx;
+  margin: 30rpx;
+  justify-content: center;
+}
+
+.tabTitle {
+  background-color: #e8e8fd;
+  padding: 20rpx;
+  margin: 0rpx 0 30rpx 0;
+  display: flex;
+  justify-content: center;
+}
+
+.minTitle {
+  align-items: center;
+  padding-right: 30rpx;
+  font-size: 25rpx;
+}
+
+.article {
+  position: relative;
+  font-family: '宋体';
+  font-size: 30rpx;
+  color:#333;
+  text-indent: 28rpx;
+  margin: 16rpx auto;
+  width: 94%;
+  background: white;
+  box-shadow: 0rpx 0rpx 40rpx #e5e5e5;
+  padding: 30rpx 20rpx;
+  box-sizing: border-box;
+  line-height:56rpx;
+}
+
+.phone {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  z-index: 99999;
+  text-align: center;
+  font-size: 32rpx;
+  color: white;
+  background: yellowgreen;
+}
+
+.content {
+  position: relative;
+}
+
+.statusN {
+  position: absolute;
+  bottom: 47rpx;
+  right: 0;
+  color: red;
+  opacity: 0.5;
+  /* transform: rotate(-30deg); */
+  border: 1px solid red;
+  padding: 0rpx 30rpx;
+}
+
+.statusY {
+  position: absolute;
+  bottom: 47rpx;
+  right: 0;
+  color: green;
+  opacity: 0.5;
+  /* transform: rotate(-30deg); */
+  border: 1px solid green;
+  padding: 0rpx 30rpx;
+}
+
+.reply_box {
+  padding: 0 20rpx;
+  font-size: 30rpx;
+  color: #999;
+}
+
+.reply_title {
+  color: #1BA39C;
+  margin-right: 10rpx;
+  position: absolute;
+  top: 30rpx;
+  left: -60rpx;
+}
+
+.reply {
+  /* font-size: 26rpx; */
+  letter-spacing: 2rpx;
+}
+
+.relative {
+  position: relative;
+  text-indent: 90rpx;
+  color: #888;
+  font-size:30rpx;
+}

@@ -1,0 +1,162 @@
+<!-- BEGIN MAIN CONTENT -->
+<div class="portlet light bordered" ng-controller="dutyRegisterController">
+                <div class="portlet-title">
+                    <div class="caption font-dark">
+                        <i class="icon-settings font-dark"></i>
+                        <span class="caption-subject bold uppercase"> {{campusName}} - {{dutyDepartmentName}} 值班设置</span>
+                    </div>
+                    <div class="actions">
+			             <div class="btn-group" data-toggle="buttons">
+			             	<a class="btn green-haze btn-sm" ui-sref="duty">
+			                    <i class="fa fa-reply"></i> 返回
+			                </a>
+			             </div>
+			         </div>
+                </div>
+                <div class="portlet-body">
+                
+<div class="row">
+    <div class="col-md-12">
+        <div class="mt-element-step">
+            <div class="row step-line">
+                <div class="col-md-2 mt-step-col first" ng-class="$eval(getRegisterLineClass(1))"
+                >
+                    <div class="mt-step-number bg-white">1</div>
+                    <div class="mt-step-title uppercase font-grey-cascade">值班日期选择</div>
+                    <div class="mt-step-content font-grey-cascade"></div>
+                </div>
+                <div class="col-md-2 mt-step-col info" ng-class="$eval(getRegisterLineClass(2))"
+                >
+                    <div class="mt-step-number bg-white">2</div>
+                    <div class="mt-step-title uppercase font-grey-cascade">指定值班人员</div>
+                    <div class="mt-step-content font-grey-cascade"></div>
+                </div>
+                <div class="col-md-2 mt-step-col info" ng-class="$eval(getRegisterLineClass(3))"
+                >
+                    <div class="mt-step-number bg-white">3</div>
+                    <div class="mt-step-title uppercase font-grey-cascade">自动排班</div>
+                    <div class="mt-step-content font-grey-cascade"></div>
+                </div>
+                <div class="col-md-2 mt-step-col info" ng-class="$eval(getRegisterLineClass(4))"
+                >
+                    <div class="mt-step-number bg-white">4</div>
+                    <div class="mt-step-title uppercase font-grey-cascade">手动排班</div>
+                    <div class="mt-step-content font-grey-cascade"></div>
+                </div>
+                <div class="col-md-2 mt-step-col info" ng-class="$eval(getRegisterLineClass(5))"
+                >
+                    <div class="mt-step-number bg-white">5</div>
+                    <div class="mt-step-title uppercase font-grey-cascade">预览与确认排班</div>
+                    <div class="mt-step-content font-grey-cascade"></div>
+                </div>
+                <div class="col-md-2 mt-step-col last" ng-class="$eval(getRegisterLineClass(6))"
+                >
+                    <div class="mt-step-number bg-white">6</div>
+                    <div class="mt-step-title uppercase font-grey-cascade">生成排班表</div>
+                    <div class="mt-step-content font-grey-cascade"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div ng-if="registerStep==1">
+            <div class="portlet light bordered">
+                <div class="portlet-title">
+                    <div class="caption font-dark">
+                        <i class="icon-settings font-dark"></i>
+                        <span class="caption-subject bold uppercase"> 请确定值班日期安排 </span>
+                    </div>
+                    <div class="actions">
+			         </div>
+                </div>
+                <div class="portlet-body">
+                    <div data-ng-include="'views/dutyManagement/duty/registerStep/oneStep.html'"></div>
+                </div>
+            </div>
+        </div>
+        <div ng-if="registerStep==2">
+            <div class="portlet light bordered">
+                <div class="portlet-title">
+                    <div class="caption font-dark">
+                        <i class="icon-settings font-dark"></i>
+                        <span class="caption-subject bold uppercase"> 维修人员选择 </span>
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <div data-ng-include="'views/dutyManagement/duty/registerStep/twoStep.html'"></div>
+                </div>
+            </div>
+        </div>
+        <div ng-if="registerStep==3">
+            <div class="portlet light bordered">
+                <div class="portlet-title">
+                    <div class="caption font-dark">
+                        <i class="icon-settings font-dark"></i>
+                        <span class="caption-subject bold uppercase"> 自动排班 </span>
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <div data-ng-include="'views/dutyManagement/duty/registerStep/threeStep.html'"></div>
+                </div>
+            </div>
+        </div>
+        <div ng-if="registerStep==4">
+            <div class="portlet light bordered">
+                <div class="portlet-title">
+                    <div class="caption font-dark">
+                        <i class="icon-settings font-dark"></i>
+                        <span class="caption-subject bold uppercase"> 手动排班 </span>
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <div data-ng-include="'views/dutyManagement/duty/registerStep/fourStep.html'"></div>
+                </div>
+            </div>
+        </div>
+        <div ng-if="registerStep==5">
+            <div class="portlet light bordered">
+                <div class="portlet-title">
+                    <div class="caption font-dark">
+                        <i class="icon-settings font-dark"></i>
+                        <span class="caption-subject bold uppercase"> 预览确认 </span>
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <div data-ng-include="'views/dutyManagement/duty/registerStep/fiveStep.html'"></div>
+                </div>
+            </div>
+        </div>
+        <div ng-if="registerStep==6">
+            <div class="portlet light bordered">
+                <div class="portlet-title">
+                    <div class="caption font-dark">
+                        <i class="icon-settings font-dark"></i>
+                        <span class="caption-subject bold uppercase"> 打印保存值班表 </span>
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <div data-ng-include="'views/dutyManagement/duty/registerStep/sixStep.html'"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 row">
+        <div class="registerFooter" style="padding: 0;">
+            <button type="button" class="btn yellow col-md-1" ng-click="previous()" id="previousStep"
+                    ng-if="registerStep!=1&&registerStep!=6"><i class="fa fa-reply"></i>&nbsp;上一步
+            </button>
+            <!-- 验证成功后取消禁用 -->
+            <button id="nextStep" ng-if="registerStep!=6" type="button" ng-click="nextStep()" class="btn green-haze col-md-1"
+                    ng-disabled="registerStep==6 || (registerStep==2 && !nextCheckDown) 
+                    || (registerStep==3 && !nextCheckDown)"><i class="fa fa-check"></i>
+                &nbsp;{{registerStep!=5?'下一步':'生成值班表'}}
+            </button>
+            <button ng-if="registerStep==6" type="button" ng-click="closeRegister()" class="btn col-md-1 green-haze"><i class="fa fa-check-square-o"></i>
+                &nbsp;关闭
+            </button>
+        </div>
+    </div>
+</div>
+    </div>
+</div>
+<!-- END MAIN CONTENT -->

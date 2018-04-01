@@ -1,0 +1,21 @@
+<import src="../../../wxParse/wxParse.wxml" />
+<scroll-view scroll-y="true" style="height: {{height}}px;">
+  <text class="title">{{data.title}}</text>
+  <view class="tabTitle">
+    <text class="minTitle">作者\t:\t{{data.author}}</text>
+    <text class="minTitle">浏览次数\t:\t{{data.viewTimes}}</text>
+  </view>
+  <view class='bottom'>
+      <text class='pictureProvider'>摄影\t:\t{{data.pictureProvider}}</text>
+      <text class='addDateTime'>发布时间\t:\t{{data.addDateTime}}</text>
+    </view>
+  <view class="article">
+    <template is="wxParse" data="{{wxParseData:article.nodes}}" />
+  </view>
+</scroll-view>
+<view class="body-view">
+  <loading hidden="{{loadingHidden}}">
+    加载中...
+  </loading>
+  <view hidden='{{loadingHidden}}' class='loadingMask'></view>
+</view>

@@ -1,0 +1,33 @@
+<div class="portlet box blue">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-cogs"></i>维修量分时统计 - 24小时
+        </div>
+        <!-- ngIf: loginStatus -->
+    </div>
+    <div class="portlet-body" ng-controller="hourStatisticsController">
+        <div class="table-responsive" style="overflow-x: hidden">
+        <date-range-and-labelauty></date-range-and-labelauty>
+        </div>
+        <table class="table table-bordered table-striped table-hover">
+            <thead>
+            <tr>
+                <th>时间段/小时</th>
+                <th ng-repeat="_category in data[0].categories">{{_category}}</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>维修量/单</td>
+                <!-- 多个ng-repeat循环同一个对象($scope.data)时会报 ngRepeat:dupes ,解决办法为增加$index区分遍历对象  -->
+                <td ng-repeat="_value in data[0].data track by $index">{{_value}}</td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="table-responsive" style="overflow-x: hidden;padding-bottom: 20px;">
+        <div id="hourLine" class="myChart"></div>
+        <div id="hourPie" class="myChart"></div>
+        </div>
+    </div>
+</div>
+

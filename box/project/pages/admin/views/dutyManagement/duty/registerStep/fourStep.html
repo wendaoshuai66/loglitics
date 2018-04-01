@@ -1,0 +1,74 @@
+<div ng-controller="dutyRegisterFourStepController">
+    <div class="table-toolbar">
+        <div class="table-toolbar">
+            <div class="tabbable tabbable-custom tabbable-noborder tabbable-reversed">
+                <!-- 日历选择 -->
+                <div class="col-md-6 col-sm-6">
+                    <div class="hide" style="position: absolute;margin: 10px 0 0 15px;">
+                        <input bs-switch ng-model="select.isSelected" type="checkbox"
+                               switch-active="{{ select.isActive }}" switch-on-text="{{ select.onText }}"
+                               switch-off-text="{{ select.offText }}" switch-on-color="{{ select.onColor }}"
+                               switch-off-color="{{ select.offColor }}"
+                               switch-radio-off="{{ select.radioOff }}" switch-label-width="{{ select.labelWidth }}"
+                               switch-handle-width="{{ select.handleWidth }}"
+                               switch-wrapper="{{ select.wrapper }}" ng-true-value="true" ng-false-value="false"
+                               switch-inverse="{{ !select.inverse }}">
+                    </div>
+                    <div id="calendar" class="has-toolbar table-responsive" style="padding: 15px;"></div>
+                </div>
+                <!-- 帮助 -->
+                <div class="col-md-6 col-sm-6">
+                    <div>
+                        <div data-ng-include="'views/dutyManagement/duty/registerStep/calendarTip.html'"></div>
+                    </div>
+                    <div class="note note note-info note-bordered" style="margin: 0;">
+                        <div class="caption-subject bold" style="font-size: 16px;">调整演示</div>
+                    </div>
+                    <div style="border: 1px solid #dbe8f8;padding: 30px 0 40px 0;">
+                        <img style="width:100%;" src="./../assets/global/img/zidong.gif">
+                    </div>
+                    <div class="note note note-info note-bordered hide" style="margin: 0 0 0 0;">
+                        <div class="caption-subject bold" style="font-size: 16px;">自动与手动调整</div>
+                        <h3>操作提示 <span class="label label-danger">自动与手动调整</span></h3>
+                    </div>
+                    <div class="jumbotron hide" style="background: transparent;border: 1px solid #dbe8f8;">
+                        <div class="container">
+                            <div>
+                                <h4 style="font-size: 16px;">温馨提示：</h4>
+                                <br>
+                                <h4 style="font-size: 16px;">值班表内容可进行拖拽 ,分为自动调节与手动调节 , 具体细节查看图片说明</h4>
+                            </div>
+                            <div style="padding-left: 15px;">
+                                <!--<h4><span class="label label-info">图片说明</span></h4>-->
+                                <h5 style="font-weight: bold;font-size: 16px;">图片说明</h5>
+
+                                <p style="font-size: 16px;">自动模式会自动把值班人交换 , 手动模式可配置同一班次多人值班</p>
+                            </div>
+                            <div class="col-md-12 hide">
+                                <button class="btn btn-lg col-md-4" style="float: right;width: 160px;padding: 6px 10px;"
+                                        ng-class="!tipsImgShow?'btn-info':'btn-success'" ng-click="showOrHideTipsImg()">
+                                    {{!tipsImgShow?'查看图片说明':'隐藏图片说明'}}
+                                </button>
+                            </div>
+                            <!-- 提示动态图片 -->
+                            <div>
+                                <div class="col-md-12 labelGroup">
+                                    <h4 style="margin-bottom: 10px;"><span class="label label-info hide">自动调整</span>
+                                    </h4>
+
+                                    <!--<h5 style="font-weight: bold;margin-top: 32px;">自动调整</h5>-->
+                                    <img style="width:100%;" src="./../assets/global/img/zidong.gif">
+                                    <h4 style="margin: 10px 0;"><span class="label label-info ">手动调整</span></h4>
+                                    <h5 class="hide" style="font-weight: bold;margin-top: 32px;">手动调整</h5>
+                                    <img class="hide" src="./../assets/global/img/shoudong.gif">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 提示 -->
+            </div>
+        </div>
+    </div>
+</div>
+</div>

@@ -1,0 +1,26 @@
+<!--pages/statistics/view/view.wxml-->
+<view class='timeSpan'>
+<view class='li' style="{{dateStatusItems[index]?'background:#E9EDEF':'bakcground:white;'}}" data-index="{{index}}" bindtap='chooseDateTime' wx:for="{{dateItems}}" wx:key="{{index}}">{{item}}</view>
+</view>
+<block class="content">
+  <!-- <view class='title'>{{type}}</view> -->
+  <view class='nav'>
+    <button class='changeBtn' bindtap='changeBtn' hidden='{{btnHidden}}'>切换{{}}</button>
+  </view>
+  <!-- <view class='canvas_body'> -->
+  <canvas hidden='{{showFlag}}' style="height:{{height}}px" canvas-id='canvas'></canvas>
+  <!-- <view > -->
+  <!-- 暂无数据 -->
+  <image hidden='{{!showFlag}}' class='noData' src='../../../../images/statistics/noData.png'></image>
+  <!-- </view> -->
+  <!-- </view> -->
+</block>
+<!-- 按照时间范围查询 -->
+
+<!-- <view class="body-view">
+      <loading hidden="{{loadingHidden}}" bindchange="loadingChange">
+        加载中...
+      </loading>
+      <view hidden='{{loadingHidden}}' class='loadingMask'></view>
+    </view> -->
+

@@ -1,0 +1,57 @@
+<!-- BEGIN PORTLET-->
+<div class="portlet light bordered" ng-controller="suggestionAddController">
+    <div class="portlet-title">
+        <div class="caption bold font-green-sharp">
+            <i class="fa fa-gift font-green-sharp"></i>新增建言献策
+        </div>
+        <div class="actions">
+            <a class="btn btn-circle green-haze btn-sm" ng-click="toBack()">
+                <i class="fa fa-reply"></i> 返回
+            </a>
+        </div>
+    </div>
+    <div class="portlet-body form">
+        <!-- BEGIN FORM-->
+         <form w5c-form-validate="validateOptions" class="w5c-form form-horizontal form-bordered" novalidate name="myForm">
+             <div class="form-body">
+                 <div class="form-group">
+					<label class="col-xs-3 control-label">
+                         <span class="fa fa-bell-o"></span>
+                        	标题
+                  	</label>
+                  	<div class="col-xs-9">
+                      	<input type="text" name="name2" class="form-control" ng-blur="checkValidateWithSensitive($event,'data.title')"
+                             ng-minlength="length.langNameMin" ng-maxlength="length.modelMax" ng-pattern="regex.name"
+                             placeholder="请输入标题" ng-model="data.title" required>
+                      	<span class="validateErrorInfo"> </span>
+                  	</div>
+                 </div>
+                 <div class="form-group">
+                     <label class="control-label col-xs-3">
+                     		<span class="fa fa-bell-o"></span>
+                        	内容
+                     </label>
+                     <div class="col-xs-9">
+                         <textarea id="maxlength_textarea" name="name3" ng-model="data.article" class="form-control"
+                                   maxlength="200" rows="8" placeholder="最大输入200个字符" 
+                                   ng-blur="checkValidateWithSensitive($event,'data.article')" required></textarea>
+                         <span class="validateErrorInfo"> </span>
+                     </div>
+                 </div>
+             </div>
+             <div class="form-actions">
+                 <div class="row">
+                     <div class="col-xs-offset-3 col-xs-6">
+                         <button type="button" class="btn green"
+                                 ng-disabled="myForm.$invalid"
+                                 ng-click="save()">
+                             <i class="fa fa-check"></i> 保存
+                         </button>
+                     </div>
+                 </div>
+             </div>
+         </form>
+         <!-- END FORM-->
+    </div>
+</div>
+<!-- END PORTLET-->

@@ -1,0 +1,26 @@
+<view class="content">
+  <form bindsubmit="formSubmit">
+    <!-- <view class="container-title">建言献策</view> -->
+    <view class="container-body">
+      <view class="input-group">
+        <view class="input-label">
+          <text class="">标题:</text>
+        </view>
+        <view class="input-content">
+          <input id="text" name="title" type="text" maxlength="30" placeholder="输入长度不能大于30" />
+        </view>
+      </view>
+      <view class="input-group">
+        <view class="describe">
+          <text class="">内容:</text>
+        </view>
+        <view class="input-textarea">
+          <textarea show-confirm-bar="" id="text" value="{{article}}" name="article" maxlength="200" placeholder="请输入你的建言献策的详细描述, 字数保持在200以内" bindinput='listenTextareaFromArticle'>
+          <view class='textareaSon'>{{articleNumber}}/200</view>
+          </textarea>
+        </view>
+      </view>
+      <button class="confirm-btn"hover-class="other-button-hover" form-type="submit">保  存</button>
+    </view>
+  </form>
+</view>

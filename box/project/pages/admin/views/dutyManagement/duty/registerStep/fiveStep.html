@@ -1,0 +1,57 @@
+<div ng-controller="dutyRegisterFiveStepController">
+    <div class="table-toolbar">
+        <div class="table-toolbar">
+            <div class="tabbable tabbable-custom tabbable-noborder tabbable-reversed">
+                <div class="col-md-6 col-sm-6">
+                    <div id="calendar" class="has-toolbar table-responsive" style="padding: 15px;"></div>
+                    <div class="jumbotron"
+                         style="margin-top: 28px;padding:80px 0;background: transparent;border: 1px solid #e5e5e5;">
+                        <div class="container">
+                            <div>
+                                <h5 style="font-size: 16px;">温馨提示：</h5>
+                                <br>
+                                <p style="font-size: 16px;">确认值班表内容无误后点击生成值班表</p>
+                                <p style="font-size: 16px;color: red;">提示：&nbsp;一旦确认生成值班表不可进行回退步骤!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="note note note-info note-bordered" style="margin-bottom: 0;">
+                        <!--<h3>值班表预览 <span class="label label-danger">共计 {{tableListData.length}} 项值班安排记录</span></h3>-->
+                        <span class="caption-subject bold" style="font-size: 16px;">值班表预览</span>
+                        <span style="font-size:16px;color: red;"> &nbsp;(共计 {{tableListData.length}} 项值班安排记录)</span>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6">
+                    <div class="table-responsive" style="padding: 0 15px 15px 15px;">
+                        <!--<h1><span class="label label-success center-block">部门: {{dutyDepartmentName}} 工种: {{dutyTypeName}}-->
+                        <!--<br> {{dutyYear}} 年 {{dutyMonth}} 月 值班表</span></h1>-->
+                        <h4><span style="line-height: 50px;color: #000;font-size: 18px;" class="label center-block"> {{dutyYear}} 年 {{dutyMonth}} 月 值班表&nbsp;  部门: {{dutyDepartmentName}} &nbsp; 工种: {{dutyTypeName}}
+                         </span></h4>
+                        <table style="border: 1px solid #e5e5e5;" class="table table-bordered table-hover">
+                            <thead>
+                            <tr>
+                                <th>值班日期</th>
+                                <th>白班人员</th>
+                                <th>夜班人员</th>
+                                <th>备注</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="event in tableListData">
+                                <td>{{event.time}}</td>
+                                <td>{{event.dayPersonName.join(' , ')}}</td>
+                                <td>{{event.nightPersonName.join(' , ')}}</td>
+                                <!-- 上班日期不显示 , 普通周末显示'周末' , 节假日显示 节假日第一天显示名称 其余天显示 '节假日'-->
+                                <td>{{(event.type)?(event.type==1?'普通周末':(event.name?event.name:'节假日')):''}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

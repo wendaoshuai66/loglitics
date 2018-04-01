@@ -1,0 +1,64 @@
+/* pages/statistics/view/view.wxss */
+
+.title {
+  text-align: center;
+}
+
+canvas {
+  width: 100%;
+   /* height: 1500rpx; */
+   /* transform: scale(0.5);   */
+  /* transform: translateX(-100rpx); */
+}
+.noData{
+  width:540rpx;
+  height: 600rpx;
+  position: relative;
+  top: 200rpx;
+  left: 50%;
+  transform: translate(-50%,-0%);
+  animation: opacityAnimate 1s;
+}
+@keyframes opacityAnimate{
+  from{
+    opacity: 0;
+  }
+  to{
+    opacity: 1
+  }
+}
+.changeBtn {
+  display: inline;
+  padding: 20rpx 40rpx;
+  margin-right: 30rpx;
+  /* line-height: 50rpx; */
+  font-size: 20rpx;
+}
+
+.nav {
+  text-align: right;
+}
+
+.timeSpan{
+  width: 100%;
+  height: 80rpx;
+  margin-bottom: 30rpx;
+  /* position: fixed; */
+}
+
+.li{
+  width: 16.6666%;
+  height: 76rpx;
+  line-height:76rpx;
+  text-align: center;
+  box-sizing: border-box;
+  display: inline-block;
+  background: white;
+  border: 1px solid #BFCAD1;
+  font-size: 30rpx;
+  border-radius: 6rpx;
+}
+.canvas_body{
+  width: 100%;
+  overflow: auto;
+}

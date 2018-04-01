@@ -1,0 +1,70 @@
+<div class="row" ng-controller="slideUploadController" uploader="uploader">
+    <!-- 设置自定义过滤器以及最大宽高属性 -->
+    <div class="col-md-12">
+        <!-- BEGIN: ACCORDION DEMO -->
+        <div class="portlet light bordered">
+        	<!--
+            <div class="portlet-title">
+                <div class="caption font-green-sharp">
+                    <i class="icon-settings font-green-sharp"></i>
+                    <span class="caption-subject bold uppercase">上传队列</span>
+                    <span class="caption-helper">任务个数: {{ uploader.queue.length }}</span>
+                </div>
+            </div>
+            -->
+            <div class="portlet-body">
+	            <div style="margin-top:15px">
+	            	<small class="font-red" style="margin-right:30px">
+                    	注意: 图片类型(.jpg，.png，.jpeg，.bmp，.gif)，大小不超过2M，像素不超过{{width}}*{{height}}
+	                </small>
+	                <span class="btn btn-success btn-file" ng-disabled="uploader.queue.length>=queueLimit"> 选择图片
+	                    <span class="glyphicon glyphicon-picture" aria-hidden="true"></span>
+	                    <my-upload id='myUpload' filters="imageFilter" msg="多张图片" width="{{width}}" height="{{height}}" response=""></my-upload>
+	                </span>
+	                <div class="table-scrollable table-scrollable-borderless">
+	                    <table class="table table-hover table-light" ng-show="uploader.queue.length">
+	                        <thead>
+	                        <tr>
+	                            <th width="50%">名称</th>
+	                            <th ng-show="uploader.isHTML5">大小</th>
+	                            <!--
+	                            <th ng-show="uploader.isHTML5">进度</th>
+	                            <th>状态</th>
+	                            <th>操作</th>
+	                            -->
+	                        </tr>
+	                        </thead>
+	                        <tbody ng-cloak>
+	                        <tr ng-repeat="item in uploader.queue">
+	                            <td>
+	                                <strong>{{item.file.name}}</strong>
+	                            </td>
+	                            <td ng-show="uploader.isHTML5" nowrap>
+	                            	{{ item.file.size/1024|number:2 }} KB
+                            	</td>
+	                            <!--<td ng-show="uploader.isHTML5">-->
+	                                <!--<div class="progress progress-sm" style="margin-bottom: 0;">-->
+	                                    <!--<div class="progress-bar progress-bar-info" role="progressbar"-->
+	                                         <!--ng-style="{ 'width': item.progress + '%' }"></div>-->
+	                                <!--</div>-->
+	                            <!--</td>-->
+	                            <td class="text-center">
+	                                <span ng-show="item.isError" class="text-danger">
+										  <i class="glyphicon glyphicon-remove"></i>
+								  	</span>
+	                            </td>
+	                            <td nowrap>
+	                                <button type="button" class="btn btn-danger btn-xs" ng-click="clearQueue()">
+	                                    <span class="glyphicon glyphicon-trash"></span> 删除
+	                                </button>
+	                            </td>
+	                        </tr>
+	                        </tbody>
+	                    </table>
+	                </div>
+		        </div>
+            </div>
+        </div>
+        <!-- END: ACCORDION DEMO -->
+    </div>
+</div>

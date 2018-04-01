@@ -1,0 +1,82 @@
+<!-- BEGIN PAGE HEADER-->
+<h3 class="page-title"> 首页 </h3>
+<!-- END PAGE HEADER-->
+<!-- BEGIN MAIN CONTENT -->
+<div ng-controller="DashboardController">
+    <div class="note note-info hide">
+        <h3>您好!
+            <span class="close" data-close="note"></span>
+        </h3>
+        <p> 欢迎您登录数字后勤后台管理系统. </p>
+        <span class="label label-danger">提示:</span> 系统最后更新时间为 2018年2月1日.
+    </div>
+    <!-- BEGIN DASHBOARD STATS -->
+    <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <div class="dashboard-stat blue">
+                <div class="visual">
+                    <i class="fa fa-wrench"></i>
+                </div>
+                <div class="details">
+                    <div class="number">
+                        <span id='maintenanceRecord' data-counter="counterup" data-value="0">0</span>
+                    </div>
+                    <div class="desc"> 报修记录 </div>
+                </div>
+                <a class="more" href="#/maintenance/maintenanceRecords"> 更多
+                    <i class="m-icon-swapright m-icon-white"></i>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <div class="dashboard-stat yellow">
+                <div class="visual">
+                    <i class="fa fa-user"></i>
+                </div>
+                <div class="details">
+                    <div class="number">
+                        <span id='teacher' data-counter="counterup" data-value="0">0</span>
+                    </div>
+                    <div class="desc"> 教职人员 </div>
+                </div>
+                <a class="more" href="#/user/teacher"> 更多
+                    <i class="m-icon-swapright m-icon-white"></i>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <div class="dashboard-stat green">
+                <div class="visual">
+                    <i class="fa fa-suitcase"></i>
+                </div>
+                <div class="details">
+                    <div class="number">
+                        <span id='maintenanceWorker' data-counter="counterup" data-value="0">0</span>
+                    </div>
+                    <div class="desc"> 后勤人员 </div>
+                </div>
+                <a class="more" href="#/user/maintenanceWorker"> 更多
+                    <i class="m-icon-swapright m-icon-white"></i>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <div class="dashboard-stat purple">
+                <div class="visual">
+                    <i class="fa fa-graduation-cap"></i>
+                </div>
+                <div class="details">
+                    <div class="number">
+                        <span id='student' data-counter="counterup" data-value="0">0</span>
+                    </div>
+                    <div class="desc"> 注册学生 </div>
+                </div>
+                <a class="more" href="#/user/student"> 更多
+                    <i class="m-icon-swapright m-icon-white"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div style="margin-top: -44px;margin-bottom: -36px;" data-ng-include="'tpl/carousel.html'"></div>
+    <!-- END DASHBOARD STATS -->
+</div>

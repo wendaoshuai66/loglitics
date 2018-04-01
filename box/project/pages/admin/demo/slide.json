@@ -1,0 +1,29 @@
+{
+  "total": 3,
+  "data": [
+    {
+      "id": "1",
+      "title": "标题1",
+      "url": "https://logistics.joriving.com/web/page/news_xq.html?id=1",
+      "addDateTime": "2017-04-25 13:20:21",
+      "updateDateTime": "2017-04-26 13:20:21",
+      "homeShow":1
+    },
+    {
+      "id": "2",
+      "title": "标题2",
+      "url": "www.baidu.com",
+      "addDateTime": "2017-04-25 13:20:21",
+      "updateDateTime": "2017-04-26 13:20:21",
+      "homeShow":1
+    },
+    {
+      "id": "3",
+      "title": "标题3",
+      "url": "",
+      "addDateTime": "2017-04-25 13:20:21",
+      "updateDateTime": "2017-04-26 13:20:21",
+      "homeShow":0
+    }
+  ]
+}

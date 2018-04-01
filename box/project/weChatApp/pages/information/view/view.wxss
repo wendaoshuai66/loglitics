@@ -1,0 +1,56 @@
+@import "../../../wxParse/wxParse.wxss";
+
+/* 解决图片左右移动的样式 */
+
+.wxParse-p {
+  overflow: hidden;
+}
+.bottom{
+ font-size: 25rpx;
+  color:#888;
+  text-align: center;
+  margin: 20rpx auto;
+}
+.addDateTime{
+  margin-left: 32rpx;
+}
+/* 取消文章内的下划线，使用时解注释即可 */
+
+/* .wxParse-u{
+  text-decoration: none;
+}  */
+
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+  color:#666;
+}
+
+.article {
+  width: 92%;
+  margin: 0 30rpx 20rpx 30rpx;
+  justify-content: center;
+  font-size: 28rpx;
+  color: #888;
+}
+image{
+  width: 100% !important;
+  margin: 0 auto;
+}
+
+.tabTitle {
+  background-color: #e8e8fd;
+  padding: 20rpx;
+  display: flex;
+  justify-content: center;
+}
+
+.minTitle {
+  align-items: center;
+  padding-right: 30rpx;
+  font-size: 25rpx;
+}

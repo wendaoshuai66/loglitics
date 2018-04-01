@@ -1,0 +1,109 @@
+{
+  "total": 2,
+  "data": [
+    {
+      "account": "1232",
+      "addDateTime": "2017-08-28 18:01:07",
+      "headPicture": "",
+      "id": 5,
+      "idCardNum": "610526199900000000",
+      "ifDelete": 0,
+      "lastLoginDateTime": "2017-08-28 18:01:07",
+      "maintenanceWorker": {
+        "department": {
+          "addDateTime": "2017-08-28 15:46:06",
+          "campus": {
+            "addDateTime": "2017-08-28 15:46:28",
+            "description": "1",
+            "id": 1,
+            "ifDelete": 0,
+            "name": "1",
+            "status": 1,
+            "updateDateTime": "2017-08-28 15:46:34"
+          },
+          "children": [],
+          "description": "1",
+          "id": 1,
+          "ifDelete": 0,
+          "ifLogistics": 1,
+          "name": "部门1",
+          "parent": null,
+          "status": 1,
+          "updateDateTime": "2017-08-28 15:46:20"
+        },
+        "id": 2,
+        "maintenanceType": {
+          "addDateTime": "2017-08-28 17:50:06",
+          "description": "1",
+          "id": 1,
+          "ifDelete": 0,
+          "maintenanceCategories": [],
+          "name": "电",
+          "status": 1,
+          "updateDateTime": "2017-08-28 17:50:12"
+        }
+      },
+      "name": "李四",
+      "password": "123456",
+      "role": 1,
+      "sex": 1,
+      "status": 0,
+      "tel": "13999999999",
+      "updateDateTime": "2017-08-28 18:03:23",
+      "weChatOpenId": "",
+      "weChatNickName": ""
+    },
+    {
+      "account": "188",
+      "addDateTime": "2017-08-28 15:45:31",
+      "headPicture": "1",
+      "id": 1,
+      "idCardNum": "610526199901010000",
+      "ifDelete": 0,
+      "lastLoginDateTime": "2017-08-28 15:45:37",
+      "maintenanceWorker": {
+        "department": {
+          "addDateTime": "2017-08-28 15:46:06",
+          "campus": {
+            "addDateTime": "2017-08-28 15:46:28",
+            "description": "1",
+            "id": 1,
+            "ifDelete": 0,
+            "name": "1",
+            "status": 1,
+            "updateDateTime": "2017-08-28 15:46:34"
+          },
+          "children": [],
+          "description": "1",
+          "id": 1,
+          "ifDelete": 0,
+          "ifLogistics": 1,
+          "name": "部门2",
+          "parent": null,
+          "status": 1,
+          "updateDateTime": "2017-08-28 15:46:20"
+        },
+        "id": 1,
+        "maintenanceType": {
+          "addDateTime": "2017-08-28 17:50:06",
+          "description": "1",
+          "id": 1,
+          "ifDelete": 0,
+          "maintenanceCategories": [],
+          "name": "水",
+          "status": 1,
+          "updateDateTime": "2017-08-28 17:50:12"
+        }
+      },
+      "name": "张三",
+      "password": "666666",
+      "role": 1,
+      "sex": 1,
+      "status": 0,
+      "tel": "15888888888",
+      "updateDateTime": "2017-08-28 18:03:30",
+      "weChatOpenId": "",
+      "weChatNickName": "123456"
+    }
+  ]
+}

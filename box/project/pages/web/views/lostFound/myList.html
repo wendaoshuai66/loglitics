@@ -1,0 +1,47 @@
+<div ng-controller="myLostFoundController">
+    <!--Banner图-->
+    <img class="top_img" src="images/lostFound/banner.jpg"/>
+        <div class="portlet box blue">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-volume-up"></i> 我的{{searchObj.type==1?'失物':'招领'}}记录
+                </div>
+                <div class="actions" ng-if="loginStatus">
+                    <a ng-if="searchObj.type" class="btn public-button" ui-sref="lostAdd">
+                        <i class="fa fa-plus"></i> 我要发布
+                    </a>
+                    <a ng-if="!searchObj.type" class="btn public-button" ui-sref="foundAdd">
+                        <i class="fa fa-plus"></i> 我要发布
+                    </a>
+                </div>
+                <div class="actions  mgright" ng-if="loginStatus">
+                    <a ng-if="searchObj.type" class="btn public-button" ui-sref="lostList">
+                        <i class="fa fa-mail-reply"></i> 全部失物信息
+                    </a>
+                    <a ng-if="!searchObj.type" class="btn public-button" ui-sref="foundList">
+                        <i class="fa fa-mail-reply"></i> 全部招领信息
+                    </a>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <table class="table table-striped table-bordered table-hover table-checkable order-column dt-responsive" id="myLostFoundDataTable">
+                    <thead>
+                    <tr>
+                        <th class="none"> 序号 </th>
+                        <th class="title_width"> 标题 </th>
+                        <th class="datetime_width"> 发布时间 </th>
+                        <th class="status_width"> 审核状态 </th>
+                        <th class="price_width"> 交易完成 </th>
+                        <th class="opt_width_1"> 操作 </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+                <!-- 删除的模态框 -->
+                <div data-ng-include="'tpl/confirmRemove.html'"></div>
+                <!-- 状态改变的模态框 -->
+                <div data-ng-include="'tpl/confirmChangeStatus.html'"></div>
+            </div>
+        </div>
+</div>

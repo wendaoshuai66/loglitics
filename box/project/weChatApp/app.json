@@ -1,0 +1,85 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/tabBar/infor/infor",
+    "pages/tabBar/service/service",
+    "pages/tabBar/statistics/list/list",
+    "pages/tabBar/statistics/view/view",
+    "pages/tabBar/my/my",
+    "pages/information/list/list",
+    "pages/information/view/view",
+    "pages/suggestion/add/add",
+    "pages/suggestion/myList/myList",
+    "pages/suggestion/view/view",
+    "pages/suggestion/list/list",
+    "pages/saleAndPurchase/add/add",
+    "pages/saleAndPurchase/list/list",
+    "pages/saleAndPurchase/view/view",
+    "pages/saleAndPurchase/mySaleList/mySaleList",
+    "pages/saleAndPurchase/myPurchaseList/myPurchaseList",
+    "pages/maintenance/repair/list/list",
+    "pages/maintenance/repair/view/view",
+    "pages/maintenance/materialCollar/list/list",
+    "pages/maintenance/materialCollar/view/view",
+    "pages/maintenance/dutyRecord/list/list",
+    "pages/maintenance/dutyRecord/myList/myList",
+    "pages/maintenance/dutyRecord/view/view",
+    "pages/maintenance/dutyRecord/summary/summary",
+    "pages/maintenance/workerList/list/list",
+    "pages/maintenance/myMaterialCollar/myMaterialCollar",
+    "pages/maintenance/add/add",
+    "pages/maintenance/list/list",
+    "pages/lostAndFound/add/add",
+    "pages/lostAndFound/list/list",
+    "pages/lostAndFound/view/view",
+    "pages/lostAndFound/myFoundList/myFoundList",
+    "pages/userInfor/register/step1",
+    "pages/userInfor/register/step2",
+    "pages/userInfor/register/step3",
+    "pages/userInfor/modifyPassword/modifyPassword",
+    "pages/userInfor/view/view",
+    "pages/workLog/add/add",
+    "pages/workLog/myList/myList",
+    "pages/workLog/list/list",
+    "pages/workLog/view/view"
+
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#1c87f4",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#000",
+    "selectedColor": "#56abe4",
+    "backgroundColor": "#fff",
+    "borderStyle": "#ebebeb",
+    "list": [
+      {
+        "pagePath": "pages/tabBar/infor/infor",
+        "text": "信息",
+        "iconPath": "images/tabBar/information.png",
+        "selectedIconPath": "images/tabBar/information.png"
+      },
+      {
+        "pagePath": "pages/tabBar/service/service",
+        "text": "服务",
+        "iconPath": "images/tabBar/service.png",
+        "selectedIconPath": "images/tabBar/service.png"
+      },
+      {
+        "pagePath": "pages/tabBar/statistics/list/list",
+        "text": "统计",
+        "iconPath": "images/tabBar/statistics.png",
+        "selectedIconPath": "images/tabBar/statistics.png"
+      },
+      {
+        "pagePath": "pages/tabBar/my/my",
+        "text": "我的",
+        "iconPath": "images/tabBar/my.png",
+        "selectedIconPath": "images/tabBar/my.png"
+      }
+    ]
+  }
+}

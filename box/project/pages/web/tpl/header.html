@@ -1,0 +1,591 @@
+<!-- BEGIN HEADER TOP -->
+<div class="page-header-top">
+    <div class="container">
+        <!-- BEGIN LOGO -->
+        <div class="page-logo">
+            <a ui-sref="dashboard" class="logo-img">
+                <img src="images/logo/szy-logo.png" alt="logo" class="logo-default col-xs-6" style="max-width: 40%">
+                <img src="images/logo/common-logo.png" alt="logo" class="commom-logo col-xs-5" style="max-width: 40%">
+            </a>
+            <div class="wechat-code" style="position: relative;">
+	            <img src="images/weChat/icon.png" style="display:none;">
+				<span class="img-change tooltip-effect-4" style="height: 90px;display: block;">
+					<span class="tooltip-item">
+						<img src="images/weChat/qrcode.jpg" style="width:90px; height:90px;position: absolute"/>
+					</span>
+					<span class="tooltip-content">
+						<img src="images/weChat/qrcode.jpg" style="width:180px; height:180px;border: 1px #ddd solid;top:-20px;left:20px;position: absolute;">
+					</span>
+				</span>
+				<span style="margin: 16px 0 0 92px;display: block;">数字后勤</span>
+            </div>
+		</div>
+        <!-- END LOGO -->
+        <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+        <a href="javascript:;" class="menu-toggler"></a>
+        <!-- END RESPONSIVE MENU TOGGLER -->
+        <!-- BEGIN TOP NAVIGATION MENU -->
+        <div id="ifLoginStatus" class="top-menu" ng-if="loginStatus">
+            <ul class="nav navbar-nav pull-right" style="width: 180px;">
+                <!-- BEGIN USER LOGIN DROPDOWN -->
+                <li class="dropdown dropdown-user dropdown-dark">
+                    <a href="javascript:;" class="dropdown-toggle" dropdown-menu-hover data-toggle="dropdown"
+                       data-close-others="true" style="padding-left:10px;">
+                        <span class="username username-hide-mobile">您好，
+                        <span class="wrap-ellipsis" title="{{loginUser.name}}" style="max-width: 60px !important;display: inline-block;vertical-align: bottom;">{{loginUser.name}}</span>
+                        </span>
+                        <img alt="" class="img-circle" ng-src="{{loginUser.headPicture || 'images/user/male.jpg'}}" style="margin-left: 4px;">
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-default">
+                        
+                        <li ng-if="isWorker">
+                            <a ui-sref="myRepairList">
+                                <i class="icon-calendar"></i> 我的维修记录 </a>
+                        </li>
+                        <li class="" ng-if="isWorker">
+                            <a ui-sref="materialUse">
+                                <i class="fa fa-cubes"></i> 我的物料领用 </a>
+                        </li>
+                        <li ng-if="isWorker">
+                            <a ng-click="dutyList(loginUser.departmentId,loginUser.departmentName,1)">
+                                <i class="fa fa-clock-o"></i> 我的值班安排 </a>
+                        </li>
+                        <li ng-if="isWorker">
+                            <a ui-sref="myWorkLogList">
+                                <i class="fa fa-file-text-o"></i> 我的工作日志 </a>
+                        </li>
+                        
+                        <li class="divider" ng-if="isWorker"> </li>
+                        
+                        <li>
+                            <a ui-sref="profile.view">
+                                <i class="icon-user"></i> 我的个人资料 </a>
+                        </li>
+                        <li>
+                            <a ui-sref="myRecordsList">
+                                <i class="fa fa-wrench"></i> 我的报修记录 </a>
+                        </li>
+                        
+                        <li>
+                            <a ui-sref="myFleaMarketListSale">
+                                <i class="fa fa-balance-scale"></i> 我的出售记录 </a>
+                        </li>
+                        <li>
+                            <a ui-sref="myFleaMarketListPurchase">
+                                <i class="fa fa-cart-plus"></i> 我的求购记录 </a>
+                        </li>
+                        <li>
+                            <a ui-sref="myLostList">
+                                <i class="fa fa-search"></i> 我的失物记录 </a>
+                        </li>
+                        <li>
+                            <a ui-sref="myFoundList">
+                                <i class="fa fa-volume-up"></i> 我的招领记录 </a>
+                        </li>
+                        <li>
+                            <a ui-sref="mySuggestionList">
+                                <i class="fa fa-envelope-o"></i> 我的建言献策 </a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- END USER LOGIN DROPDOWN -->
+                <!-- BEGIN NOTIFICATION DROPDOWN 维修人员提示待处理完成的维修单-->
+                <li ng-if="isWorker" class="dropdown dropdown-extended dropdown-dark dropdown-notification"
+                    id="header_notification_bar">
+                    <a href="javascript:;" class="dropdown-toggle" dropdown-menu-hover data-toggle="dropdown"
+                       data-close-others="true">
+                        <i class="icon-calendar"></i>
+                        <span ng-if="isServiceOrders.length>0"
+                              class="badge badge-default">{{isServiceOrders.length}}</span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li class="external">
+                            <h3>有
+                                <strong>{{isServiceOrders.length}} 单</strong> 报修服务等待您维修完成</h3>
+                            <a ui-sref="myRepairList">更多</a>
+                        </li>
+                        <li>
+                            <!-- 165px为3个li的高度,动态计算 -->
+                            <ul id="isServiceLi" class="dropdown-menu-list scroller" ng-style="isServiceLiStyle"
+                                data-handle-color="#637283">
+                                <li ng-repeat="serviceOrder in isServiceOrders">
+                                    <!-- 直接跳转到维修详情 -->
+                                    <a ui-sref="viewMyRepair({id:{{serviceOrder.id}}})">
+                                        <span class="time" style="max-width:85px">{{serviceOrder.addDateTime}}</span>
+                                        <span class="details">
+                                            <span class="label label-sm label-icon label-warning">
+                                                <i class="fa fa-bell-o"></i>
+                                            </span> 单号： #{{serviceOrder.maintenanceNumber}}
+                                        </span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <!-- END NOTIFICATION DROPDOWN -->
+                <!-- BEGIN TODO DROPDOWN 通用用户查看自己发布的未完成的报修-->
+                <li class="dropdown dropdown-extended dropdown-dark dropdown-tasks" id="header_task_bar">
+                    <a href="javascript:;" class="dropdown-toggle" dropdown-menu-hover data-toggle="dropdown"
+                       data-close-others="true">
+                        <i class="icon-bell"></i>
+                        <span ng-if="incompleteOrders.length>0"
+                              class="badge badge-default">{{incompleteOrders.length}}</span>
+                    </a>
+                    <ul class="dropdown-menu extended tasks">
+                        <li class="external">
+                            <h3>您有
+                                <strong>{{incompleteOrders.length}} 单</strong> 报修服务等待处理完成 </h3>
+                            <a ui-sref="myRecordsList">更多</a>
+                            <!-- 跳转到我的报修记录 -->
+                        </li>
+                        <li>
+                            <ul class="dropdown-menu-list scroller" ng-style="incompleteLiStyle"
+                                data-handle-color="#637283">
+                                <li ng-repeat="incompleteOrder in incompleteOrders">
+                                    <a ui-sref="viewMyRepair({id:{{incompleteOrder.id}}})">
+                                        <span class="task">
+                                            <span class="desc">单号： #{{incompleteOrder.maintenanceNumber}}</span>
+                                            <span class="percent" style="color: #888;">{{incompleteOrder.addDateTime}}</span>
+                                        </span>
+                                        <span class="progress progress-striped active">
+                                            <span ng-style="$eval('incompleteStyle'+{{incompleteOrder.id}}+'.thisIncompleteStyle')" class="progress-bar {{incompleteOrder.maintenanceRecord.maintenanceStatus.percentColor}}"
+                                                  aria-valuenow="{{incompleteOrder.maintenanceRecord.maintenanceStatus.percent.split('%')[0]}}"
+                                                  aria-valuemin="0" aria-valuemax="100">
+                                                <span class="sr-only">{{incompleteOrder.maintenanceRecord.maintenanceStatus.percent.split('%')[0]}} Complete</span>
+                                            </span>
+                                        </span>
+                                        <span class="task">
+                                            <span class="percent">{{incompleteOrder.maintenanceRecord.maintenanceStatus.percent}}
+                                                【{{incompleteOrder.maintenanceRecord.maintenanceStatus.name}}】{{incompleteOrder.maintenanceRecord.maintenanceStatus.percentDsc}} </span>
+                                        </span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <!-- END TODO DROPDOWN -->
+                <li class="droddown dropdown-separator hide">
+                    <span class="separator"></span>
+                </li>
+                <!-- BEGIN INBOX DROPDOWN -->
+                <li class="hide dropdown dropdown-extended dropdown-dark dropdown-inbox" id="header_inbox_bar">
+                    <a href="javascript:;" class="dropdown-toggle" dropdown-menu-hover data-toggle="dropdown"
+                       data-close-others="true">
+                        <span class="circle">2</span>
+                        <span class="corner"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li class="external">
+                            <h3>您有
+                                <strong>2 </strong> </h3>
+                            <a href="javascript:;">更多</a>
+                        </li>
+                        <li>
+                            <ul class="dropdown-menu-list scroller" style="height: 275px;" data-handle-color="#637283">
+                                <li>
+                                    <a href="inbox.html?a=view">
+                                        <span class="photo hide">
+                                            <img src="../assets/pages/media/users/avatar2.jpg" class="img-circle"
+                                                 alt=""> </span>
+                                        <span class="subject">
+                                            <span class="from">  </span>
+                                            <span class="time"> </span>
+                                        </span>
+                                        <span class="message">  </span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <!-- END INBOX DROPDOWN -->
+                
+                <li class="dropdown dropdown-extended quick-sidebar-toggler" data-microtip='退出登录'
+                    data-microtip-position='right' ng-click="userSignOut()">
+                    <i class="icon-logout"></i>
+                </li>
+            </ul>
+        </div>
+        <div class="top-menu" ng-if="!loginStatus">
+            <ul class="nav navbar-nav pull-right" style="margin: 20px 0px 0;">
+                <div>
+                    <li class="dropdown dropdown-extended">
+                        <button type="button" ng-click="toLogin()"
+                                class="btn green btn-sm loginBtn">用户登录
+                        </button>
+                    </li>
+                </div>
+            </ul>
+        </div>
+        <!-- END TOP NAVIGATION MENU -->
+    </div>
+</div>
+<!-- END HEADER TOP -->
+<!-- BEGIN HEADER MENU -->
+<div class="page-header-menu" style="box-shadow: 0 4px 5px 0 rgba(7,17,27,.3)">
+    <div class="container">
+        <!-- BEGIN HEADER SEARCH BOX -->
+        <form class="search-form hide" action="extra_search.html" method="GET">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search" name="query">
+                <span class="input-group-btn">
+                    <a href="javascript:;" class="btn submit">
+                        <i class="icon-magnifier"></i>
+                    </a>
+                </span>
+            </div>
+        </form>
+        <!-- END HEADER SEARCH BOX -->
+        <!-- BEGIN MEGA MENU -->
+        <!-- DOC: Apply "hor-menu-light" class after the "hor-menu" class below to have a horizontal menu with white background -->
+        <!-- DOC: Remove dropdown-menu-hover and data-close-others="true" attributes below to disable the dropdown opening on mouse hover -->
+        <div class="hor-menu">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a class="navigation-font" ui-sref="dashboard">大厅首页</a>
+                </li>
+                <li class="">
+                    <a class="navigation-font" ui-sref="newsList">新闻资讯</a>
+                    <ul class="dropdown-menu pull-left">
+                        <li>
+                            <a ui-sref="viewNews">详情 </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="menu-dropdown classic-menu-dropdown">
+                    <a class="navigation-font" data-hover="megamenu-dropdown" data-close-others="true"
+                       data-toggle="dropdown"
+                       href="javascript:;"> 维修服务
+                        <i class="fa fa-angle-down"></i>
+                    </a>
+                    <ul class="dropdown-menu pull-left">
+                        <li>
+                            <a ui-sref="commonRepair">
+                                <i class="fa fa-gear"></i> 普通维修
+                            </a>
+                            <ul class="dropdown-menu pull-left">
+                                <li>
+                                    <a ui-sref="repairRecordsAdd">添加</a>
+                                </li>
+                                <li>
+                                    <a ui-sref="myRecordsList">我的报修</a>
+                                </li>
+                                <li>
+                                    <a ui-sref="myRepairList">我的维修</a>
+                                </li>
+                                <li>
+                                    <a ui-sref="viewMyRecord">我的维修打印</a>
+                                </li>
+                                <li>
+                                    <a ui-sref="viewMyRepair">我的维修详情 </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a ui-sref="specialRepairList">
+                                <i class="fa fa-gears"></i> 专项维修 </a>
+                        </li>
+                        <li class="hide">
+                            <a ui-sref="specialRepairView">专项维修详情 </a>
+                        </li>
+                        <li class="hide">
+                            <a ui-sref="blank">
+                                <i class="icon-puzzle"></i> 收费标准 </a>
+                        </li>
+                        
+                        <!-- 以下信息隐藏 -->
+                        <li class="hide">
+                            <a ui-sref="myRepairList">我的维修 </a>
+                        </li>
+                        <li class="hide">
+                            <a ui-sref="myRecordsList">我的报修 </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="">
+                    <a class="hide navigation-font" ui-sref="materialList">物料库存</a>
+                    <a class="navigation-font"  ng-click="toMaterialList()">物料库存</a>
+                    <ul class="dropdown-menu pull-left">
+                        <li class="hide">
+                            <a ui-sref="materialUse">我的物料领用 </a>
+                        </li>
+                        <li class="hide">
+                            <a ui-sref="materialView">物料详情</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="">
+                    <a class="hide navigation-font" ui-sref="dutyList">值班安排</a>
+                    <a class="navigation-font"  ng-click="toDutyList()">值班安排</a>
+                    <ul class="dropdown-menu pull-left">
+                        <li class="hide">
+                            <a ui-sref="dutyDetail">值班安排</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="">
+                    <a class="navigation-font" ui-sref="workLogList">工作日志</a>
+                    <ul class="dropdown-menu pull-left">
+                        <li class="hide">
+                            <a ui-sref="myWorkLogList">我的工作日志 </a>
+                        </li>
+                        <li class="hide">
+                            <a ui-sref="workLogView">工作日志详情 </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="menu-dropdown mega-menu-dropdown">
+                    <a class="navigation-font" data-hover="megamenu-dropdown" data-close-others="true"
+                       data-toggle="dropdown" href="#"
+                       class="dropdown-toggle"> 统计分析
+                        <i class="fa fa-angle-down"></i>
+                    </a>
+                    <ul class="dropdown-menu" style="min-width: 600px">
+                        <li>
+                            <div class="mega-menu-content">
+                                <div class="row">
+                                    <div class="col-xs-4">
+                                        <ul class="mega-menu-submenu">
+                                            <li>
+                                                <h3>维修量分时统计</h3>
+                                            </li>
+                                            <li>
+                                                <a ui-sref="hourStatistics" class="iconify">
+                                                    <i class="icon-puzzle"></i> 24小时 </a>
+                                            </li>
+                                            <li>
+                                                <a ui-sref="weekStatistics" class="iconify">
+                                                    <i class="icon-paper-clip"></i> 周期 </a>
+                                            </li>
+                                            <li>
+                                                <a ui-sref="monthStatistics" class="iconify">
+                                                    <i class="fa fa-calendar-o"></i>月度</a>
+                                            </li>
+                                            <li class="hide">
+                                                <a href="#" class="iconify">
+                                                    <i class="icon-bar-chart"></i> 年度时间 </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <ul class="mega-menu-submenu">
+                                            <li>
+                                                <h3>维修量分类统计</h3>
+                                            </li>
+                                            <li>
+                                                <a ui-sref="repairOriginStatistics" class="iconify">
+                                                    <i class="icon-cursor-move"></i> 报修来源 </a>
+                                            </li>
+                                            <li>
+                                                <a ui-sref="maintenanceTypeStatistics" class="iconify">
+                                                    <i class="icon-pin"></i> 维修项目</a>
+                                            </li>
+                                            <li>
+                                                <a ui-sref="maintenanceAreaStatistics" class="iconify">
+                                                    <i class="fa fa-map-o"></i> 维修区域
+                                                    <span class="badge badge-roundless badge-danger">new</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <ul class="mega-menu-submenu">
+                                            <li>
+                                                <h3>维修质量分类统计</h3>
+                                            </li>
+                                            <li>
+                                                <a ui-sref="timeCostStatistics" class="iconify">
+                                                    <i class="fa fa-clock-o"></i> 维修用时</a>
+                                            </li>
+                                            <li>
+                                                <a ui-sref="evaluationStatistics" class="iconify">
+                                                    <i class="fa fa-commenting-o"></i> 维修评价 </a>
+                                            </li>
+                                            <li>
+                                                <a ui-sref="maintenanceStatusStatistics" class="iconify">
+                                                    <i class="icon-bar-chart"></i></i> 维修状态 </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+                <li class="menu-dropdown classic-menu-dropdown">
+                    <a class="navigation-font" data-hover="megamenu-dropdown" data-close-others="true"
+                       data-toggle="dropdown"
+                       href="javascript:;"> 跳蚤市场
+                        <i class="fa fa-angle-down"></i>
+                    </a>
+                    <ul class="dropdown-menu pull-left">
+                        <li>
+                            <a ui-sref="fleaMarketListSale">
+                                <i class="fa fa-balance-scale"></i> 出售信息
+                            </a>
+                        </li>
+                        <li>
+                            <a ui-sref="fleaMarketListPurchase">
+                                <i class="fa fa-cart-plus"></i> 求购信息 </a>
+                        </li>
+                        <li class="hide">
+                            <a ui-sref="fleaMarketAddSale">添加 </a>
+                        </li>
+                        <li class="hide">
+                            <a ui-sref="fleaMarketAddPurchase">添加 </a>
+                        </li>
+                        <li class="hide">
+                            <a ui-sref="viewFleaMarket">详情 </a>
+                        </li>
+                        <li class="hide">
+                            <a ui-sref="myFleaMarketListSale">我的出售 </a>
+                            <a ui-sref="myFleaMarketListPurchase">我的求购 </a>
+                        </li>
+                 	</ul>
+                </li>
+                <li class="menu-dropdown classic-menu-dropdown">
+                    <a class="navigation-font" data-hover="megamenu-dropdown" data-close-others="true"
+                       data-toggle="dropdown"
+                       href="javascript:;"> 失物招领
+                        <i class="fa fa-angle-down"></i>
+                    </a>
+                    <ul class="dropdown-menu pull-left">
+                        <li>
+                            <a ui-sref="lostList">
+                                <i class="fa fa-search"></i> 失物信息
+                            </a>
+                        </li>
+                        <li>
+                            <a ui-sref="foundList">
+                                <i class="fa fa-volume-up"></i> 招领信息 </a>
+                        </li>
+                        <li class="hide">
+                            <a ui-sref="lostAdd">添加 </a>
+                        </li>
+                        <li class="hide">
+                            <a ui-sref="foundAdd">添加 </a>
+                        </li>
+                        <li class="hide">
+                            <a ui-sref="viewLostFound">详情 </a>
+                        </li>
+                        <li class="hide">
+                            <a ui-sref="myLostList">我的失物 </a>
+                            <a ui-sref="myFoundList">我的招领 </a>
+                        </li>
+                 	</ul>
+                </li>
+                <li class="">
+                    <a class="navigation-font" ui-sref="suggestionList">建言献策</a>
+                    <ul class="dropdown-menu pull-left">
+                        <li>
+                            <a ui-sref="suggestionAdd">添加</a>
+                        </li>
+                        <li>
+                            <a ui-sref="mySuggestionList">我的</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="hide">
+                    <a class="navigation-font" ui-sref="blank">保洁服务</a>
+                </li>
+                <li class="hide">
+                    <a class="navigation-font" ui-sref="blank">校园交通</a>
+                </li>
+                <li class="">
+                    <a class="navigation-font" ui-sref="serviceList">便民服务</a>
+                </li>
+                <li class="hide">
+                    <a class="navigation-font" ui-sref="blank">下载中心</a>
+                </li>
+                <li class="hide">
+                    <a class="navigation-font" ui-sref="blank">系统帮助</a>
+                </li>
+                <li class="hide menu-dropdown classic-menu-dropdown ">
+                    <a data-hover="megamenu-dropdown" data-close-others="true" data-toggle="dropdown"
+                       href="javascript:;"> Pages
+                        <i class="fa fa-angle-down"></i>
+                    </a>
+                    <ul class="dropdown-menu pull-left">
+                        <li>
+                            <a ui-sref="profile.dashboard" id="sidebar_menu_link_profile">
+                                <i class="icon-user"></i> User Profile </a>
+                        </li>
+                        <li>
+                            <a ui-sref="todo">
+                                <i class="icon-check"></i> Task & Todo </a>
+                        </li>
+                        <li class=" dropdown-submenu">
+                            <a href="javascript:;">
+                                <i class="icon-puzzle"></i> Multi Level </a>
+                            <ul class="dropdown-menu">
+                                <li class=" ">
+                                    <a href="javascript:;">
+                                        <i class="icon-settings"></i> Item 1 </a>
+                                </li>
+                                <li class=" ">
+                                    <a href="javascript:;">
+                                        <i class="icon-user"></i> Item 2 </a>
+                                </li>
+                                <li class=" ">
+                                    <a href="javascript:;">
+                                        <i class="icon-globe"></i> Item 3 </a>
+                                </li>
+                                <li class=" dropdown-submenu">
+                                    <a href="#">
+                                        <i class="icon-folder"></i> Sub Items </a>
+                                    <ul class="dropdown-menu">
+                                        <li class=" ">
+                                            <a href="javascript:;"> Item 1 </a>
+                                        </li>
+                                        <li class=" ">
+                                            <a href="javascript:;"> Item 2 </a>
+                                        </li>
+                                        <li class=" ">
+                                            <a href="javascript:;"> Item 3 </a>
+                                        </li>
+                                        <li class=" ">
+                                            <a href="javascript:;"> Item 4 </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class=" ">
+                                    <a href="javascript:;">
+                                        <i class="icon-share"></i> Item 4 </a>
+                                </li>
+                                <li class=" ">
+                                    <a href="javascript:;">
+                                        <i class="icon-bar-chart"></i> Item 5 </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a ui-sref="blank">
+                                <i class="icon-refresh"></i>
+                                <span class="title">Blank Page</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <!-- END MEGA MENU -->
+    </div>
+</div>
+<!-- END HEADER MENU -->
+<div id="signoutModal" class="modal fade" tabindex="-1" data-backdrop="static" aria-hidden="true" data-width="300">
+    <div class="modal-header">
+        <button type="button" class="modal_close" data-dismiss="modal" aria-hidden="true">x</button>
+        <h4 class="modal-title"><p>提示</p></h4>
+    </div>
+    <div class="modal-body">
+        <p>
+           	您确认要注销吗？
+        </p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn dark btn-outline" data-dismiss="modal"><i class="fa fa-reply"></i> 取消 </button>
+        <button type="button" ng-click="confirmSignOut()" class="btn green-haze"><i class="fa fa-check"></i> 确认 </button>
+    </div>
+</div>

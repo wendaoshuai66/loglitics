@@ -1,0 +1,96 @@
+@import "../../../wxParse/wxParse.wxss";
+
+/* 解决图片左右移动的样式 */
+
+.wxParse-p {
+  overflow: hidden;
+}
+.imageItems{
+  text-align: center;
+}
+.addDateTime {
+  color:#888;
+  text-align:center;
+  font-size: 25rpx;
+  margin: 20rpx auto;
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+  color:#666;
+}
+
+.description {
+  width: 100% - 60rpx;
+  margin: 30rpx;
+  justify-content: center;
+}
+
+.tabTitle {
+  background-color: #e8e8fd;
+  padding: 20rpx;
+  display: flex;
+  justify-content: center;
+}
+
+.minTitle {
+  align-items: center;
+  padding-right: 30rpx;
+  font-size: 25rpx;
+}
+
+.article {
+  position: relative;
+  font-family: '宋体';
+  font-size: 30rpx;
+  text-indent: 28rpx;
+  margin:0rpx 30rpx 20rpx 30rpx;
+}
+
+.phone {
+  display:inline-block;
+}
+
+.content {
+  position: relative;
+}
+
+.statusN {
+  position: absolute;
+  bottom: 80rpx;
+  right: 0;
+  color: red;
+  opacity: 0.5;
+  /* transform: rotate(-30deg); */
+  border: 1px solid red;
+  padding: 0rpx 30rpx;
+  font-size: 28rpx;
+}
+
+.statusY {
+  position: absolute;
+  bottom: 80rpx;
+  right: 0;
+  color: green;
+  opacity: 0.5;
+  /* transform: rotate(-30deg); */
+  border: 1px solid green;
+  padding: 0rpx 30rpx;
+  font-size: 28rpx;
+}
+.bottom {
+bottom:0;
+left:0;
+width:100%;
+text-align:center;
+background:#2BA245;
+color:white;
+font-size:26rpx;
+padding:12rpx 0 6rpx 0;
+position: fixed;
+}

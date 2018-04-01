@@ -1,0 +1,46 @@
+/* pages/maintenance/dutyRecord/summary/summary.wxss */
+
+.table_title {
+  text-align: center;
+  margin: 40rpx 0;
+}
+
+.table {
+  width: 95%;
+  margin: 0 auto;
+  border-top: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+}
+
+.tr {
+  width: 100%;
+  font-size: 20rpx;
+  /* height: 50rpx;
+  line-height: 50rpx; */
+}
+
+.td {
+  display: inline-block;
+  width: 14%;
+  box-sizing: border-box;
+  border-left: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  /* padding: 10rpx 0rpx;   */
+   /* height: 100%; */
+    padding-top: 10rpx;  
+  
+  text-align: center;
+  /* height: 100rpx; *//* line-height: 100rpx; */
+}
+
+.lastTd {
+  width: 30%;
+}
+
+.name {
+  width: 100%;
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

@@ -1,0 +1,61 @@
+<view class="">
+  <form bindsubmit="formSubmit" bindreset="formReset">
+    <view class="container-body">
+      <view class="input-group">
+        <view class="input-label">
+          <text class="">工作日期:</text>
+        </view>
+        <view class="input-content">
+          <picker mode="date" value="{{date}}" start="2017-01-01" end="2020-12-31" bindchange="listDateChange">
+            <view class="picker">
+              {{dates == ''?'请选择年/月/日':dates}}
+            </view>
+          </picker>
+        </view>
+      </view>
+      <view class="input-group">
+        <view class="input-label">
+          <text class="">开始时间:</text>
+        </view>
+        <view class="input-content">
+          <picker mode="time" value="{{time}}" start="00:00" end="23:59" bindchange="startDateChange">
+            <view class="picker">
+              {{startTime == ''?'请选择开始时间':startTime}}
+            </view>
+          </picker>
+        </view>
+      </view>
+      <view class="input-group">
+        <view class="input-label">
+          <text class="">结束时间:</text>
+        </view>
+        <view class="input-content">
+          <picker mode="time" value="{{time}}" start="00:00" end="23:59" bindchange="endDateChange">
+            <view class="picker">
+              {{endTime == ''?'请选择结束时间':endTime}}
+            </view>
+          </picker>
+        </view>
+      </view>
+      <view class="input-group pdLeft">
+        <view class="input-label">
+          <text class="">标题:</text>
+        </view>
+        <view class="input-content">
+          <input class="text" value="{{title}}" maxlength='30' name="title" type="text" placeholder="输入长度不能大于30" />
+        </view>
+      </view>
+      <view class="input-group pdLeft">
+        <view class="describe">
+          <text class="">内容:</text>
+        </view>
+        <view class="input-textarea">
+          <textarea show-confirm-bar="" class='text' wrap="physical" value="{{description}}" name="description" maxlength="200" placeholder="最大输入200个字符" bindinput='listenTextareaFromDescription'>
+          <view class='textareaSon'>{{descriptionNumber}}/200</view>
+          </textarea>
+        </view>
+      </view>
+      <button class="confirm-btn" hover-class="other-button-hover" form-type="submit">保  存</button>
+    </view>
+  </form>
+</view>

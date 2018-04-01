@@ -1,0 +1,104 @@
+{
+	"total": 6,
+	"data": [
+		{
+			"id": "1",
+			"name": "计算机学院",
+			"campus": {
+				"id": "1",
+				"name": "校区1"
+			},
+			"ifLogistics": 0,
+			"parent": {
+				"id": "0",
+				"name": "-"
+			},
+			"description": "计算机学院描述",
+			"status": 1,
+			"addDateTime": "2017-04-25 13:20:21",
+			"updateDateTime": "2017-04-25 13:20:21"
+		}, 
+		{
+			"id": "1",
+			"name": "计算机科学与技术系",
+			"campus": {
+				"id": "1",
+				"name": "校区1"
+			},
+			"ifLogistics": 0,
+			"parent": {
+				"id": "0",
+				"name": "计算机学院"
+			},
+			"description": "计算机科学与技术系描述",
+			"status": 1,
+			"addDateTime": "2017-04-25 13:20:21",
+			"updateDateTime": "2017-04-25 13:20:21"
+		}, 
+		{
+			"id": "1",
+			"name": "维修部1",
+			"campus": {
+				"id": "1",
+				"name": "校区1"
+			},
+			"ifLogistics": 1,
+			"parent": {
+				"id": "0",
+				"name": "-"
+			},
+			"description": "维修部1描述",
+			"status": 1,
+			"addDateTime": "2017-04-25 13:20:21",
+			"updateDateTime": "2017-04-25 13:20:21"
+		}, {
+			"id": "2",
+			"name": "维修部1动力组",
+			"campus": {
+				"id": "1",
+				"name": "校区1"
+			},
+			"ifLogistics": 1,
+			"parent": {
+				"id": "1",
+				"name": "维修部1"
+			},
+			"description": "维修部1动力组描述",
+			"status": 1,
+			"addDateTime": "2017-04-25 13:20:21",
+			"updateDateTime": "2017-04-25 13:20:21"
+		}, {
+			"id": "3",
+			"name": "维修部2",
+			"campus": {
+				"id": "1",
+				"name": "校区2"
+			},
+			"ifLogistics": 1,
+			"parent": {
+				"id": "0",
+				"name": "-"
+			},
+			"description": "维修部2描述",
+			"status": 1,
+			"addDateTime": "2017-04-25 13:20:21",
+			"updateDateTime": "2017-04-25 13:20:21"
+		}, {
+			"id": "4",
+			"name": "维修部2水电组",
+			"campus": {
+				"id": "2",
+				"name": "校区2"
+			},
+			"ifLogistics": 1,
+			"parent": {
+				"id": "1",
+				"name": "维修部2"
+			},
+			"description": "维修部2水电组描述",
+			"status": 1,
+			"addDateTime": "2017-04-25 13:20:21",
+			"updateDateTime": "2017-04-25 13:20:21"
+		}
+	]
+}

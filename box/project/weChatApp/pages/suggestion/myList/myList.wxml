@@ -1,0 +1,36 @@
+<!-- 搜索框 start -->
+<view class="TopBlock">
+  <view hidden='{{!maskFlag}}' class='cancel' size='mini' bindtap='initClick' hover-stop-propagation>取消</view>
+  <view class='searchBox'>
+
+    <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+    <input class='searchInput' bindfocus='searchFoucs' bindinput='searchInput' bindblur='searchBlur' type='text' value='{{searchValue}}' placeholder='搜索（标题）' bindconfirm="searchConfirm" confirm-type="search" maxlength='20'>
+
+    </input>
+  </view>
+  <view class='logBox' style="{{maskFlag && (logItem.length != 0)?'display:inline-block':'display:none'}}">
+    <view class='logText'>-----搜索历史-----</view>
+    <view class='logItemBox' bindtap='logItemClick' data-name="{{item}}" wx:for="{{logItem}}" wx:key="{{index}}">{{item}}</view>
+    <view class='logBottom' bindtap='clearLog'>清空历史记录</view>
+  </view>
+  <!-- 遮罩层 start -->
+  <view class='mask' bindtap='maskTap' style="height:{{windowHeightInit}}px;{{maskFlag?'display:inline-block':'display:none'}}"></view>
+  <!-- 遮罩层 end -->
+</view>
+<!-- 搜索框 end  -->
+
+<view class='content_body'>
+  <view bindtap='toView' class='item' wx:for="{{list}}" wx:key="{{index}}" data-id='{{item.id}}'>
+    <view class='title'>{{item.title}}</view>
+    <view class='content'>{{item.article}}</view>
+    <view class='reply' hidden="{{!item.reply}}">
+      <text class='replyTitle'>回复\t:\t</text>{{item.reply}}</view>
+    <view class='content_bottom'>
+      <image class='approvalImage' src="{{item.approvalStatus == 0?'../../../images/tabBar/noApproval.png':'../../../images/tabBar/yesApproval.png'}}"></image>
+      <span class='inline-block date'>{{item.addDateTime}}</span>
+    </view>
+  </view>
+  <view class="allDownText" hidden="{{!ifAll}}">{{ifAllText}}</view>
+</view>
+
+<loading hidden='{{loadingHidden}}'>加载中...</loading>

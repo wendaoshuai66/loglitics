@@ -1,0 +1,29 @@
+[
+  {
+    "id": "departmentTree_1",
+    "parent": "#",
+    "text": "长安校区",
+    "icon": "fa fa-file icon-state-warning icon-lg",
+    "state": {
+      "opened": true
+    }
+  },
+  {
+    "id": "departmentTree_2",
+    "parent": "departmentTree_1",
+    "text": "财务部",
+    "icon": "fa fa-folder icon-lg icon-state-success"
+  },
+  {
+    "id": "departmentTree_3",
+    "parent": "departmentTree_1",
+    "text": "后勤部",
+    "icon": "fa fa-folder icon-lg icon-state-success"
+  },
+  {
+    "id": "departmentTree_4",
+    "parent": "departmentTree_1",
+    "text": "信息部",
+    "icon": "fa fa-folder icon-lg icon-state-success"
+  }
+]

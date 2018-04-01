@@ -1,0 +1,132 @@
+<div id="addModal" class="modal fade" tabindex="-1" data-backdrop="static" aria-hidden="true" data-width="800" ng-controller="myMaterialUseAddController">
+    <div class="modal-header">
+        <button type="button" class="modal_close" data-dismiss="modal" aria-hidden="true">x</button>
+        <h4 class="modal-title"><p ng-bind="modalTitle"></p></h4>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <!-- BEGIN FORM-->
+            <form w5c-form-validate="validateOptions" class="w5c-form" novalidate name="myForm">
+                <div class="form-body">
+                    <div class="form-group col-xs-12">
+                        <label class="col-xs-4 control-label">
+                           	物料名称
+                            <span class="fa fa-bell-o"></span>
+                        </label>
+                        <span class="col-xs-8">
+							<span class="validateErrorInfo">
+                            </span>
+						</span>
+                        <div class="col-xs-12">
+                            <select required name="select" ui-select2="select2Options"
+                                    style="width: 100%;" class="form-control"
+                                    ng-model="data.material.id" ng-change="selectMaterial()"
+                                    ng-options="item.id as item.name for item in $parent.materialSelectData">
+                                <option value="">-- 请选择 --</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group col-xs-12">
+                        <label class="col-xs-12 control-label">
+                           	规格型号
+                        </label>
+                        <span class="col-xs-8">
+							<span class="validateErrorInfo"> </span>
+		                </span>
+                        <div class="col-xs-12">
+                            <input type="text" disabled class="form-control" ng-model="data.material.specificationsModel" name="modelName">
+                        </div>
+                    </div>
+                    <div class="form-group col-xs-6">
+                        <label class="col-xs-12 control-label">
+                           	物料类别
+                        </label>
+                        <span class="col-xs-8">
+							<span class="validateErrorInfo"> </span>
+						</span>
+                        <div class="col-xs-12">
+                            <input type="text" disabled class="form-control" ng-model="data.material.materialCategory.name" name="name">
+                        </div>
+                    </div>
+                    <div class="form-group col-xs-6">
+                        <label class="col-xs-12 control-label">
+                           	物料单位
+                        </label>
+                        <span class="col-xs-8">
+							<span class="validateErrorInfo"> </span>
+						</span>
+                        <div class="col-xs-12">
+                            <input type="text" disabled class="form-control" ng-model="data.material.materialUnit.name" name="name2">
+                        </div>
+                    </div>
+                    <div class="form-group col-xs-6">
+                        <label class="col-xs-4 control-label">
+                           	维修单号
+                            <span class="fa fa-bell-o"></span>
+                        </label>
+                        <span class="col-xs-8">
+							<span class="validateErrorInfo">
+                            </span>
+						</span>
+                        <div class="col-xs-12">
+                            <input type="text" disabled class="form-control" ng-model="$parent.data.maintenanceNumber" name="name3">
+                        </div>
+                    </div>
+                    <div class="form-group col-xs-6">
+                        <label class="col-xs-12 control-label">
+                           	维修人员
+                        </label>
+                        <span class="col-xs-8">
+							<span class="validateErrorInfo"> </span>
+						</span>
+                        <div class="col-xs-12">
+                            <input type="text" class="form-control" disabled ng-model="$parent.data.maintenanceStaff.name" name="personName">
+                        </div>
+                    </div>
+                    <div class="form-group col-xs-6">
+                        <label class="col-xs-4 control-label">
+                           	出库数量
+                            <span class="fa fa-bell-o"></span>
+                        </label>
+                        <span class="col-xs-8">
+							<span class="validateErrorInfo"> </span>
+						</span>
+                        <div class="col-xs-12">
+                            <input type="text" id="stockRemovalCount" ng-pattern="regex.positiveInteger" ng-change="checkMaxCount()" class="form-control" ng-model="data.stockRemovalCount" name="positiveInteger"
+                                   min="1" required>
+                        </div>
+                    </div>
+                    <div class="form-group col-xs-6">
+                        <label class="col-xs-4 control-label">
+                           	出库日期
+                            <span class="fa fa-bell-o"></span>
+                        </label>
+                        <span class="col-xs-8">
+							<span class="validateErrorInfo"> </span>
+						</span>
+                        <div style="padding: 0px 15px; " class="col-xs-12 input-group date form_datetime">
+                            <input type="text" size="16" readonly name="date" class="form-control" ng-model="data.stockRemovalDate" required>
+                            <span class="input-group-btn include">
+                                <button class="btn default date-reset" type="button">
+                                    <i class="fa fa-times"></i>
+                                </button>
+                                <button class="btn default my-date-set" type="button">
+                                    <i class="fa fa-calendar date-set"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <!-- END FORM-->
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" data-dismiss="modal" class="btn btn-outline dark"><i class="fa fa-reply"></i> 关闭</button>
+        <!-- 验证成功后取消禁用 -->
+        <button type="button" ng-disabled="myForm.$invalid || maxCountError" ng-click="save()" class="btn green-haze">
+            <i class="fa fa-check"></i>
+           	保存
+        </button>
+    </div>
+</div>

@@ -1,0 +1,861 @@
+<!-- BEGIN MAIN CONTENT -->
+<div class="portlet box blue" ng-controller="viewMyRepairController">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-cubes"></i>维修记录详情
+        </div>
+        <div class="actions">
+            <a class="btn public-button" ng-click="toBack()">
+                <i class="fa fa-reply"></i> 返回
+            </a>
+        </div>
+    </div>
+    <!-- 报修详细信息及状态展示-->
+    <div class="portlet-body dataTables_wrapper">
+        <div class="row">
+            <div class="col-xs-12" style="margin-bottom: 15px">
+					<span style="line-height: 44px;font-size: 18px;">
+                    	<span style="font-weight: bold;">维修单号：</span>
+						<span>{{data.maintenanceNumber}}</span>
+                    </span>
+                <div style="float: right" ng-if="isWorker && data.maintenanceStaff.id==loginUser.id">
+                    <button class="btn btn-lg btn-success" ng-click="addModal()"
+                            style="margin-left: 20px;font-size: 16px;"
+                            ng-if="data.maintenanceRecord.maintenanceStatus.weight!==7 &&
+                            data.maintenanceRecord.maintenanceStatus.weight!==8"><i
+                            class="fa fa-plus-square"></i> 添加物料领用
+                    </button>
+                    <button class="btn btn-lg blue" style="font-size: 16px;"
+                            ng-if="data.maintenanceRecord.maintenanceStatus.weight===3"
+                            ng-click="setMaintenanceDoneStatus()"><i class="fa fa-print"></i>
+                        标记维修完成
+                    </button>
+                    <a class="btn btn-lg btn-danger" style="font-size: 16px;"
+                       ng-if="data.maintenanceRecord.maintenanceStatus.id >=6"
+                       href="#viewMyRecord?id={{data.id}}">
+                        <i class="fa fa-print"></i>
+                        打印维修订单
+                    </a>
+                </div>
+            </div>
+            <div class="col-xs-10">
+                <div class="portlet light portlet-fit bordered">
+                    <div class="portlet-body" style="padding: 15px 63px 15px;">
+                        <div class="cd-horizontal-timeline mt-timeline-horizontal loaded" data-spacing="60">
+                            <div class="MigrationDiagram" style="margin-bottom: 20px;margin-left: -41px;">
+                                维修进度
+                            </div>
+                            <!--待受理-->
+                            <div ng-if="data.maintenanceRecord.maintenanceStatus.weight===1" class="timeline">
+                                <div class="events-wrapper">
+                                    <div class="events" style="width: 1800px; transform: translateX(0px);">
+                                        <ul>
+                                            <li>
+                                                <a class="border-after-red bg-after-red older-event"
+                                                   style="left: 128px;">待受理</a>
+                                            </li>
+                                            <li>
+                                                <a class="border-after-default bg-after-default older-event  selected"
+                                                   style="left: 282px;">待派工</a>
+                                            </li>
+                                            <li>
+                                                <a class="border-after-default bg-after-red  selected"
+                                                   style="left: 436px;">维修中</a>
+                                            </li>
+                                            <li>
+                                                <a class="border-after-default bg-after-red  selected"
+                                                   style="left: 590px;">待评价</a>
+                                            </li>
+                                            <li>
+                                                <a class="border-after-default bg-after-red  selected"
+                                                   style="left: 734px;">评价待审核</a>
+                                            </li>
+                                            <li>
+                                                <a class="border-after-default bg-after-default  selected hide"
+                                                   style="left: 896px;">已完成</a>
+                                            </li>
+                                        </ul>
+                                        <span class="filling-line bg-red" style="transform: scaleX(0.1);"></span>
+                                    </div>
+                                    <!-- .events -->
+                                </div>
+                                <!-- .events-wrapper -->
+                                <ul class="cd-timeline-navigation mt-ht-nav-icon">
+                                    <li>
+                                        <div style="position: absolute;top: 5px;left: -36px;width: 100px;text-align: center;font-size: 16px;color: #383838;">
+                                            报修开始
+                                        </div>
+                                        <a class="prev btn btn-outline red md-skip inactive">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <div style=" position: absolute; top: 5px;right: -22px;width: 78px;text-align: center;font-size: 16px;color: #383838;">
+                                            已完成
+                                        </div>
+                                        <a class="next btn btn-outline default md-skip">
+                                        </a>
+                                    </li>
+                                </ul>
+                                <!-- .cd-timeline-navigation -->
+                            </div>
+                            <!--待派工-->
+                            <div ng-if="data.maintenanceRecord.maintenanceStatus.weight===2" class="timeline">
+                                <div class="events-wrapper">
+                                    <div class="events" style="width: 1800px; transform: translateX(0px);">
+                                        <ul>
+                                            <li>
+                                                <a class="border-after-red bg-after-red older-event  selected"
+                                                   style="left: 128px;">待受理</a>
+                                            </li>
+                                            <li>
+                                                <a class="border-after-red bg-after-red older-event"
+                                                   style="left: 282px;">待派工</a>
+                                            </li>
+                                            <li>
+                                                <a class="border-after-default bg-after-red  selected"
+                                                   style="left: 436px;">维修中</a>
+                                            </li>
+                                            <li>
+                                                <a class="border-after-default bg-after-red  selected"
+                                                   style="left: 590px;">待评价</a>
+                                            </li>
+                                            <li>
+                                                <a class="border-after-default bg-after-red  selected"
+                                                   style="left: 734px;">评价待审核</a>
+                                            </li>
+                                            <li>
+                                                <a class="border-after-default bg-after-red  selected hide"
+                                                   style="left: 896px;">已完成</a>
+                                            </li>
+                                        </ul>
+                                        <span class="filling-line bg-red" style="transform: scaleX(0.184);"></span>
+                                    </div>
+                                    <!-- .events -->
+                                </div>
+                                <!-- .events-wrapper -->
+                                <ul class="cd-timeline-navigation mt-ht-nav-icon">
+                                    <li>
+                                        <div style="position: absolute;top: 5px;left: -36px;width: 100px;text-align: center;font-size: 16px;color: #383838;">
+                                            报修开始
+                                        </div>
+                                        <a class="prev btn btn-outline red md-skip inactive">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <div style=" position: absolute; top: 5px;right: -22px;width: 78px;text-align: center;font-size: 16px;color: #383838;">
+                                            已完成
+                                        </div>
+                                        <a class="next btn btn-outline default md-skip">
+                                        </a>
+                                    </li>
+                                </ul>
+                                <!-- .cd-timeline-navigation -->
+                            </div>
+                            <!--维修中-->
+                            <div ng-if="data.maintenanceRecord.maintenanceStatus.weight===3" class="timeline">
+                                <div class="events-wrapper">
+                                    <div class="events" style="width: 1800px; transform: translateX(0px);">
+                                        <ul>
+                                            <li>
+                                                <a class="border-after-red bg-after-red older-event selected"
+                                                   style="left: 128px;">待受理</a>
+                                            </li>
+                                            <li>
+                                                <a class="border-after-red bg-after-red older-event selected"
+                                                   style="left: 282px;">待派工</a>
+                                            </li>
+                                            <li>
+                                                <a class="border-after-red bg-after-red " style="left: 436px;">维修中</a>
+                                            </li>
+                                            <li>
+                                                <a class="border-after-default bg-after-red selected"
+                                                   style="left: 590px;">待评价</a>
+                                            </li>
+                                            <li>
+                                                <a class="border-after-default bg-after-red selected"
+                                                   style="left: 734px;">评价待审核</a>
+                                            </li>
+                                            <li>
+                                                <a class="border-after-default bg-after-red selected hide"
+                                                   style="left: 896px;">已完成</a>
+                                            </li>
+                                        </ul>
+                                        <span class="filling-line bg-red" style="transform: scaleX(0.27);"></span>
+                                    </div>
+                                    <!-- .events -->
+                                </div>
+                                <!-- .events-wrapper -->
+                                <ul class="cd-timeline-navigation mt-ht-nav-icon">
+                                    <li>
+                                        <div style="position: absolute;top: 5px;left: -36px;width: 100px;text-align: center;font-size: 16px;color: #383838;">
+                                            报修开始
+                                        </div>
+                                        <a class="prev btn btn-outline red md-skip inactive">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <div style=" position: absolute; top: 5px;right: -22px;width: 78px;text-align: center;font-size: 16px;color: #383838;">
+                                            已完成
+                                        </div>
+                                        <a class="next btn btn-outline default md-skip">
+                                        </a>
+                                    </li>
+                                </ul>
+                                <!-- .cd-timeline-navigation -->
+                            </div>
+                            <!--待评价 -->
+                            <div ng-if="data.maintenanceRecord.maintenanceStatus.weight===4" class="timeline">
+                                <div class="events-wrapper">
+                                    <div class="events" style="width: 1800px; transform: translateX(0px);">
+                                        <ul>
+                                            <li>
+                                                <a class="border-after-red bg-after-red older-event selected"
+                                                   style="left: 128px;">待受理</a>
+                                            </li>
+                                            <li>
+                                                <a class="border-after-red bg-after-red older-event selected"
+                                                   style="left: 282px;">待派工</a>
+                                            </li>
+                                            <li>
+                                                <a class="border-after-red bg-after-red selected" style="left: 436px;">维修中</a>
+                                            </li>
+                                            <li>
+                                                <a class="border-after-red bg-after-red  " style="left: 590px;">待评价</a>
+                                            </li>
+                                            <li>
+                                                <a class="border-after-default bg-after-red selected"
+                                                   style="left: 734px;">评价待审核</a>
+                                            </li>
+                                            <li>
+                                                <a class="border-after-default bg-after-red selected hide"
+                                                   style="left: 896px;">已完成</a>
+                                            </li>
+                                        </ul>
+                                        <span class="filling-line bg-red" style="transform: scaleX(0.356);"></span>
+                                    </div>
+                                    <!-- .events -->
+                                </div>
+                                <!-- .events-wrapper -->
+                                <ul class="cd-timeline-navigation mt-ht-nav-icon">
+                                    <li>
+                                        <div style="position: absolute;top: 5px;left: -36px;width: 100px;text-align: center;font-size: 16px;color: #383838;">
+                                            报修开始
+                                        </div>
+                                        <a class="prev btn btn-outline red md-skip inactive">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <div style=" position: absolute; top: 5px;right: -22px;width: 78px;text-align: center;font-size: 16px;color: #383838;">
+                                            已完成
+                                        </div>
+                                        <a class="next btn btn-outline default md-skip">
+                                        </a>
+                                    </li>
+                                </ul>
+                                <!-- .cd-timeline-navigation -->
+                            </div>
+                            <!--差评 评价待审核  -->
+                            <div ng-if="data.maintenanceRecord.maintenanceStatus.weight===5" class="timeline">
+                                <div class="events-wrapper">
+                                    <div class="events" style="width: 1800px; transform: translateX(0px);">
+                                        <ul>
+                                            <li>
+                                                <a class="border-after-red bg-after-red older-event selected"
+                                                   style="left: 80px;">待受理</a>
+                                            </li>
+                                            <li>
+                                                <a class="border-after-red bg-after-red older-event selected"
+                                                   style="left: 210px;">待派工</a>
+                                            </li>
+                                            <li>
+                                                <a class="border-after-red bg-after-red selected" style="left: 340px;">维修中</a>
+                                            </li>
+                                            <li>
+                                                <a class="border-after-red bg-after-red selected" style="left: 460px;">待评价</a>
+                                            </li>
+                                            <li>
+                                                <a class="border-after-red bg-after-red  "
+                                                   style="left: 580px;">评价待审核</a>
+                                            </li>
+                                            <li>
+                                                <a class="border-after-red bg-after-red selected hide"
+                                                   style="left: 896px;">已完成</a>
+                                            </li>
+                                        </ul>
+                                        <span class="filling-line bg-red" style="transform: scaleX(0.36);"></span>
+                                    </div>
+                                    <!-- .events -->
+                                </div>
+                                <!-- .events-wrapper -->
+                                <ul class="cd-timeline-navigation mt-ht-nav-icon">
+                                    <li>
+                                        <div style="position: absolute;top: 5px;left: -36px;width: 100px;text-align: center;font-size: 16px;color: #383838;">
+                                            报修开始
+                                        </div>
+                                        <a class="prev btn btn-outline red md-skip inactive">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <div style=" position: absolute; top: 5px;right: -22px;width: 78px;text-align: center;font-size: 16px;color: #383838;">
+                                            已完成
+                                        </div>
+                                        <a class="next btn btn-outline default md-skip">
+                                        </a>
+                                    </li>
+                                </ul>
+                                <!-- .cd-timeline-navigation -->
+                            </div>
+                            <!--差评已完成  -->
+                            <div ng-if="data.maintenanceRecord.maintenanceStatus.weight===6 && data.maintenanceRecord.evaluationGrade===0"
+                                 class="timeline">
+                                <div class="events-wrapper">
+                                    <div class="events" style="width: 1800px; transform: translateX(0px);">
+                                        <ul>
+                                            <li>
+                                                <a class="border-after-red bg-after-red older-event selected"
+                                                   style="left: 80px;">待受理</a>
+                                            </li>
+                                            <li>
+                                                <a class="border-after-red bg-after-red older-event selected"
+                                                   style="left: 210px;">待派工</a>
+                                            </li>
+                                            <li>
+                                                <a class="border-after-red bg-after-red selected" style="left: 340px;">维修中</a>
+                                            </li>
+                                            <li>
+                                                <a class="border-after-red bg-after-red selected" style="left: 460px;">待评价</a>
+                                            </li>
+                                            <li>
+                                                <a class="border-after-red bg-after-red selected" style="left: 580px;">评价待审核</a>
+                                            </li>
+                                            <li>
+                                                <a class="border-after-red bg-after-red hide"
+                                                   style="left: 896px;">已完成</a>
+                                            </li>
+                                        </ul>
+                                        <span class="filling-line bg-red" style="transform: scaleX(0.6);"></span>
+                                    </div>
+                                    <!-- .events -->
+                                </div>
+                                <!-- .events-wrapper -->
+                                <ul class="cd-timeline-navigation mt-ht-nav-icon">
+                                    <li>
+                                        <div style="position: absolute;top: 5px;left: -36px;width: 100px;text-align: center;font-size: 16px;color: #383838;">
+                                            报修开始
+                                        </div>
+                                        <a class="prev btn btn-outline red md-skip inactive">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <div style=" position: absolute; top: 5px;right: -22px;width: 78px;text-align: center;font-size: 16px;color: #383838;">
+                                            已完成
+                                        </div>
+                                        <a class="next btn btn-outline red md-skip" style="background: #e7505a;">
+                                        </a>
+                                    </li>
+                                </ul>
+                                <!-- .cd-timeline-navigation -->
+                            </div>
+                            <!--好评或中评  直接已完成-->
+                            <div ng-if="data.maintenanceRecord.maintenanceStatus.weight===6 && data.maintenanceRecord.evaluationGrade!==0"
+                                 class="timeline">
+                                <div class="events-wrapper">
+                                    <div class="events" style="width: 1800px; transform: translateX(0px);">
+                                        <ul>
+                                            <li>
+                                                <a class="border-after-red bg-after-red older-event selected"
+                                                   style="left: 107px;">待受理</a>
+                                            </li>
+                                            <li>
+                                                <a class="border-after-red bg-after-red older-event selected"
+                                                   style="left: 264px;">待派工</a>
+                                            </li>
+                                            <li>
+                                                <a class="border-after-red bg-after-red selected" style="left: 437px;">维修中</a>
+                                            </li>
+                                            <li>
+                                                <a class="border-after-red bg-after-red selected" style="left: 584px;">待评价</a>
+                                            </li>
+                                        </ul>
+                                        <span class="filling-line bg-red" style="transform: scaleX(0.6);"></span>
+                                    </div>
+                                    <!-- .events -->
+                                </div>
+                                <!-- .events-wrapper -->
+                                <ul class="cd-timeline-navigation mt-ht-nav-icon">
+                                    <li>
+                                        <div style="position: absolute;top: 5px;left: -36px;width: 100px;text-align: center;font-size: 16px;color: #383838;">
+                                            报修开始
+                                        </div>
+                                        <a class="prev btn btn-outline red md-skip inactive">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <div style=" position: absolute; top: 5px;right: -22px;width: 78px;text-align: center;font-size: 16px;color: #383838;">
+                                            已完成
+                                        </div>
+                                        <a class="next btn btn-outline red md-skip" style="background: #e7505a;">
+                                        </a>
+                                    </li>
+                                </ul>
+                                <!-- .cd-timeline-navigation -->
+                            </div>
+                            <!--重复报修 -->
+                            <div ng-if="data.maintenanceRecord.maintenanceStatus.weight===7" class="timeline">
+                                <div class="events-wrapper">
+                                    <div class="events" style="width: 1800px; transform: translateX(0px);">
+                                        <ul>
+                                            <li>
+                                                <a class="border-after-red bg-after-red older-event selected"
+                                                   style="left: 140px;">待受理</a>
+                                            </li>
+                                            <li>
+                                                <a class="border-after-red bg-after-red older-event selected"
+                                                   style="left: 350px;">待派工</a>
+                                            </li>
+                                            <li>
+                                                <a class="border-after-red bg-after-red selected" style="left: 550px;">维修中</a>
+                                            </li>
+                                        </ul>
+                                        <span class="filling-line bg-red" style="transform: scaleX(0.6);"></span>
+                                    </div>
+                                    <!-- .events -->
+                                </div>
+                                <!-- .events-wrapper -->
+                                <ul class="cd-timeline-navigation mt-ht-nav-icon">
+                                    <li>
+                                        <div style="position: absolute;top: 5px;left: -36px;width: 100px;text-align: center;font-size: 16px;color: #383838;">
+                                            报修开始
+                                        </div>
+                                        <a class="prev btn btn-outline red md-skip inactive">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <div style=" position: absolute; top: 5px;right: -34px;width: 100px;text-align: center;font-size: 16px;color: #383838;">
+                                            重复报修
+                                        </div>
+                                        <a class="next btn btn-outline red md-skip" style="background: #e7505a;">
+                                        </a>
+                                    </li>
+                                </ul>
+                                <!-- .cd-timeline-navigation -->
+                            </div>
+                            <!--无法维修 -->
+                            <div class="timeline" ng-if="data.maintenanceRecord.maintenanceStatus.weight===8">
+                                <div class="events-wrapper">
+                                    <div class="events" style="width: 1800px; transform: translateX(0px);">
+                                        <ul>
+                                            <li>
+                                                <a class="border-after-red bg-after-red older-event selected"
+                                                   style="left: 140px;">待受理</a>
+                                            </li>
+                                            <li>
+                                                <a class="border-after-red bg-after-red older-event selected"
+                                                   style="left: 350px;">待派工</a>
+                                            </li>
+                                            <li>
+                                                <a class="border-after-red bg-after-red selected" style="left: 550px;">维修中</a>
+                                            </li>
+                                        </ul>
+                                        <span class="filling-line bg-red" style="transform: scaleX(0.6);"></span>
+                                    </div>
+                                    <!-- .events -->
+                                </div>
+                                <!-- .events-wrapper -->
+                                <ul class="cd-timeline-navigation mt-ht-nav-icon">
+                                    <li>
+                                        <div style="position: absolute;top: 5px;left: -36px;width: 100px;text-align: center;font-size: 16px;color: #383838;">
+                                            报修开始
+                                        </div>
+                                        <a class="prev btn btn-outline red md-skip inactive">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <div style=" position: absolute; top: 5px;right: -34px;width: 100px;text-align: center;font-size: 16px;color: #383838;">
+                                            无法维修
+                                        </div>
+                                        <a class="next btn btn-outline red md-skip" style="background: #e7505a;">
+                                        </a>
+                                    </li>
+                                </ul>
+                                <!-- .cd-timeline-navigation -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="portlet light portlet-fit bordered">
+                    <div class="portlet-body" style="background: #EFF3F8;">
+                        <div class="timeline">
+                            <!-- 报修基本情况 根据权重判断报修模块是否显示 -->
+                            <div class="timeline-item">
+                                <div class="timeline-badge">
+                                    <img class="timeline-badge-userpic"
+                                         ng-src="{{data.repairStaff.headPicture || 'images/user/male.jpg'}}">
+                                    <p class="detailsName">{{data.repairStaff.name}}</p>
+                                    <p class="detailsTel">{{data.repairStaff.tel}}</p>
+                                </div>
+                                <div class="timeline-body repairPeople" style="padding-bottom: 10px;">
+                                    <div class="timeline-body-arrow"
+                                         style="border-color: transparent #fff transparent transparent;">
+
+                                    </div>
+                                    <p style="font-size: 16px;font-weight: bold;">维修基本信息</p>
+                                    <div class="repairPeopleDiv">
+                                        <span style="font-weight: bold;">报修时间：</span>
+                                        <span style="font-weight:bold!important;margin:0;color: #e7505a!important;font-size: 14px;">{{data.addDateTime}}</span>
+                                    </div>
+                                    <div class="repairPeopleDiv" ng-if="data.repairMethod===1? '微信报修':'网页报修' ">
+                                        <span style="font-weight: bold;">报修方式：</span>
+                                        <span>{{data.repairMethod}}</span>
+                                    </div>
+                                    <div class="repairPeopleDiv" style="width: 100%;">
+                                        <span style="font-weight: bold;">维修标题：</span>
+                                        <span>{{data.maintenanceItemName}}</span>
+                                    </div>
+                                    <div class="repairPeopleDiv" style="vertical-align: top;">
+                                        <span style="font-weight: bold;">所属校区：</span>
+                                        <span>{{data.maintenanceRecord.maintenanceArea.campus.name}}</span>
+                                    </div>
+                                    <div class="repairPeopleDiv">
+                                        <span style="font-weight: bold;">维修区域：</span>
+                                        <span>{{data.maintenanceRecord.maintenanceArea.name}}</span>
+                                    </div>
+                                    <div class="repairPeopleDiv" style="width: 100%;">
+                                        <span style="font-weight: bold;">详细地址：</span>
+                                        <span>{{data.address}}</span>
+                                    </div>
+                                    <div class="repairPeopleDiv" style="vertical-align: top;">
+                                        <span style="font-weight: bold;">维修项目：</span>
+                                        <span>{{data.maintenanceRecord.maintenanceCategory.maintenanceType.name}}</span>
+                                    </div>
+                                    <div class="repairPeopleDiv">
+                                        <span style="font-weight: bold;">维修类别：</span>
+                                        <span>{{data.maintenanceRecord.maintenanceCategory.name}}</span>
+                                    </div>
+                                    <div class="repairPeopleDiv" style="width: 100%;">
+                                        <span style="font-weight: bold;">维修内容：</span>
+                                        <span>{{data.maintenanceContent}}</span>
+                                    </div>
+                                    <div class="repairPeopleDiv">
+                                        <span style="font-weight: bold;">报修图片：</span>
+                                        <div class="picScroll-left">
+                                            <ul class="hd shutter-btn" ng-show="image.urls.length>2">
+                                                <li class="prev" style="margin-top: -15px;left: 0px;"></li>
+                                                <li class="next" style="margin-top: -15px;right: 0px"></li>
+                                            </ul>
+                                            <div class="bd">
+                                                <ul class="picList">
+
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <span ng-if="!hasImg">未上传!</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--维修开始情况  根据权重判断维修模块是否显示 "-->
+                            <div class="timeline-item" ng-if="data.maintenanceRecord.maintenanceStatus.weight>=3">
+                                <div class="timeline-badge">
+                                    <img class="timeline-badge-userpic"
+                                         ng-src="{{data.maintenanceStaff.headPicture || 'images/user/male.jpg'}}">
+                                    <p class="detailsName">{{data.maintenanceStaff.name}}</p>
+                                    <p class="detailsTel">{{data.maintenanceStaff.tel}}</p>
+                                </div>
+                                <div class="timeline-body servicePeople" style="padding-bottom: 20px;">
+                                    <div class="timeline-body-arrow"
+                                         style="border-color: transparent #fff transparent transparent;"></div>
+                                    <p style="font-size: 16px;font-weight: bold;">维修开始信息</p>
+                                    <div class="maintenance">
+                                        <span style="font-weight: bold;">开始时间：</span>
+                                        <span style="font-weight: bold!important;color: #e7505a!important;font-size: 14px;">{{data.maintenanceStartDateTime}}</span>
+                                    </div>
+                                    <div class="maintenance">
+                                        <span style="font-weight: bold;">维修部门：</span>
+                                        <span>{{data.maintenanceStaff.maintenanceWorker.department.campus.name}} </span>
+                                        <span>{{data.maintenanceStaff.maintenanceWorker.department.name}} </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--维修开结束情况  根据权重判断维修模块是否显示"-->
+                            <div class="timeline-item" ng-if="data.maintenanceRecord.maintenanceStatus.weight>=4">
+                                <div class="timeline-badge">
+                                    <img class="timeline-badge-userpic"
+                                         ng-src="{{data.maintenanceStaff.headPicture || 'images/user/male.jpg'}}">
+                                    <p class="detailsName">{{data.maintenanceStaff.name}}</p>
+                                    <p class="detailsTel">{{data.maintenanceStaff.tel}}</p>
+                                </div>
+                                <div class="timeline-body servicePeopleEnd" style="padding-bottom: 10px;">
+                                    <div class="timeline-body-arrow"
+                                         style="border-color: transparent #fff transparent transparent;"></div>
+                                    <p style="font-size: 16px;font-weight: bold;">维修结束信息</p>
+                                    <div class="repairPeopleDiv" style="margin-top:10px;">
+                                        <span style="font-weight: bold;">结束时间：</span>
+                                        <span style="font-weight: bold!important;color: #e7505a!important;font-size: 14px;">{{data.maintenanceEndDateTime}}</span>
+                                    </div>
+                                    <div class="repairPeopleDiv">
+                                        <span style="font-weight: bold;">维修用时(小时)：</span>
+                                        <span>{{data.maintenanceTime}}</span>
+                                    </div>
+                                    <p class="maintenance">
+                                        <span style="font-weight: bold;">维修状态：</span>
+                                        <span>{{data.maintenanceRecord.maintenanceStatus.name}} {{data.maintenanceRecord.maintenanceStatus.percent}}</span>
+                                    </p>
+                                    <p class="maintenance" style="width:100%;word-break: break-all;line-height:30px;"
+                                       ng-if="data.maintenanceRecord.maintenanceStatus.weight===8">
+                                        <span style="font-weight: bold;"> 无法维修原因：</span>
+                                        <span>{{data.maintenanceRecord.unableRepairReason}}</span>
+                                    </p>
+                                </div>
+                            </div>
+                            <!-- 评价基本情况   根据权重判断是否显示  weight===4代表正常维修完成待评价-   -->
+                            <div class="timeline-item"
+                                 ng-show="data.maintenanceRecord.maintenanceStatus.weight===4 && data.repairStaff.id==loginUser.id && !isSaveMsg"
+                            >
+                                <div class="timeline-badge">
+                                    <img class="timeline-badge-userpic"
+                                         ng-src="{{data.repairStaff.headPicture || 'images/user/male.jpg'}}">
+                                    <p class="detailsName">{{data.repairStaff.name}}</p>
+                                    <p class="detailsTel">{{data.repairStaff.tel}}</p>
+                                </div>
+                                <div class="timeline-body servicePeople" style="padding-bottom: 20px;">
+                                    <div class="timeline-body-arrow"
+                                         style="border-color: transparent #fff transparent transparent;"></div>
+                                    <p style="font-size: 16px;font-weight: bold;">报修人评价</p>
+
+                                    <form w5c-form-validate="validateOptions"
+                                          class="w5c-form form-horizontal form-bordered" novalidate name="myForm">
+                                          <div class="form-body">
+                                          <div class="form-group">
+                                          <div class="col-xs-12">
+                                        <div class="timeline-body-arrow"
+                                             style="border-color: transparent #fff transparent transparent;"></div>
+                                            <div class="form-md-radios">
+                                                <div class="md-radio-inline" style="font-size: 14px;">
+                                                    <span style="font-weight: bold;"> 评价等级：</span>
+                                                    <div class="md-radio"
+                                                         ng-repeat="item in repairStatusData">
+                                                        <input type="radio" ng-disabled="isSaveMsg" id="editCheckbox{{item.value}}"
+                                                               ng-model="data.maintenanceRecord.evaluationGrade"
+                                                               class="md-radiobtn" name="radio"
+                                                               ng-value="{{item.value}}"
+                                                               required>
+                                                        <label for="editCheckbox{{item.value}}">
+                                                            <span></span>
+                                                            <span class="check" style="margin-top:2px;"></span>
+                                                            <span class="box" style="margin-top:2px;"></span>{{item.name}}
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12">
+                                            <textarea id="maxlength_textarea2" name="description"
+                                                      class="form-control"
+                                                      ng-disabled="isSaveMsg"
+                                                      placeholder="最大输入{{length.commentMax}}个字,最少输入{{length.commentMin}}个字"
+                                                      ng-show="data.maintenanceRecord.evaluationGrade===0"
+                                                      ng-model="data.maintenanceRecord.evaluationContent"
+                                                      maxlength="{{length.commentMax}}" rows="8"
+                                                      ng-minlength="{{length.commentMin}}"
+                                                      required>
+                                            </textarea>
+                                                <span class="validateErrorInfo"> </span>
+                                        </div>
+                                        <div class="col-xs-12">
+                                        	<button ng-if="!isSaveMsg" type="button" class="btn green" style="margin-top: 10px;"
+                                                    ng-disabled="!(data.maintenanceRecord.evaluationGrade===1 || data.maintenanceRecord.evaluationGrade===2
+                                                    || (data.maintenanceRecord.evaluationGrade===0 && myForm.description.$valid))"
+                                                    ng-click="saveComment()">
+                                                <i class="fa fa-check"></i> 保存
+                                            </button>
+                                        </div>
+                                        </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <!-- 评价待审核情况   根据权重判断是否显示  weight===5代表已评价待审核-->
+                            <div class="timeline-item" ng-if="data.maintenanceRecord.maintenanceStatus.weight===5 || (isSaveMsg && data.maintenanceRecord.evaluationGrade===0)">
+                                <div class="timeline-badge">
+                                    <img class="timeline-badge-userpic"
+                                         ng-src="{{data.repairStaff.headPicture || 'images/user/male.jpg'}}">
+                                    <p class="detailsName">{{data.repairStaff.name}}</p>
+                                    <p class="detailsTel">{{data.repairStaff.tel}}</p>
+                                </div>
+                                <div class="timeline-body comment" style="height: 100px;">
+                                    <div class="timeline-body-arrow"
+                                         style="border-color: transparent #fff transparent transparent;"></div>
+                                    <p style="font-size: 16px;font-weight: bold;">评价信息</p>
+                                    <div class="timeline-body-arrow"
+                                         style="border-color: transparent #fff transparent transparent;"></div>
+                                    <p class="toExamine">评价待审核</p>
+                                </div>
+                            </div>
+                            <!-- 评价基本情况   根据权重判断是否显示  weight===6代表正常维修完成及正常评价并审核完成   -->
+                            <div class="timeline-item" ng-if="data.maintenanceRecord.maintenanceStatus.weight===6 || (isSaveMsg && data.maintenanceRecord.evaluationGrade!==0)">
+                                <div class="timeline-badge">
+                                    <img class="timeline-badge-userpic"
+                                         ng-src="{{data.repairStaff.headPicture || 'images/user/male.jpg'}}">
+                                    <p class="detailsName">{{data.repairStaff.name}}</p>
+                                    <p class="detailsTel">{{data.repairStaff.tel}}</p>
+                                </div>
+                                <div class="timeline-body comment" style="height: auto;">
+                                    <div class="timeline-body-arrow"
+                                         style="border-color: transparent #fff transparent transparent;"></div>
+                                    <p style="font-size: 16px;font-weight: bold;">评价信息</p>
+                                    <div class="repairTime" style="margin-top: 15px;">
+                                        <span style="font-weight: bold;"> 评价时间：</span>
+                                        <span style="font-weight: bold!important;color: #e7505a!important;font-size: 14px;">{{data.maintenanceRecord.evaluationDateTime}}</span>
+                                    </div>
+                                    <div class="repairTime">
+                                        <span style="font-weight: bold;">  评价等级：</span>
+                                        <span ng-if="data.maintenanceRecord.evaluationGrade===1">好评</span>
+                                        <span ng-if="data.maintenanceRecord.evaluationGrade===2">中评</span>
+                                        <span ng-if="data.maintenanceRecord.evaluationGrade===0">差评</span>
+                                    </div>
+                                    <div class="repairTime"
+                                         ng-if="data.maintenanceRecord.evaluationGrade===0 && data.maintenanceRecord.approvalStatus===1">
+                                        <span style="font-weight: bold;"> 差评原因：</span>
+                                        <span>{{data.maintenanceRecord.evaluationContent}}</span>
+                                    </div>
+                                    <div class="repairTime"
+                                         ng-if="data.maintenanceRecord.evaluationGrade===0 && data.maintenanceRecord.approvalStatus===0">
+                                        <p class="toExamine">评价未通过审核</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-2">
+                <div class="table-toolbar">
+                    <div class="tabbable tabbable-custom tabbable-noborder tabbable-reversed">
+                        <div class="col-xs-12 portlet light portlet-fit bg-inverse emphasize-dark"
+                             style="height: 165px;border: 1px solid #c2cad8;">
+                            <div id="pieDiagram" class="portlet-body" style="height:100%;width:100%;"></div>
+                        </div>
+                        <div class="col-xs-12 portlet light portlet-fit bg-inverse emphasize-dark"
+                             style="border: 1px solid #c2cad8">
+                            <div class="portlet-title" style="padding: 15px 44px 10px;">
+                                <div class="caption" style="text-align: center;">
+		                                <span style="font-size: 16px;"
+                                              class="caption-subject bold font-blue"> 维修进展 </span>
+                                </div>
+                            </div>
+                            <div class="portlet-body scroller"
+                                 style="position: relative; overflow: hidden; width: auto; height: 485px;padding:0 12px;right: 10px;">
+                                <div class="timeline  white-bg" style="padding-bottom: 1px;">
+                                    <!-- TIMELINE ITEM -->
+                                    <div class="timeline-item" ng-repeat="status in beforeStatusObj">
+                                        <div class="timeline-badge">
+                                            <div class="timeline-icon" style="margin-left: 40px;padding: 34px 26px;">
+                                                <i class="{{status.timeLineIcon}} font-green-haze"
+                                                   style="font-size: 30px"></i>
+                                            </div>
+                                        </div>
+                                        <div class="timeline-body"
+                                             style="margin-left: 0 !important;background: transparent !important;">
+                                            <div class="timeline-body-arrow"></div>
+                                            <div class="timeline-body-head">
+                                                <div class="timeline-body-head-caption"
+                                                     style="margin-left: 20px;margin-top: 10px;">
+                                                    <span class="timeline-body-alerttitle font-green-haze"
+                                                          style="font-size: 14px !important;font-weight: normal  !important;">{{status.name}}</span>
+                                                </div>
+                                            </div>
+                                            <div class="timeline-body-content" style="width: 120px;margin-top: 70px;">
+		                                        <span class="font-green-haze">
+		                                           	完成
+		                                        </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="timeline-item">
+                                        <div class="timeline-badge">
+                                            <div class="timeline-icon" style="margin-left: 40px;padding: 34px 24px;">
+                                                <i class="{{data.maintenanceRecord.maintenanceStatus.timeLineIcon}}"
+                                                   ng-class="statusAllDown?'font-green-haze':'font-red-intense'"></i>
+                                            </div>
+                                        </div>
+                                        <div class="timeline-body-right">
+                                            <div class="timeline-body-arrow"></div>
+                                            <div class="timeline-body-head">
+                                                <div class="timeline-body-head-caption"
+                                                     style="margin-left: 58px;margin-top: 10px;">
+		                                            <span class="timeline-body-alerttitle"
+                                                          style="font-size: 14px !important;font-weight: normal  !important;"
+                                                          ng-class="statusAllDown?'font-green-haze':'font-red-intense'"
+                                                    >{{data.maintenanceRecord.maintenanceStatus.name}}</span>
+                                                </div>
+                                            </div>
+                                            <div class="timeline-body-content">
+		                                        <span class="font-grey-cascade">
+		                                            <!--{{data.maintenanceRecord.maintenanceStatus.description}}-->
+		                                        </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- END TIMELINE ITEM -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 portlet light portlet-fit bg-inverse emphasize-dark"
+                             style="height: 88px;padding-top: 10px;border: 1px solid #c2cad8;">
+                            <p class="text-center">
+		                            <span class="label" style="font-size: 16px;color: #000;">
+		                               	维修用时(小时)
+		                            </span>
+                            </p>
+                            <div class="text-center" style="width: 100%;height: 200px;position: absolute;top:54%">
+		                            <span class="label" ng-class="timeDown"
+                                          style="font-size: 16px;color: red;">
+		                                {{timeCost}}
+		                            </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" ng-if="isWorker && data.maintenanceStaff.id==loginUser.id">
+            <!-- 物料列表-->
+            <div class="portlet light bordered" style="margin: auto 15px !important;">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="fa fa-cubes"></i>维修物料列表
+                    </div>
+                    <div class="actions" ng-if="loginStatus">
+
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <table class="table table-striped table-bordered table-hover table-checkable order-column dt-responsive"
+                           id="myMaterialUseDataTable">
+                        <thead>
+                        <tr>
+                            <th class="none"> 序号</th>
+                            <th class="col-xs-3"> 物料名称</th>
+                            <th class="col-xs-2"> 规格型号</th>
+                            <th class="col-xs-2"> 物料类别</th>
+                            <th class="none"> 维修单号</th>
+                            <th class="col-xs-2"> 出库数量</th>
+                            <th class="col-xs-1"> 物料单位</th>
+                            <th class="col-xs-1"> 出库日期</th>
+                            <th class="none"> 领用人员</th>
+                            <th class="none"> 添加时间</th>
+                            <th class="opt_width_2"> 操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div data-ng-include="'views/material/myUseAdd.html'"></div>
+    <div data-ng-include="'views/repair/myRepair/updateMaintenanceStatus.html'"></div>
+    <div data-ng-include="'tpl/confirmRemove.html'"></div>
+</div>
+<!-- END MAIN CONTENT -->
